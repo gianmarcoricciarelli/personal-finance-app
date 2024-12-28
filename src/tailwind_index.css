@@ -558,12 +558,41 @@ video {
   display: flex;
 }
 
+.h-5 {
+  height: 1.25rem;
+}
+
 .h-full {
   height: 100%;
 }
 
+.\!w-\[88px\] {
+  width: 88px !important;
+}
+
+.w-5 {
+  width: 1.25rem;
+}
+
+.w-\[300px\] {
+  width: 300px;
+}
+
+.grow {
+  flex-grow: 1;
+}
+
+.rotate-180 {
+  --tw-rotate: 180deg;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+
 .flex-col {
   flex-direction: column;
+}
+
+.items-center {
+  align-items: center;
 }
 
 .gap-1 {
@@ -607,6 +636,10 @@ video {
   padding-bottom: 1.5rem;
 }
 
+.pr-1 {
+  padding-right: 0.25rem;
+}
+
 .pr-6 {
   padding-right: 1.5rem;
 }
@@ -616,10 +649,28 @@ video {
   color: rgb(179 179 179 / var(--tw-text-opacity, 1));
 }
 
+.opacity-0 {
+  opacity: 0;
+}
+
+.opacity-100 {
+  opacity: 1;
+}
+
+.transition-all {
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+
 .transition-colors {
   transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 150ms;
+}
+
+.duration-100 {
+  transition-duration: 100ms;
 }
 
 .duration-300 {
@@ -629,8 +680,7 @@ video {
 @font-face {
   font-family: 'Public Sans';
 
-  src: url('../public/assets/fonts/PublicSans-VariableFont_wght.ttf')
-        format('truetype');
+  src: url('assets/fonts/PublicSans-VariableFont_wght.ttf') format('truetype');
 }
 
 html,
@@ -638,6 +688,10 @@ body,
 #root {
   height: 100%;
   font-family: 'Public Sans';
+}
+
+.hover\:cursor-pointer:hover {
+  cursor: pointer;
 }
 
 .hover\:bg-beige-100:hover {
