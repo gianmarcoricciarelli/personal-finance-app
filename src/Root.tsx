@@ -1,6 +1,5 @@
 import { Context, useContext } from 'react'
 import { Outlet } from 'react-router'
-import Container from './components/Container/Container'
 import SideBar from './components/SideBar/SideBar'
 import {
     IViewportObserver,
@@ -13,10 +12,10 @@ export default function Root() {
     )
 
     return (
-        <Container className='md:flex-row' flex='column' fullHeight>
+        <div className='h-full flex flex-col md:flex-row'>
             {!isMobile && <SideBar />}
             <Outlet />
             {isMobile && <SideBar />}
-        </Container>
+        </div>
     )
 }

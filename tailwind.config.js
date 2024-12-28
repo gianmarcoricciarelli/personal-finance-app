@@ -10,6 +10,7 @@ export default {
                 'grey-300': '#B3B3B3',
                 'grey-500': '#696868',
                 'grey-900': '#201F24',
+                'pfa-green': '#277C78',
             },
         },
     },
