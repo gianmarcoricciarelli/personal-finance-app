@@ -1,3 +1,16 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@font-face {
+    font-family: 'Public Sans';
+    src: url('../public/assets/fonts/PublicSans-VariableFont_wght.ttf')
+        format('truetype');
+}
+
+html,
+body,
+#root {
+    height: 100%;
+    font-family: 'Public Sans';
+}

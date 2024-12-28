@@ -553,3 +553,48 @@ video {
 [hidden]:where(:not([hidden="until-found"])) {
   display: none;
 }
+
+.flex {
+  display: flex;
+}
+
+.h-full {
+  height: 100%;
+}
+
+.flex-row {
+  flex-direction: row;
+}
+
+.flex-col {
+  flex-direction: column;
+}
+
+.bg-grey-900 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(32 31 36 / var(--tw-bg-opacity, 1));
+}
+
+@font-face {
+  font-family: 'Public Sans';
+
+  src: url('../public/assets/fonts/PublicSans-VariableFont_wght.ttf')
+        format('truetype');
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  font-family: 'Public Sans';
+}
+
+@media (min-width: 768px) {
+  .md\:flex-row {
+    flex-direction: row;
+  }
+
+  .md\:flex-col {
+    flex-direction: column;
+  }
+}
