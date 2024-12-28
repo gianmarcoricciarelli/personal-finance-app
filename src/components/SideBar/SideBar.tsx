@@ -9,7 +9,6 @@ import NavRecurringBillsIcon from '../../assets/images/icon-nav-recurring-bills.
 import NavTransactionIcon from '../../assets/images/icon-nav-transactions.svg?react'
 
 export default function SideBar() {
-    // TODO: TRY FRAMER MOTION
     const [isMenuMinimized, setIsMenuMinimized] = useState(false)
     const [showText, setShowText] = useState(true)
 
@@ -26,23 +25,26 @@ export default function SideBar() {
             setIsMenuMinimized(false)
             setTimeout(() => {
                 setShowText(true)
-            }, 400)
+            }, 200)
         } else {
             setShowText(false)
             setTimeout(() => {
                 setIsMenuMinimized(true)
-            }, 400)
+            }, 200)
         }
     }
 
     return (
         <div
             className={clsx(
-                'w-[300px] pb-6 pr-6 rounded-r-xl',
+                'pb-6 rounded-r-xl',
                 'bg-grey-900',
                 'flex gap-6 md:flex-col',
-                'transition-all duration-300',
-                { 'pr-1 !w-[88px]': isMenuMinimized }
+                'transition-all duration-100',
+                {
+                    'pr-1 w-[88px]': isMenuMinimized,
+                    'w-[300px] pr-6': !isMenuMinimized,
+                }
             )}
         >
             {/* <div className='px-8 py-10'>
@@ -57,7 +59,7 @@ export default function SideBar() {
                         navBarItemsToIconName[navItem],
                         {
                             className:
-                                'text-grey-300 transition-colors duration-300 group-hover:text-pfa-green',
+                                'w-4 h-4 text-grey-300 transition-colors duration-300 group-hover:text-pfa-green',
                         }
                     )
 
@@ -65,7 +67,7 @@ export default function SideBar() {
                         <NavLink
                             key={navItem}
                             className={clsx(
-                                'px-8 py-4 rounded-r-xl group',
+                                'h-14 px-8 py-4 rounded-r-xl group',
                                 'flex gap-4 items-center',
                                 'hover:bg-beige-100 transition-colors duration-300'
                             )}
@@ -75,8 +77,9 @@ export default function SideBar() {
                             {!isMenuMinimized && (
                                 <span
                                     className={clsx(
-                                        'opacity-100 text-grey-300 transition-all duration-100 group-hover:text-grey-900',
+                                        'text-grey-300 font-bold transition-all duration-100 group-hover:text-grey-900',
                                         {
+                                            'opacity-100': showText,
                                             'opacity-0': !showText,
                                         }
                                     )}
@@ -90,7 +93,7 @@ export default function SideBar() {
             </div>
             <div
                 className={clsx(
-                    'px-8 py-4 rounded-r-xl group',
+                    'h-14 px-8 py-4 rounded-r-xl group',
                     'flex gap-4 items-center',
                     'hover:bg-beige-100 hover:cursor-pointer',
                     'transition-colors duration-300'
@@ -99,17 +102,17 @@ export default function SideBar() {
             >
                 <MinimizeMenuIcon
                     className={clsx(
-                        'w-5 h-5',
-                        'text-grey-300 group-hover:text-pfa-green',
-                        'transition-all duration-300',
+                        'w-4 h-4 text-grey-300 group-hover:text-pfa-green',
+                        'transition-all duration-100',
                         { 'rotate-180': isMenuMinimized }
                     )}
                 />
                 {!isMenuMinimized && (
                     <span
                         className={clsx(
-                            'opacity-100 text-grey-300 transition-all duration-100 group-hover:text-grey-900',
+                            'text-grey-300 font-bold transition-all duration-100 group-hover:text-grey-900',
                             {
+                                'opacity-100': showText,
                                 'opacity-0': !showText,
                             }
                         )}
