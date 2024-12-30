@@ -7,15 +7,15 @@ import { Context, useContext } from 'react'
 import { Outlet } from 'react-router'
 
 export default function Root() {
-    const { isMobile } = useContext(
+    const { isMobile, isTablet } = useContext(
         ViewportObserver as Context<IViewportObserver>
     )
 
     return (
         <div className='h-full flex flex-col md:flex-row'>
-            {!isMobile && <SideBar />}
+            {!(isMobile || isTablet) && <SideBar />}
             <Outlet />
-            {isMobile && <SideBar />}
+            {(isMobile || isTablet) && <SideBar />}
         </div>
     )
 }

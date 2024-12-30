@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react'
 import { ViewportObserver } from './ViewportObserver.context'
 
-const MOBILE_THRESHOLD = 768
+const TABLET_THRESHOLD = 768
+const MOBILE_THRESHOLD = 640
 
 export default function ViewportObserverProvider({
     children,
@@ -9,6 +10,7 @@ export default function ViewportObserverProvider({
     children: React.ReactNode
 }) {
     const [isMobile, setIsMobile] = useState(false)
+    const [isTablet, setIsTablet] = useState(false)
 
     useEffect(() => {
         const bodyElement = document.querySelector('body')
@@ -17,9 +19,17 @@ export default function ViewportObserverProvider({
             const observer = new ResizeObserver((entries) => {
                 const [bodyEntry] = entries
 
-                if (bodyEntry.contentRect.width <= MOBILE_THRESHOLD) {
+                if (
+                    bodyEntry.contentRect.width <= TABLET_THRESHOLD &&
+                    bodyEntry.contentRect.width > MOBILE_THRESHOLD
+                ) {
+                    setIsTablet(true)
+                    setIsMobile(false)
+                } else if (bodyEntry.contentRect.width <= MOBILE_THRESHOLD) {
+                    setIsTablet(false)
                     setIsMobile(true)
                 } else {
+                    setIsTablet(false)
                     setIsMobile(false)
                 }
             })
@@ -29,7 +39,7 @@ export default function ViewportObserverProvider({
     }, [])
 
     return (
-        <ViewportObserver.Provider value={{ isMobile }}>
+        <ViewportObserver.Provider value={{ isMobile, isTablet }}>
             {children}
         </ViewportObserver.Provider>
     )

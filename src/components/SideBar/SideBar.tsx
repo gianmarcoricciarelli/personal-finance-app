@@ -15,7 +15,7 @@ import { Context, ReactElement, useContext, useState } from 'react'
 import Item from './Item/Item'
 
 export default function SideBar() {
-    const { isMobile } = useContext(
+    const { isMobile, isTablet } = useContext(
         ViewportObserver as Context<IViewportObserver>
     )
 
@@ -47,7 +47,7 @@ export default function SideBar() {
     return (
         <div
             className={clsx(
-                'w-full px-10 pt-2 rounded-r-xl md:pl-0 md:pb-6 md:pt-0',
+                'w-full px-4 pt-2 rounded-t-md sm:px-10 md:pl-0 md:pb-6 md:pt-0 md:rounded-l-none md:rounded-r-xl',
                 'bg-grey-900',
                 'flex gap-6 md:flex-col',
                 'transition-all duration-300',
@@ -57,14 +57,14 @@ export default function SideBar() {
                 }
             )}
         >
-            {!isMobile && (
+            {!(isTablet || isMobile) && (
                 <div className='px-8 py-10'>
                     {isMenuCollapsed && <SmallLogo />}
                     {!isMenuCollapsed && <LargeLogo />}
                 </div>
             )}
 
-            <div className='flex justify-evenly gap-1 grow md:flex-col md:justify-normal'>
+            <div className='flex justify-center grow sm:justify-evenly sm:gap-1 md:flex-col md:justify-normal'>
                 {Object.keys(sideBarItemsToIconName).map((sideBarItem) => {
                     return (
                         <Item
@@ -78,7 +78,7 @@ export default function SideBar() {
                     )
                 })}
             </div>
-            {!isMobile && (
+            {!(isTablet || isMobile) && (
                 <Item
                     isMenuCollapsed={isMenuCollapsed}
                     showText={showText}
