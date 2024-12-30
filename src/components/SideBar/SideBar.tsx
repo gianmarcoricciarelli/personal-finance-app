@@ -59,8 +59,8 @@ export default function SideBar() {
         >
             {!isMobile && (
                 <div className='px-8 py-10'>
-                    {isMenuCollapsed || (isMobile && <SmallLogo />)}
-                    {!isMenuCollapsed && !isMobile && <LargeLogo />}
+                    {isMenuCollapsed && <SmallLogo />}
+                    {!isMenuCollapsed && <LargeLogo />}
                 </div>
             )}
 

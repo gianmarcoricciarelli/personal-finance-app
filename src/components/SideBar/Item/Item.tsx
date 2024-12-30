@@ -1,9 +1,5 @@
-import {
-    IViewportObserver,
-    ViewportObserver,
-} from '@contexts/ViewportObserver/ViewportObserver.context'
 import clsx from 'clsx'
-import { cloneElement, Context, ReactElement, useContext } from 'react'
+import { cloneElement, ReactElement } from 'react'
 import { NavLink } from 'react-router'
 
 interface Item {
@@ -25,10 +21,6 @@ export default function Item({
     to,
     onClick,
 }: Item) {
-    const { isMobile } = useContext(
-        ViewportObserver as Context<IViewportObserver>
-    )
-
     const Component = to !== undefined ? NavLink : 'div'
     const _iconComponent = cloneElement(iconComponent, {
         className: clsx(
