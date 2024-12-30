@@ -1,5 +1,9 @@
+import {
+    IViewportObserver,
+    ViewportObserver,
+} from '@contexts/ViewportObserver/ViewportObserver.context'
 import clsx from 'clsx'
-import { cloneElement, ReactElement } from 'react'
+import { cloneElement, Context, ReactElement, useContext } from 'react'
 import { NavLink } from 'react-router'
 
 interface Item {
@@ -21,6 +25,10 @@ export default function Item({
     to,
     onClick,
 }: Item) {
+    const { isMobile } = useContext(
+        ViewportObserver as Context<IViewportObserver>
+    )
+
     const Component = to !== undefined ? NavLink : 'div'
     const _iconComponent = cloneElement(iconComponent, {
         className: clsx(
@@ -33,9 +41,9 @@ export default function Item({
     return (
         <Component
             className={clsx(
-                'h-14 px-8 py-4 rounded-r-xl group',
-                'flex gap-4 items-center',
-                'hover:bg-beige-100 transition-colors duration-300',
+                'pt-2 pb-3 rounded-r-xl group md:h-14 md:px-8 md:py-4',
+                'flex flex-col gap-1 items-center md:flex-row md:gap-4',
+                'hover:bg-beige-100 hover:cursor-pointer transition-colors duration-300',
                 { 'rotate-180': rotateIconOnCollapse && isMenuCollapsed }
             )}
             to={to as string}
@@ -45,7 +53,7 @@ export default function Item({
             {!isMenuCollapsed && (
                 <span
                     className={clsx(
-                        'text-grey-300 font-bold group-hover:text-grey-900',
+                        'text-xs text-grey-300 font-bold group-hover:text-grey-900 md:text-base',
                         'transition-all duration-300 ',
                         {
                             'opacity-100': showText,
