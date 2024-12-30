@@ -1,18 +1,18 @@
 import clsx from 'clsx'
-import React, { useState } from 'react'
-import { NavLink } from 'react-router'
+import { ReactElement, useState } from 'react'
 import MinimizeMenuIcon from '../../assets/images/icon-minimize-menu.svg?react'
 import NavBudgetsIcon from '../../assets/images/icon-nav-budgets.svg?react'
 import NavOverviewIcon from '../../assets/images/icon-nav-overview.svg?react'
 import NavPotsIcon from '../../assets/images/icon-nav-pots.svg?react'
 import NavRecurringBillsIcon from '../../assets/images/icon-nav-recurring-bills.svg?react'
 import NavTransactionIcon from '../../assets/images/icon-nav-transactions.svg?react'
+import Item from './Item/Item'
 
 export default function SideBar() {
-    const [isMenuMinimized, setIsMenuMinimized] = useState(false)
+    const [isMenuCollapsed, setIsMenuCollapsed] = useState(false)
     const [showText, setShowText] = useState(true)
 
-    const navBarItemsToIconName: Record<string, React.ReactElement> = {
+    const sideBarItemsToIconName: Record<string, ReactElement> = {
         Overview: <NavOverviewIcon />,
         Transactions: <NavTransactionIcon />,
         Budgets: <NavBudgetsIcon />,
@@ -21,15 +21,15 @@ export default function SideBar() {
     } as const
 
     function minimizeMenuHandler() {
-        if (isMenuMinimized) {
-            setIsMenuMinimized(false)
+        if (isMenuCollapsed) {
+            setIsMenuCollapsed(false)
             setTimeout(() => {
                 setShowText(true)
             }, 200)
         } else {
             setShowText(false)
             setTimeout(() => {
-                setIsMenuMinimized(true)
+                setIsMenuCollapsed(true)
             }, 200)
         }
     }
@@ -42,8 +42,8 @@ export default function SideBar() {
                 'flex gap-6 md:flex-col',
                 'transition-all duration-100',
                 {
-                    'pr-1 w-[88px]': isMenuMinimized,
-                    'w-[300px] pr-6': !isMenuMinimized,
+                    'pr-1 w-[88px]': isMenuCollapsed,
+                    'w-[300px] pr-6': !isMenuCollapsed,
                 }
             )}
         >
@@ -54,40 +54,14 @@ export default function SideBar() {
                 />
             </div> */}
             <div className='flex flex-col gap-1 grow'>
-                {Object.keys(navBarItemsToIconName).map((navItem) => {
-                    const iconComponent = React.cloneElement(
-                        navBarItemsToIconName[navItem],
-                        {
-                            className:
-                                'w-4 h-4 text-grey-300 transition-colors duration-300 group-hover:text-pfa-green',
-                        }
-                    )
-
+                {Object.keys(sideBarItemsToIconName).map((sideBarItem) => {
                     return (
-                        <NavLink
-                            key={navItem}
-                            className={clsx(
-                                'h-14 px-8 py-4 rounded-r-xl group',
-                                'flex gap-4 items-center',
-                                'hover:bg-beige-100 transition-colors duration-300'
-                            )}
-                            to={'/'}
-                        >
-                            {iconComponent}
-                            {!isMenuMinimized && (
-                                <span
-                                    className={clsx(
-                                        'text-grey-300 font-bold transition-all duration-100 group-hover:text-grey-900',
-                                        {
-                                            'opacity-100': showText,
-                                            'opacity-0': !showText,
-                                        }
-                                    )}
-                                >
-                                    {navItem}
-                                </span>
-                            )}
-                        </NavLink>
+                        <Item
+                            isMenuCollapsed={isMenuCollapsed}
+                            showText={showText}
+                            iconComponent={sideBarItemsToIconName[sideBarItem]}
+                            label={sideBarItem}
+                        />
                     )
                 })}
             </div>
@@ -102,12 +76,13 @@ export default function SideBar() {
             >
                 <MinimizeMenuIcon
                     className={clsx(
-                        'w-4 h-4 text-grey-300 group-hover:text-pfa-green',
+                        'w-4 h-4',
+                        'text-grey-300 group-hover:text-pfa-green',
                         'transition-all duration-100',
-                        { 'rotate-180': isMenuMinimized }
+                        { 'rotate-180': isMenuCollapsed }
                     )}
                 />
-                {!isMenuMinimized && (
+                {!isMenuCollapsed && (
                     <span
                         className={clsx(
                             'text-grey-300 font-bold transition-all duration-100 group-hover:text-grey-900',
