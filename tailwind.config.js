@@ -4,13 +4,14 @@ export default {
     theme: {
         extend: {
             colors: {
-                'beige-100': '#F8F4F0',
-                'beige-500': '#98908B',
-                'grey-100': '#F2F2F2',
-                'grey-300': '#B3B3B3',
-                'grey-500': '#696868',
-                'grey-900': '#201F24',
+                'pfa-beige-100': '#F8F4F0',
+                'pfa-beige-500': '#98908B',
+                'pfa-grey-100': '#F2F2F2',
+                'pfa-grey-300': '#B3B3B3',
+                'pfa-grey-500': '#696868',
+                'pfa-grey-900': '#201F24',
                 'pfa-green': '#277C78',
+                'pfa-yellow': '#F2CDAC',
             },
         },
     },

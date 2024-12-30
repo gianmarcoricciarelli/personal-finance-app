@@ -1,3 +1,5 @@
+import clsx from 'clsx'
+
 export default function Home() {
-    return <div>Home</div>
+    return <div className={clsx('bg-pfa-beige-100')}>Home</div>
 }

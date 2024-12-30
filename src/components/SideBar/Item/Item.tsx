@@ -25,17 +25,15 @@ export default function Item({
     to,
     onClick,
 }: Item) {
-    const { isMobile, isTablet } = useContext(
+    const { isMobile } = useContext(
         ViewportObserver as Context<IViewportObserver>
     )
-    console.log('isTablet:', isTablet)
-    console.log('isMobile:', isMobile)
 
     const Component = to !== undefined ? NavLink : 'div'
     const _iconComponent = cloneElement(iconComponent, {
         className: clsx(
             'w-4 h-4',
-            'text-grey-300 group-hover:text-pfa-green',
+            'text-pfa-grey-300 group-hover:text-pfa-green',
             'transition-colors duration-300'
         ),
     })
@@ -45,7 +43,7 @@ export default function Item({
             className={clsx(
                 'pt-2 pb-3 w-[64px] rounded-t-md group sm:w-[104px] md:rounded-r-xl md:w-[unset] md:h-14 md:px-8 md:py-4',
                 'flex flex-col gap-1 items-center md:flex-row md:gap-4',
-                'hover:bg-beige-100 hover:cursor-pointer transition-colors duration-300',
+                'hover:bg-pfa-beige-100 hover:cursor-pointer transition-colors duration-300',
                 { 'rotate-180': rotateIconOnCollapse && isMenuCollapsed }
             )}
             to={to as string}
@@ -55,7 +53,7 @@ export default function Item({
             {!isMenuCollapsed && !isMobile && (
                 <span
                     className={clsx(
-                        'text-xs text-grey-300 font-bold group-hover:text-grey-900 md:text-base',
+                        'text-xs text-pfa-grey-300 font-bold group-hover:text-pfa-grey-900 md:text-base',
                         'transition-all duration-300 ',
                         {
                             'opacity-100': showText,

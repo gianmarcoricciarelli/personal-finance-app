@@ -48,7 +48,7 @@ export default function SideBar() {
         <div
             className={clsx(
                 'w-full px-4 pt-2 rounded-t-md sm:px-10 md:pl-0 md:pb-6 md:pt-0 md:rounded-l-none md:rounded-r-xl',
-                'bg-grey-900',
+                'bg-pfa-grey-900',
                 'flex gap-6 md:flex-col',
                 'transition-all duration-300',
                 {

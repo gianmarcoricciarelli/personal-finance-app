@@ -570,20 +570,12 @@ video {
   width: 1rem;
 }
 
-.w-full {
-  width: 100%;
-}
-
-.w-\[69px\] {
-  width: 69px;
-}
-
-.w-\[68px\] {
-  width: 68px;
-}
-
 .w-\[64px\] {
   width: 64px;
+}
+
+.w-full {
+  width: 100%;
 }
 
 .grow {
@@ -607,14 +599,6 @@ video {
   justify-content: center;
 }
 
-.justify-around {
-  justify-content: space-around;
-}
-
-.justify-evenly {
-  justify-content: space-evenly;
-}
-
 .gap-1 {
   gap: 0.25rem;
 }
@@ -623,24 +607,24 @@ video {
   gap: 1.5rem;
 }
 
-.rounded-r-xl {
-  border-top-right-radius: 0.75rem;
-  border-bottom-right-radius: 0.75rem;
-}
-
 .rounded-t-md {
   border-top-left-radius: 0.375rem;
   border-top-right-radius: 0.375rem;
 }
 
-.bg-grey-900 {
+.bg-pfa-beige-100 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(248 244 240 / var(--tw-bg-opacity, 1));
+}
+
+.bg-pfa-grey-900 {
   --tw-bg-opacity: 1;
   background-color: rgb(32 31 36 / var(--tw-bg-opacity, 1));
 }
 
-.px-10 {
-  padding-left: 2.5rem;
-  padding-right: 2.5rem;
+.px-4 {
+  padding-left: 1rem;
+  padding-right: 1rem;
 }
 
 .px-8 {
@@ -651,11 +635,6 @@ video {
 .py-10 {
   padding-top: 2.5rem;
   padding-bottom: 2.5rem;
-}
-
-.px-4 {
-  padding-left: 1rem;
-  padding-right: 1rem;
 }
 
 .pb-3 {
@@ -679,7 +658,7 @@ video {
   font-weight: 700;
 }
 
-.text-grey-300 {
+.text-pfa-grey-300 {
   --tw-text-opacity: 1;
   color: rgb(179 179 179 / var(--tw-text-opacity, 1));
 }
@@ -725,19 +704,19 @@ body,
   cursor: pointer;
 }
 
-.hover\:bg-beige-100:hover {
+.hover\:bg-pfa-beige-100:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(248 244 240 / var(--tw-bg-opacity, 1));
-}
-
-.group:hover .group-hover\:text-grey-900 {
-  --tw-text-opacity: 1;
-  color: rgb(32 31 36 / var(--tw-text-opacity, 1));
 }
 
 .group:hover .group-hover\:text-pfa-green {
   --tw-text-opacity: 1;
   color: rgb(39 124 120 / var(--tw-text-opacity, 1));
+}
+
+.group:hover .group-hover\:text-pfa-grey-900 {
+  --tw-text-opacity: 1;
+  color: rgb(32 31 36 / var(--tw-text-opacity, 1));
 }
 
 @media (min-width: 640px) {
@@ -751,11 +730,6 @@ body,
 
   .sm\:gap-1 {
     gap: 0.25rem;
-  }
-
-  .sm\:rounded-r-xl {
-    border-top-right-radius: 0.75rem;
-    border-bottom-right-radius: 0.75rem;
   }
 
   .sm\:px-10 {
@@ -797,14 +771,14 @@ body,
     gap: 1rem;
   }
 
-  .md\:rounded-r-xl {
-    border-top-right-radius: 0.75rem;
-    border-bottom-right-radius: 0.75rem;
-  }
-
   .md\:rounded-l-none {
     border-top-left-radius: 0px;
     border-bottom-left-radius: 0px;
+  }
+
+  .md\:rounded-r-xl {
+    border-top-right-radius: 0.75rem;
+    border-bottom-right-radius: 0.75rem;
   }
 
   .md\:px-8 {
