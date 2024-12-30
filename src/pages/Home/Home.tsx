@@ -2,6 +2,7 @@ import Card from '@components/Card/Card'
 import clsx from 'clsx'
 import data from '../../data.json'
 import { Balance } from '../../types'
+import Pots from './Pots/Pots'
 
 export default function Home() {
     const summaryItems: Balance = data.balance
@@ -31,6 +32,9 @@ export default function Home() {
                         isPrimary={index === 0}
                     />
                 ))}
+            </div>
+            <div className={clsx('flex flex-col gap-6 sm:flex-row')}>
+                <Pots />
             </div>
         </div>
     )
