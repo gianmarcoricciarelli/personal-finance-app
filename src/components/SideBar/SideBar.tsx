@@ -4,6 +4,8 @@ import NavOverviewIcon from '@images/icon-nav-overview.svg?react'
 import NavPotsIcon from '@images/icon-nav-pots.svg?react'
 import NavRecurringBillsIcon from '@images/icon-nav-recurring-bills.svg?react'
 import NavTransactionIcon from '@images/icon-nav-transactions.svg?react'
+import LargeLogo from '@images/logo-large.svg?react'
+import SmallLogo from '@images/logo-small.svg?react'
 import clsx from 'clsx'
 import { ReactElement, useState } from 'react'
 import Item from './Item/Item'
@@ -47,12 +49,10 @@ export default function SideBar() {
                 }
             )}
         >
-            {/* <div className='px-8 py-10'>
-                <img
-                    src='public/assets/images/logo-large.svg'
-                    alt='Finance Large Logo'
-                />
-            </div> */}
+            <div className='px-8 py-10'>
+                {isMenuCollapsed && <SmallLogo />}
+                {!isMenuCollapsed && <LargeLogo />}
+            </div>
             <div className='flex flex-col gap-1 grow'>
                 {Object.keys(sideBarItemsToIconName).map((sideBarItem) => {
                     return (

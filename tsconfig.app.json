@@ -24,6 +24,9 @@
 
         /* Paths */
         "paths": {
+            "@components/*": ["./src/components/*"],
+            "@contexts/*": ["./src/contexts/*"],
+            "@pages/*": ["./src/pages"],
             "@images/*": ["./src/assets/images/*"]
         }
     },
