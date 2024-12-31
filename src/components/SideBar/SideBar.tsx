@@ -12,6 +12,7 @@ import LargeLogo from '@images/logo-large.svg?react'
 import SmallLogo from '@images/logo-small.svg?react'
 import clsx from 'clsx'
 import { Context, ReactElement, useContext, useState } from 'react'
+import { To } from 'react-router'
 import Item from './Item/Item'
 
 export default function SideBar() {
@@ -66,6 +67,18 @@ export default function SideBar() {
 
             <div className='flex justify-center grow sm:justify-evenly sm:gap-1 md:flex-col md:justify-normal'>
                 {Object.keys(sideBarItemsToIconName).map((sideBarItem) => {
+                    let _to: To = ''
+                    if (
+                        sideBarItem !== 'Overview' &&
+                        sideBarItem !== 'Recurring bills'
+                    ) {
+                        _to = sideBarItem.toLowerCase()
+                    } else if (sideBarItem === 'Overview') {
+                        _to = '/'
+                    } else {
+                        _to = 'recurring-bills'
+                    }
+
                     return (
                         <Item
                             key={sideBarItem}
@@ -73,7 +86,7 @@ export default function SideBar() {
                             showText={showText}
                             iconComponent={sideBarItemsToIconName[sideBarItem]}
                             label={sideBarItem}
-                            to=''
+                            to={_to}
                         />
                     )
                 })}

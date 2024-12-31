@@ -1,7 +1,10 @@
 import Button from '@components/Button/Button'
 import clsx from 'clsx'
+import { useNavigate } from 'react-router'
 
 export default function Pots() {
+    const navigate = useNavigate()
+
     return (
         <div
             className={clsx(
@@ -15,7 +18,9 @@ export default function Pots() {
                 <span className='text-xl font-bold text-pfa-grey-900'>
                     Pots
                 </span>
-                <Button variant='tertiary'>See Details</Button>
+                <Button variant='tertiary' onClick={() => navigate('/pots')}>
+                    See Details
+                </Button>
             </div>
         </div>
     )

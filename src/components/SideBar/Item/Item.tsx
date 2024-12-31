@@ -4,7 +4,7 @@ import {
 } from '@contexts/ViewportObserver/ViewportObserver.context'
 import clsx from 'clsx'
 import { cloneElement, Context, ReactElement, useContext } from 'react'
-import { NavLink } from 'react-router'
+import { NavLink, To } from 'react-router'
 
 interface Item {
     isMenuCollapsed: boolean
@@ -12,7 +12,7 @@ interface Item {
     rotateIconOnCollapse?: boolean
     iconComponent: ReactElement
     label: string
-    to?: string
+    to?: To
     onClick?: () => void
 }
 
@@ -46,7 +46,7 @@ export default function Item({
                 'hover:bg-pfa-beige-100 hover:cursor-pointer transition-colors duration-300',
                 { 'rotate-180': rotateIconOnCollapse && isMenuCollapsed }
             )}
-            to={to as string}
+            to={to as To}
             onClick={onClick}
         >
             {_iconComponent}
