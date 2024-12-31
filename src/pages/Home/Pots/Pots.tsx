@@ -10,7 +10,8 @@ export default function Pots() {
     const navigate = useNavigate()
 
     const pots: Pot[] = data.pots
-    console.log('Pots ~ pots:', pots)
+        .sort((a: Pot, b: Pot) => b.total - a.total)
+        .slice(1)
 
     return (
         <div
@@ -32,7 +33,7 @@ export default function Pots() {
             <div className={clsx('flex flex-col gap-5 sm:flex-row')}>
                 <div
                     className={clsx(
-                        'h-[110px] p-4 rounded-xl',
+                        'h-[110px] p-4 rounded-xl sm:w-[247px]',
                         'bg-pfa-beige-100',
                         'flex gap-4 items-center'
                     )}
@@ -46,6 +47,21 @@ export default function Pots() {
                             color: 'pfa-grey-900',
                         }}
                     />
+                </div>
+                <div className={clsx('sm:grow', 'grid grid-cols-2 gap-4')}>
+                    {pots.map((pot) => (
+                        <Label
+                            key={pot.name}
+                            title={{ text: pot.name, fontSize: 'xs' }}
+                            subTitle={{
+                                text: '$' + pot.total.toString(),
+                                fontSize: 'sm',
+                                fontStyle: 'bold',
+                                color: 'pfa-grey-900',
+                            }}
+                            tag={pot.theme}
+                        />
+                    ))}
                 </div>
             </div>
         </div>
