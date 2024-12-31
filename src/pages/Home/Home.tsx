@@ -1,6 +1,6 @@
 import Card from '@components/Card/Card'
+import data from '@data/data.json'
 import clsx from 'clsx'
-import data from '../../data.json'
 import { Balance } from '../../types'
 import Pots from './Pots/Pots'
 
