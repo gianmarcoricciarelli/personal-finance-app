@@ -4,7 +4,7 @@ import data from '@data/data.json'
 import clsx from 'clsx'
 import { Balance } from '../../types'
 import Pots from './Pots/Pots'
-import Transactions from './Transactions/Transaction'
+import Transactions from './Transactions/Transactions'
 
 export default function Home() {
     const summaryItems: Balance = data.balance
