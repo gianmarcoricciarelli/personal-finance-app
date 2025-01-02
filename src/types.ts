@@ -6,4 +6,4 @@ export type Transaction = (typeof data.transactions)[0]
 
 export type FontSize = 'xs' | 'sm' | 'base' | 'lg' | 'xl' | 'xxl'
 export type FontStyle = 'normal' | 'bold'
-export type Color = 'pfa-grey-500' | 'pfa-grey-900' | 'pfa-white'
+export type Color = 'pfa-grey-500' | 'pfa-grey-900' | 'pfa-white' | 'pfa-green'

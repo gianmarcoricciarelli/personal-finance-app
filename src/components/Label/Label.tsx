@@ -1,4 +1,5 @@
 import Text from '@components/Text/Text'
+import clsx from 'clsx'
 import { Color, FontSize, FontStyle } from '../../types'
 
 type LabelText = {
@@ -9,15 +10,22 @@ type LabelText = {
 }
 
 interface Label {
+    className?: string
     title: LabelText
     subTitle: LabelText
     gap?: '1' | '2' | '3'
     tag?: string
 }
 
-export default function Label({ title, subTitle, gap = '1', tag }: Label) {
+export default function Label({
+    className,
+    title,
+    subTitle,
+    gap = '1',
+    tag,
+}: Label) {
     const labelText = (
-        <div className={`flex flex-col gap-${gap}`}>
+        <div className={clsx(className, `flex flex-col gap-${gap}`)}>
             <Text
                 fontSize={title.fontSize}
                 fontStyle={title.fontStyle}
