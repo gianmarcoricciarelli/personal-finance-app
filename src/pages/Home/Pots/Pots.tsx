@@ -1,5 +1,6 @@
 import Button from '@components/Button/Button'
 import Label from '@components/Label/Label'
+import Text from '@components/Text/Text'
 import data from '@data/data.json'
 import IconPot from '@images/icon-pot.svg?react'
 import clsx from 'clsx'
@@ -23,9 +24,9 @@ export default function Pots() {
             <div
                 className={clsx('w-full', 'flex justify-between items-center')}
             >
-                <span className='text-xl font-bold text-pfa-grey-900'>
+                <Text fontSize='xl' fontStyle='bold' color='pfa-grey-900'>
                     Pots
-                </span>
+                </Text>
                 <Button variant='tertiary' onClick={() => navigate('/pots')}>
                     See Details
                 </Button>

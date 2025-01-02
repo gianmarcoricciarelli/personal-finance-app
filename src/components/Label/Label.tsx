@@ -1,11 +1,10 @@
-type FontSize = 'xs' | 'sm' | 'base' | 'lg' | 'xl'
-type FonStyle = 'normal' | 'bold'
-type Color = 'pfa-grey-500' | 'pfa-grey-900'
+import Text from '@components/Text/Text'
+import { Color, FontSize, FontStyle } from '../../types'
 
 type LabelText = {
     text: string
     fontSize?: FontSize
-    fontStyle?: FonStyle
+    fontStyle?: FontStyle
     color?: Color
 }
 
@@ -17,28 +16,22 @@ interface Label {
 }
 
 export default function Label({ title, subTitle, gap = '1', tag }: Label) {
-    const _titleFontSize: FontSize | '[32px]' =
-        (title.fontSize === 'xl' ? '[32px]' : title.fontSize) || 'xs'
-    const _titleFontStyle: FonStyle = title.fontStyle || 'normal'
-    const _titleColor: Color = title.color || 'pfa-grey-500'
-
-    const _subTitleFontSize: FontSize | '[32px]' =
-        (subTitle.fontSize === 'xl' ? '[32px]' : subTitle.fontSize) || 'xs'
-    const _subTitleFontStyle: FonStyle = subTitle.fontStyle || 'normal'
-    const _subTitleColor: Color = subTitle.color || 'pfa-grey-500'
-
     const labelText = (
         <div className={`flex flex-col gap-${gap}`}>
-            <span
-                className={`text-${_titleFontSize} text-${_titleColor} font-${_titleFontStyle}`}
+            <Text
+                fontSize={title.fontSize}
+                fontStyle={title.fontStyle}
+                color={title.color}
             >
                 {title.text}
-            </span>
-            <span
-                className={`text-${_subTitleFontSize} text-${_subTitleColor} font-${_subTitleFontStyle}`}
+            </Text>
+            <Text
+                fontSize={subTitle.fontSize}
+                fontStyle={subTitle.fontStyle}
+                color={subTitle.color}
             >
                 {subTitle.text}
-            </span>
+            </Text>
         </div>
     )
 

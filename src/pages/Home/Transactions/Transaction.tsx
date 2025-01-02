@@ -1,4 +1,5 @@
 import Button from '@components/Button/Button'
+import Text from '@components/Text/Text'
 import data from '@data/data.json'
 import clsx from 'clsx'
 import { useNavigate } from 'react-router'
@@ -22,9 +23,9 @@ export default function Transactions() {
             )}
         >
             <div className='flex justify-between'>
-                <span className='text-pfa-grey-900 text-xl font-bold'>
+                <Text fontSize='xl' fontStyle='bold' color='pfa-grey-900'>
                     Transactions
-                </span>
+                </Text>
                 <Button
                     variant='tertiary'
                     onClick={() => navigate('/transactions')}

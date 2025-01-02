@@ -1,3 +1,4 @@
+import Text from '@components/Text/Text'
 import CaretRightIcon from '@images/icon-caret-right.svg?react'
 import { ReactNode } from 'react'
 
@@ -9,9 +10,12 @@ interface Button {
 
 export default function Button({ variant, onClick, children }: Button) {
     const buttonText = (
-        <span className='text-sm text-pfa-grey-500 group-hover:text-pfa-grey-900 transition-colors duration-300'>
+        <Text
+            fontSize='sm'
+            className='group-hover:text-pfa-grey-900 transition-colors duration-300'
+        >
             {children}
-        </span>
+        </Text>
     )
 
     let className = 'group'

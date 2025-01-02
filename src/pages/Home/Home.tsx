@@ -1,4 +1,5 @@
 import Card from '@components/Card/Card'
+import Text from '@components/Text/Text'
 import data from '@data/data.json'
 import clsx from 'clsx'
 import { Balance } from '../../types'
@@ -15,9 +16,9 @@ export default function Home() {
                 'flex flex-col gap-8 sm:gap-8 md:grow'
             )}
         >
-            <span className='text-[32px] text-pfa-grey-900 font-bold'>
+            <Text fontSize='xxl' fontStyle='bold' color='pfa-grey-900'>
                 Overview
-            </span>
+            </Text>
             <div className='flex flex-col gap-3 sm:flex-row sm:gap-6'>
                 {Object.keys(summaryItems).map((balanceKey, index) => (
                     <Card

@@ -1,3 +1,4 @@
+import Text from '@components/Text/Text'
 import clsx from 'clsx'
 
 interface Card {
@@ -18,22 +19,18 @@ export default function Card({ title, subTitle, isPrimary }: Card) {
                 }
             )}
         >
-            <span
-                className={clsx('text-sm', {
-                    'text-pfa-white': isPrimary,
-                    'text-pfa-grey-500': !isPrimary,
-                })}
+            <Text
+                fontSize='sm'
+                color={isPrimary ? 'pfa-white' : 'pfa-grey-500'}
             >
                 {title}
-            </span>
-            <span
-                className={clsx('text-[32px]', {
-                    'text-pfa-white': isPrimary,
-                    'text-pfa-grey-900': !isPrimary,
-                })}
+            </Text>
+            <Text
+                fontSize='xxl'
+                color={isPrimary ? 'pfa-white' : 'pfa-grey-900'}
             >
                 {subTitle}
-            </span>
+            </Text>
         </div>
     )
 }
