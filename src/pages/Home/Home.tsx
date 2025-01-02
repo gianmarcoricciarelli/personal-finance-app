@@ -3,6 +3,7 @@ import data from '@data/data.json'
 import clsx from 'clsx'
 import { Balance } from '../../types'
 import Pots from './Pots/Pots'
+import Transactions from './Transactions/Transaction'
 
 export default function Home() {
     const summaryItems: Balance = data.balance
@@ -33,8 +34,9 @@ export default function Home() {
                     />
                 ))}
             </div>
-            <div className={clsx('flex flex-col gap-6 sm:flex-row')}>
+            <div className={clsx('flex flex-col gap-6')}>
                 <Pots />
+                <Transactions />
             </div>
         </div>
     )
