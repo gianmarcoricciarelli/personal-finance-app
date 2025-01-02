@@ -1,13 +1,11 @@
 import clsx from 'clsx'
-import { ReactNode } from 'react'
+import { ComponentProps } from 'react'
 import { Color, FontSize, FontStyle } from '../../types'
 
-interface Text {
-    className?: string
+export interface TextProps extends ComponentProps<'span'> {
     fontSize?: FontSize
     fontStyle?: FontStyle
     color?: Color
-    children: ReactNode
 }
 
 export default function Text({
@@ -16,7 +14,7 @@ export default function Text({
     fontStyle = 'normal',
     color = 'pfa-grey-500',
     children,
-}: Text) {
+}: TextProps) {
     return (
         <span
             className={clsx(

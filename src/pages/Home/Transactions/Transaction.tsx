@@ -1,6 +1,6 @@
 import Button from '@components/Button/Button'
-import Label from '@components/Label/Label'
 import Text from '@components/Text/Text'
+import TextBox from '@components/TextBox/TextBox'
 import data from '@data/data.json'
 import clsx from 'clsx'
 import { useNavigate } from 'react-router'
@@ -59,29 +59,34 @@ export default function Transactions() {
                                     {transaction.name}
                                 </Text>
                             </div>
-                            <Label
+                            <TextBox.WithSubLabel
                                 className='text-end'
-                                title={{
-                                    text:
-                                        transaction.amount > 0
+                                title={
+                                    <TextBox.Text
+                                        fontSize='sm'
+                                        fontStyle='bold'
+                                        color={
+                                            transaction.amount > 0
+                                                ? 'pfa-green'
+                                                : 'pfa-grey-900'
+                                        }
+                                    >
+                                        {transaction.amount > 0
                                             ? `+$${transaction.amount.toFixed(
                                                   2
                                               )}`
                                             : `-$${Math.abs(
                                                   transaction.amount
-                                              ).toFixed(2)}`,
-                                    fontSize: 'sm',
-                                    fontStyle: 'bold',
-                                    color:
-                                        transaction.amount > 0
-                                            ? 'pfa-green'
-                                            : 'pfa-grey-900',
-                                }}
-                                subTitle={{
-                                    text: new Date(transaction.date)
-                                        .toDateString()
-                                        .slice(4),
-                                }}
+                                              ).toFixed(2)}`}
+                                    </TextBox.Text>
+                                }
+                                subTitle={
+                                    <TextBox.Text>
+                                        {new Date(transaction.date)
+                                            .toDateString()
+                                            .slice(4)}
+                                    </TextBox.Text>
+                                }
                             />
                         </div>
                         {index < _transactions.length - 1 && (

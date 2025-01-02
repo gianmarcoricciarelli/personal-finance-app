@@ -1,11 +1,9 @@
 import Text from '@components/Text/Text'
 import CaretRightIcon from '@images/icon-caret-right.svg?react'
-import { ReactNode } from 'react'
+import { ComponentProps } from 'react'
 
-interface Button {
+interface Button extends ComponentProps<'button'> {
     variant: 'primary' | 'secondary' | 'tertiary' | 'destroy'
-    onClick: () => void
-    children: ReactNode
 }
 
 export default function Button({ variant, onClick, children }: Button) {

@@ -1,11 +1,11 @@
 import Button from '@components/Button/Button'
-import Label from '@components/Label/Label'
 import Text from '@components/Text/Text'
+import TextBox from '@components/TextBox/TextBox'
 import data from '@data/data.json'
 import IconPot from '@images/icon-pot.svg?react'
 import clsx from 'clsx'
 import { useNavigate } from 'react-router'
-import { Pot } from '../../../types'
+import { Color, Pot } from '../../../types'
 
 export default function Pots() {
     const navigate = useNavigate()
@@ -40,28 +40,38 @@ export default function Pots() {
                     )}
                 >
                     <IconPot className='w-10 h-10 text-pfa-green' />
-                    <Label
-                        title={{ text: 'Total Saved', fontSize: 'sm' }}
-                        subTitle={{
-                            text: '$850',
-                            fontSize: 'xl',
-                            color: 'pfa-grey-900',
-                        }}
+                    <TextBox.WithSubLabel
+                        title={
+                            <TextBox.Text fontSize='sm'>
+                                Total Saved
+                            </TextBox.Text>
+                        }
+                        subTitle={
+                            <TextBox.Text fontSize='xl' color='pfa-grey-900'>
+                                $850
+                            </TextBox.Text>
+                        }
                     />
                 </div>
                 <div className={clsx('sm:grow', 'grid grid-cols-2 gap-4')}>
                     {pots.map((pot) => (
-                        <Label
+                        <TextBox.WithTag
                             key={pot.name}
-                            title={{ text: pot.name, fontSize: 'xs' }}
-                            subTitle={{
-                                text: '$' + pot.total.toString(),
-                                fontSize: 'sm',
-                                fontStyle: 'bold',
-                                color: 'pfa-grey-900',
-                            }}
-                            tag={pot.theme}
-                        />
+                            color={pot.theme as Color}
+                        >
+                            <TextBox.WithSubLabel
+                                title={<TextBox.Text>{pot.name}</TextBox.Text>}
+                                subTitle={
+                                    <TextBox.Text
+                                        fontSize='sm'
+                                        fontStyle='bold'
+                                        color='pfa-grey-900'
+                                    >
+                                        {'$' + pot.total.toString()}
+                                    </TextBox.Text>
+                                }
+                            />
+                        </TextBox.WithTag>
                     ))}
                 </div>
             </div>
