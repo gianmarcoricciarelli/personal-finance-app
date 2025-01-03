@@ -20,14 +20,20 @@ export default function Card({ title, subTitle, isPrimary }: Card) {
             )}
         >
             <Text
+                className={clsx({
+                    'text-pfa-white': isPrimary,
+                    'text-pfa-grey-500': !isPrimary,
+                })}
                 fontSize='sm'
-                color={isPrimary ? 'pfa-white' : 'pfa-grey-500'}
             >
                 {title}
             </Text>
             <Text
+                className={clsx({
+                    'text-pfa-white': isPrimary,
+                    'text-pfa-grey-900': !isPrimary,
+                })}
                 fontSize='xxl'
-                color={isPrimary ? 'pfa-white' : 'pfa-grey-900'}
             >
                 {subTitle}
             </Text>

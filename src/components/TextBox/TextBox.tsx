@@ -18,7 +18,7 @@ function WithTag({ color, children }: { color: Color; children: ReactNode }) {
     )
 }
 
-function WithSubLabel({
+function WithSubText({
     title,
     subTitle,
     className,
@@ -38,7 +38,7 @@ function WithSubLabel({
 const TextBox = {
     Tag,
     Text,
-    WithSubLabel,
+    WithSubText,
     WithTag,
 }
 

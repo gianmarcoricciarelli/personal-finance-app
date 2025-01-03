@@ -27,20 +27,14 @@ export default function Transactions() {
                 <Text fontSize='xl' fontStyle='bold' color='pfa-grey-900'>
                     Transactions
                 </Text>
-                <Button
-                    variant='tertiary'
-                    onClick={() => navigate('/transactions')}
-                >
+                <Button.Tertiary onClick={() => navigate('/transactions')}>
                     View All
-                </Button>
+                </Button.Tertiary>
             </div>
             <div className='flex flex-col gap-3'>
                 {_transactions.map((transaction, index) => (
                     <>
-                        <div
-                            key={`${transaction.name} -- ${transaction.category} -- ${transaction.amount}`}
-                            className='flex flex-row justify-between'
-                        >
+                        <div className='flex flex-row justify-between'>
                             <div className='h-10 flex flex-row items-center gap-4'>
                                 <div className='w-8 h-8'>
                                     <img
@@ -59,7 +53,7 @@ export default function Transactions() {
                                     {transaction.name}
                                 </Text>
                             </div>
-                            <TextBox.WithSubLabel
+                            <TextBox.WithSubText
                                 className='text-end'
                                 title={
                                     <TextBox.Text

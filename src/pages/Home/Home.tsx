@@ -3,6 +3,7 @@ import Text from '@components/Text/Text'
 import data from '@data/data.json'
 import clsx from 'clsx'
 import { Balance } from '../../types'
+import Budgets from './Budgets/Budgets'
 import Pots from './Pots/Pots'
 import Transactions from './Transactions/Transactions'
 
@@ -35,9 +36,14 @@ export default function Home() {
                     />
                 ))}
             </div>
-            <div className={clsx('flex flex-col gap-6')}>
-                <Pots />
-                <Transactions />
+            <div className='flex flex-col gap-6 md:flex-row'>
+                <div className='flex flex-col gap-6 md:grow'>
+                    <Pots />
+                    <Transactions />
+                </div>
+                <div className='flex flex-col gap-6'>
+                    <Budgets />
+                </div>
             </div>
         </div>
     )

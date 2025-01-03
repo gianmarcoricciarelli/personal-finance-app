@@ -27,9 +27,9 @@ export default function Pots() {
                 <Text fontSize='xl' fontStyle='bold' color='pfa-grey-900'>
                     Pots
                 </Text>
-                <Button variant='tertiary' onClick={() => navigate('/pots')}>
+                <Button.Tertiary onClick={() => navigate('/pots')}>
                     See Details
-                </Button>
+                </Button.Tertiary>
             </div>
             <div className={clsx('flex flex-col gap-5 sm:flex-row')}>
                 <div
@@ -40,7 +40,7 @@ export default function Pots() {
                     )}
                 >
                     <IconPot className='w-10 h-10 text-pfa-green' />
-                    <TextBox.WithSubLabel
+                    <TextBox.WithSubText
                         title={
                             <TextBox.Text fontSize='sm'>
                                 Total Saved
@@ -59,7 +59,7 @@ export default function Pots() {
                             key={pot.name}
                             color={pot.theme as Color}
                         >
-                            <TextBox.WithSubLabel
+                            <TextBox.WithSubText
                                 title={<TextBox.Text>{pot.name}</TextBox.Text>}
                                 subTitle={
                                     <TextBox.Text
