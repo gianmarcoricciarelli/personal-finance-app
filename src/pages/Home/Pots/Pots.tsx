@@ -47,7 +47,11 @@ export default function Pots() {
                             </TextBox.Text>
                         }
                         subTitle={
-                            <TextBox.Text fontSize='xl' color='pfa-grey-900'>
+                            <TextBox.Text
+                                fontSize='xl'
+                                fontStyle='bold'
+                                color='pfa-grey-900'
+                            >
                                 $850
                             </TextBox.Text>
                         }

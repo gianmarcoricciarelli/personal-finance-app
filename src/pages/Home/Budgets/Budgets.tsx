@@ -4,13 +4,51 @@ import TextBox from '@components/TextBox/TextBox'
 import data from '@data/data.json'
 import clsx from 'clsx'
 import { useNavigate } from 'react-router'
-import { Cell, Pie, PieChart, ResponsiveContainer } from 'recharts'
+import { Cell, Label, LabelProps, Pie, PieChart } from 'recharts'
+import { PolarViewBox } from 'recharts/types/util/types'
 import { Budget, Color } from '../../../types'
+
+function CustomLabel({
+    viewBox,
+    text,
+    subText,
+}: LabelProps & {
+    text: string
+    subText: string
+}) {
+    const { cx, cy } = (viewBox as PolarViewBox)!
+
+    return (
+        <text
+            className='recharts-text recharts-label'
+            x={cx}
+            y={cy}
+            textAnchor='middle'
+            dominantBaseline='central'
+        >
+            <tspan
+                className='text-pfa-grey-900'
+                alignmentBaseline='middle'
+                fontSize={32}
+                fontWeight={700}
+            >
+                {text}
+            </tspan>
+            <tspan className='text-pfa-grey-500' fontSize={12} x={cx} dy='24px'>
+                {subText}
+            </tspan>
+        </text>
+    )
+}
 
 export default function Budgets() {
     const navigate = useNavigate()
 
     const budgets: Budget[] = data.budgets
+    const budgetLimit = budgets.reduce(
+        (prev, curr: Budget) => prev + curr.maximum,
+        0
+    )
 
     return (
         <div
@@ -27,8 +65,15 @@ export default function Budgets() {
                     See Details
                 </Button.Tertiary>
             </div>
-            <div className={clsx('py-2', 'flex flex-col gap-4')}>
-                <ResponsiveContainer width='100%' height={240}>
+            <div
+                className={clsx(
+                    'py-2',
+                    'flex flex-col gap-4 sm:flex-row sm:items-center'
+                )}
+            >
+                <div
+                    className={clsx('h-240[px]', 'flex justify-center sm:grow')}
+                >
                     <PieChart height={240} width={240}>
                         <Pie
                             data={budgets}
@@ -37,12 +82,22 @@ export default function Budgets() {
                             blendStroke
                         >
                             {budgets.map((budget) => (
-                                <Cell fill={budget.theme} />
+                                <Cell key={budget.theme} fill={budget.theme} />
                             ))}
+                            <Label
+                                width={30}
+                                position='center'
+                                content={
+                                    <CustomLabel
+                                        text='$338'
+                                        subText={`of $${budgetLimit} limit`}
+                                    />
+                                }
+                            />
                         </Pie>
                     </PieChart>
-                </ResponsiveContainer>
-                <div className='grid grid-cols-2 gap-4'>
+                </div>
+                <div className='grid grid-cols-2 gap-4 sm:flex sm:flex-col'>
                     {budgets.map((budget) => (
                         <TextBox.WithTag
                             key={budget.category}

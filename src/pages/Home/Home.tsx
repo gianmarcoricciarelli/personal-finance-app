@@ -31,7 +31,14 @@ export default function Home() {
                                 : balanceKey[0].toUpperCase() +
                                   balanceKey.slice(1)
                         }
-                        subTitle={'$' + data.balance.current.toString()}
+                        subTitle={
+                            '$' +
+                            data.balance[
+                                balanceKey as keyof Balance
+                            ].toLocaleString(undefined, {
+                                minimumFractionDigits: 2,
+                            })
+                        }
                         isPrimary={index === 0}
                     />
                 ))}
