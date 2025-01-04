@@ -7,9 +7,6 @@
     src: url('assets/fonts/PublicSans-VariableFont_wght.ttf') format('truetype');
 }
 
-html,
-body,
-#root {
-    height: 100%;
+html {
     font-family: 'Public Sans';
 }

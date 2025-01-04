@@ -35,6 +35,7 @@ export default function RecurringBills() {
                 {['Paid Bills', 'Total Upcoming', 'Due Soon'].map(
                     (name, index) => (
                         <div
+                            key={name}
                             className={clsx(
                                 'px-4 py-5 bg-pfa-beige-100 rounded-lg',
                                 'flex justify-between items-center',

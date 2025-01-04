@@ -696,6 +696,11 @@ video {
   border-left-width: 4px;
 }
 
+.border-pfa-cyan {
+  --tw-border-opacity: 1;
+  border-color: rgb(130 201 215 / var(--tw-border-opacity, 1));
+}
+
 .border-pfa-green {
   --tw-border-opacity: 1;
   border-color: rgb(39 124 120 / var(--tw-border-opacity, 1));
@@ -704,11 +709,6 @@ video {
 .border-pfa-yellow {
   --tw-border-opacity: 1;
   border-color: rgb(242 205 172 / var(--tw-border-opacity, 1));
-}
-
-.border-pfa-cyan {
-  --tw-border-opacity: 1;
-  border-color: rgb(130 201 215 / var(--tw-border-opacity, 1));
 }
 
 .bg-pfa-beige-100 {
@@ -878,10 +878,7 @@ video {
   src: url('assets/fonts/PublicSans-VariableFont_wght.ttf') format('truetype');
 }
 
-html,
-body,
-#root {
-  height: 100%;
+html {
   font-family: 'Public Sans';
 }
 
