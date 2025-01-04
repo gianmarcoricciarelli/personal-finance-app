@@ -5,6 +5,7 @@ import clsx from 'clsx'
 import { Balance } from '../../types'
 import Budgets from './Budgets/Budgets'
 import Pots from './Pots/Pots'
+import RecurringBills from './RecurringBills/RecurringBills'
 import Transactions from './Transactions/Transactions'
 
 export default function Home() {
@@ -50,6 +51,7 @@ export default function Home() {
                 </div>
                 <div className='flex flex-col gap-6'>
                     <Budgets />
+                    <RecurringBills />
                 </div>
             </div>
         </div>
