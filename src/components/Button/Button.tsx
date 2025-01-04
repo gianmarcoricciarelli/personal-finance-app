@@ -15,6 +15,19 @@ function Primary({ onClick, children }: ComponentProps<'button'>) {
     )
 }
 
+function Secondary({ onClick, children }: ComponentProps<'button'>) {
+    return (
+        <button
+            className='w-full p-4 rounded-lg bg-pfa-beige-100 transition-all duration-300 hover:bg-pfa-white hover:shadow-[0_0_0_2px_#98908B]'
+            onClick={onClick}
+        >
+            <Text fontSize='sm' fontStyle='bold' color='pfa-grey-900'>
+                {children}
+            </Text>
+        </button>
+    )
+}
+
 function Tertiary({ onClick, children }: ComponentProps<'button'>) {
     const buttonText = (
         <Text
@@ -38,6 +51,7 @@ function Tertiary({ onClick, children }: ComponentProps<'button'>) {
 
 const Button = {
     Primary,
+    Secondary,
     Tertiary,
 }
 
