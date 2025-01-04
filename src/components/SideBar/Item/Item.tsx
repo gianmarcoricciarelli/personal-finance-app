@@ -32,7 +32,7 @@ export default function Item({
     const Component = to !== undefined ? NavLink : 'div'
     const _iconComponent = cloneElement(iconComponent, {
         className: clsx(
-            'w-4 h-4',
+            'w-6 min-w-6 h-6 min-h-6',
             'text-pfa-grey-300 group-hover:text-pfa-green',
             'transition-colors duration-300'
         ),

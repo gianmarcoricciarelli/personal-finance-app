@@ -590,6 +590,14 @@ video {
   height: 100%;
 }
 
+.h-6 {
+  height: 1.5rem;
+}
+
+.min-h-6 {
+  min-height: 1.5rem;
+}
+
 .w-1 {
   width: 0.25rem;
 }
@@ -616,6 +624,14 @@ video {
 
 .w-full {
   width: 100%;
+}
+
+.w-6 {
+  width: 1.5rem;
+}
+
+.min-w-6 {
+  min-width: 1.5rem;
 }
 
 .grow {
