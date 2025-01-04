@@ -2,6 +2,19 @@ import Text from '@components/Text/Text'
 import CaretRightIcon from '@images/icon-caret-right.svg?react'
 import { ComponentProps } from 'react'
 
+function Primary({ onClick, children }: ComponentProps<'button'>) {
+    return (
+        <button
+            className='p-4 rounded-lg bg-pfa-grey-900 transition-colors duration-300 hover:bg-pfa-beige-500'
+            onClick={onClick}
+        >
+            <Text fontSize='sm' fontStyle='bold' color='pfa-white'>
+                {children}
+            </Text>
+        </button>
+    )
+}
+
 function Tertiary({ onClick, children }: ComponentProps<'button'>) {
     const buttonText = (
         <Text
@@ -24,6 +37,7 @@ function Tertiary({ onClick, children }: ComponentProps<'button'>) {
 }
 
 const Button = {
+    Primary,
     Tertiary,
 }
 
