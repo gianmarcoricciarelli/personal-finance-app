@@ -14,6 +14,7 @@ export default function Text({
     fontStyle = 'normal',
     color = 'pfa-grey-500',
     children,
+    onClick,
 }: TextProps) {
     return (
         <span
@@ -31,6 +32,7 @@ export default function Text({
                 },
                 `text-${color}`
             )}
+            onClick={onClick}
         >
             {children}
         </span>

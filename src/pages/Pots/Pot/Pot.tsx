@@ -1,4 +1,5 @@
 import Button from '@components/Button/Button'
+import DropDown from '@components/DropDown/DropDown'
 import ProgressBar from '@components/ProgressBar/ProgressBar'
 import Text from '@components/Text/Text'
 import IconEllipsis from '@images/icon-ellipsis.svg?react'
@@ -27,15 +28,26 @@ export default function Pot({ pot }: PotProps) {
                         {pot.name}
                     </Text>
                 </div>
-                <div
-                    className={clsx(
-                        'w-5 h-5 transition-all duration-300 rounded-sm',
-                        'flex justify-center items-center',
-                        'hover:cursor-pointer hover:shadow-sm-solid-pfa-grey-300'
-                    )}
+
+                <DropDown
+                    ButtonComponent={
+                        <div
+                            className={clsx(
+                                'w-5 h-5 transition-all duration-300 rounded-sm',
+                                'flex justify-center items-center',
+                                'hover:cursor-pointer hover:shadow-sm-solid-pfa-grey-300'
+                            )}
+                        >
+                            <IconEllipsis
+                                className={clsx('text-pfa-grey-300')}
+                            />
+                        </div>
+                    }
+                    onItemClick={() => console.log('It works!')}
                 >
-                    <IconEllipsis className={clsx('text-pfa-grey-300')} />
-                </div>
+                    <Text>Hello</Text>
+                    <Text color='pfa-green'>Another</Text>
+                </DropDown>
             </div>
             <div className='flex flex-col gap-4'>
                 <div className='flex justify-between items-center'>

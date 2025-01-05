@@ -1,7 +1,7 @@
 import { RefObject, useEffect } from 'react'
 
-export default function useOnClickOutside<DomElementType extends HTMLElement>(
-    ref: RefObject<DomElementType> | null,
+export default function useOnClickOutside(
+    ref: RefObject<HTMLElement> | null,
     handler: () => void
 ) {
     useEffect(() => {
