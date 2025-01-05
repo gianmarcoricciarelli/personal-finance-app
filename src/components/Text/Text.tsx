@@ -27,6 +27,7 @@ export default function Text({
                     'text-xl': fontSize === 'xl',
                     'text-[32px]': fontSize === 'xxl',
                     'font-bold': fontStyle === 'bold',
+                    'font-normal': fontStyle === 'normal',
                 },
                 `text-${color}`
             )}
