@@ -21,7 +21,7 @@ function Secondary({ className, onClick, children }: ComponentProps<'button'>) {
         <button
             className={clsx(
                 className,
-                'p-4 rounded-lg bg-pfa-beige-100 transition-all duration-300 hover:bg-pfa-white hover:shadow-[0_0_0_2px_#98908B]'
+                'p-4 rounded-lg bg-pfa-beige-100 transition-all duration-300 hover:bg-pfa-white hover:shadow-sm-solid-pfa-beige-500'
             )}
             onClick={onClick}
         >

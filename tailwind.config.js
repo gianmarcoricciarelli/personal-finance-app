@@ -3,6 +3,11 @@ export default {
     content: ['./index.html', './src/**/*.tsx'],
     theme: {
         extend: {
+            boxShadow: ({ theme }) => ({
+                'sm-solid-pfa-beige-500': `0 0 0 2px ${theme(
+                    'colors.pfa-beige-500'
+                )}`,
+            }),
             colors: {
                 'pfa-beige-100': '#F8F4F0',
                 'pfa-beige-500': '#98908B',
