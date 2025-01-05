@@ -22,23 +22,27 @@ export default function DropDown({
     children,
 }: DropDown) {
     const [isOpen, setIsOpen] = useState(false)
-    const ref = useRef<HTMLDivElement | null>(null)
+    const dropDownButtonRef = useRef<HTMLElement | null>(null)
+    const dropDownMenuRef = useRef<HTMLDivElement | null>(null)
     const childrenArray = Children.toArray(children)
 
-    useOnClickOutside(ref, () => setIsOpen(false))
+    useOnClickOutside(dropDownMenuRef, () => setIsOpen(false), [
+        dropDownButtonRef,
+    ])
 
     return (
         <div className='relative'>
             {cloneElement(ButtonComponent, {
                 ...ButtonComponent.props,
-                onClick: () => {},
+                ref: dropDownButtonRef,
+                onClick: () => setIsOpen((prevValue) => !prevValue),
             })}
             {isOpen && (
                 <div
-                    ref={ref}
+                    ref={dropDownMenuRef}
                     className={clsx(
-                        className,
-                        'min-w-[114px] px-5 py-3 bg-pfa-cyan rounded-lg',
+                        className || '',
+                        'min-w-[114px] px-5 py-3 bg-pfa-white rounded-lg',
                         'flex flex-col gap-3',
                         'absolute left-0 bottom-0 -translate-x-1/2 translate-y-[calc(100%_+_4px)]'
                     )}
@@ -49,7 +53,9 @@ export default function DropDown({
                                 <>
                                     {cloneElement(child, {
                                         ...child.props,
-                                        className: `${child.props.className} hover:cursor-pointer`,
+                                        className: `${
+                                            child.props.className || ''
+                                        } hover:cursor-pointer`,
                                         onClick: () => {
                                             onItemClick()
                                             setIsOpen(false)

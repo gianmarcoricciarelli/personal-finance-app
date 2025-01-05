@@ -20,6 +20,7 @@ export default {
                 'pfa-grey-300': '#B3B3B3',
                 'pfa-grey-500': '#696868',
                 'pfa-grey-900': '#201F24',
+                'pfa-red': '#C94736',
                 'pfa-white': '#FFFFFF',
                 'pfa-yellow': '#F2CDAC',
             },

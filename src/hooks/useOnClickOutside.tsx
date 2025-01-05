@@ -1,15 +1,28 @@
 import { RefObject, useEffect } from 'react'
 
 export default function useOnClickOutside(
-    ref: RefObject<HTMLElement> | null,
-    handler: () => void
+    triggerRef: RefObject<HTMLElement> | null,
+    handler: () => void,
+    elementsToIgnore?: RefObject<HTMLElement>[]
 ) {
     useEffect(() => {
         function _handler(event: MouseEvent | TouchEvent) {
-            if (ref?.current) {
-                if (!ref.current.contains(event.target as Node)) {
-                    handler()
+            if (triggerRef?.current) {
+                if (triggerRef.current.contains(event.target as Node)) {
+                    return
                 }
+
+                if (
+                    elementsToIgnore?.length &&
+                    elementsToIgnore.every((element) => element.current) &&
+                    elementsToIgnore.some((element) =>
+                        element.current?.contains(event.target as Node)
+                    )
+                ) {
+                    return
+                }
+
+                handler()
             }
         }
 
@@ -20,5 +33,5 @@ export default function useOnClickOutside(
             document.removeEventListener('mousedown', _handler)
             document.removeEventListener('touchstart', _handler)
         }
-    }, [handler, ref])
+    }, [elementsToIgnore, handler, triggerRef])
 }

@@ -45,8 +45,12 @@ export default function Pot({ pot }: PotProps) {
                     }
                     onItemClick={() => console.log('It works!')}
                 >
-                    <Text>Hello</Text>
-                    <Text color='pfa-green'>Another</Text>
+                    <Text fontSize='sm' color='pfa-grey-900'>
+                        Edit Pot
+                    </Text>
+                    <Text fontSize='sm' color='pfa-red'>
+                        Delete Pot
+                    </Text>
                 </DropDown>
             </div>
             <div className='flex flex-col gap-4'>

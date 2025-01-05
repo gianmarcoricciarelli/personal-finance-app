@@ -16,6 +16,7 @@ export type Color =
     | 'pfa-grey-300'
     | 'pfa-grey-500'
     | 'pfa-grey-900'
+    | 'pfa-red'
     | 'pfa-white'
     | 'pfa-yellow'
 export type Gap = '1' | '2' | '3'
