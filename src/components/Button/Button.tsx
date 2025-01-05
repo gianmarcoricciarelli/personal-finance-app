@@ -1,5 +1,6 @@
 import Text from '@components/Text/Text'
 import CaretRightIcon from '@images/icon-caret-right.svg?react'
+import clsx from 'clsx'
 import { ComponentProps } from 'react'
 
 function Primary({ onClick, children }: ComponentProps<'button'>) {
@@ -15,10 +16,13 @@ function Primary({ onClick, children }: ComponentProps<'button'>) {
     )
 }
 
-function Secondary({ onClick, children }: ComponentProps<'button'>) {
+function Secondary({ className, onClick, children }: ComponentProps<'button'>) {
     return (
         <button
-            className='w-full p-4 rounded-lg bg-pfa-beige-100 transition-all duration-300 hover:bg-pfa-white hover:shadow-[0_0_0_2px_#98908B]'
+            className={clsx(
+                className,
+                'p-4 rounded-lg bg-pfa-beige-100 transition-all duration-300 hover:bg-pfa-white hover:shadow-[0_0_0_2px_#98908B]'
+            )}
             onClick={onClick}
         >
             <Text fontSize='sm' fontStyle='bold' color='pfa-grey-900'>

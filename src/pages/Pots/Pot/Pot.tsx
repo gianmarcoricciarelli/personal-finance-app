@@ -54,11 +54,15 @@ export default function Pot({ pot }: PotProps) {
                 </div>
             </div>
             <div className='flex gap-4'>
-                <div className='flex grow'>
-                    <Button.Secondary>+ Add Money</Button.Secondary>
+                <div className='flex-1'>
+                    <Button.Secondary className='w-full'>
+                        + Add Money
+                    </Button.Secondary>
                 </div>
-                <div className='flex grow'>
-                    <Button.Secondary>Withdraw</Button.Secondary>
+                <div className='flex-1'>
+                    <Button.Secondary className='w-full'>
+                        Withdraw
+                    </Button.Secondary>
                 </div>
             </div>
         </div>
