@@ -7,6 +7,9 @@ export default {
                 'sm-solid-pfa-beige-500': `0 0 0 2px ${theme(
                     'colors.pfa-beige-500'
                 )}`,
+                'sm-solid-pfa-grey-300': `0 0 0 2px ${theme(
+                    'colors.pfa-grey-300'
+                )}`,
             }),
             colors: {
                 'pfa-beige-100': '#F8F4F0',

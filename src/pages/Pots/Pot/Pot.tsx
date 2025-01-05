@@ -27,7 +27,15 @@ export default function Pot({ pot }: PotProps) {
                         {pot.name}
                     </Text>
                 </div>
-                <IconEllipsis className='w-4 h-4 text-pfa-grey-300' />
+                <div
+                    className={clsx(
+                        'w-5 h-5 transition-all duration-300 rounded-sm',
+                        'flex justify-center items-center',
+                        'hover:cursor-pointer hover:shadow-sm-solid-pfa-grey-300'
+                    )}
+                >
+                    <IconEllipsis className={clsx('text-pfa-grey-300')} />
+                </div>
             </div>
             <div className='flex flex-col gap-4'>
                 <div className='flex justify-between items-center'>
