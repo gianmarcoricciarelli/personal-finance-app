@@ -43,12 +43,19 @@ export default function Pot({ pot }: PotProps) {
                             />
                         </div>
                     }
-                    onItemClick={() => console.log('It works!')}
                 >
-                    <Text fontSize='sm' color='pfa-grey-900'>
+                    <Text
+                        fontSize='sm'
+                        color='pfa-grey-900'
+                        onClick={() => console.log('Edit')}
+                    >
                         Edit Pot
                     </Text>
-                    <Text fontSize='sm' color='pfa-red'>
+                    <Text
+                        fontSize='sm'
+                        color='pfa-red'
+                        onClick={() => console.log('Delete')}
+                    >
                         Delete Pot
                     </Text>
                 </DropDown>

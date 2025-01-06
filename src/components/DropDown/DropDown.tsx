@@ -12,13 +12,11 @@ import useOnClickOutside from '../../hooks/useOnClickOutside'
 
 interface DropDown extends ComponentProps<'div'> {
     ButtonComponent: ReactElement
-    onItemClick: () => void
 }
 
 export default function DropDown({
     className,
     ButtonComponent,
-    onItemClick,
     children,
 }: DropDown) {
     const [isOpen, setIsOpen] = useState(false)
@@ -45,7 +43,6 @@ export default function DropDown({
     }
 
     function onItemClickHandler() {
-        onItemClick()
         setFadeIn(false)
         setTimeout(() => setIsOpen(false), 400)
     }
@@ -81,7 +78,10 @@ export default function DropDown({
                                         className: `${
                                             child.props.className || ''
                                         } hover:cursor-pointer`,
-                                        onClick: onItemClickHandler,
+                                        onClick: () => {
+                                            onItemClickHandler()
+                                            child.props?.onClick()
+                                        },
                                     })}
                                     {index !== childrenArray.length - 1 && (
                                         <div className='h-[1px] bg-pfa-grey-100' />
