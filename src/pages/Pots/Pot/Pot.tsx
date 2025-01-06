@@ -1,9 +1,11 @@
 import Button from '@components/Button/Button'
 import DropDown from '@components/DropDown/DropDown'
+import Modal from '@components/Modal/Modal'
 import ProgressBar from '@components/ProgressBar/ProgressBar'
 import Text from '@components/Text/Text'
 import IconEllipsis from '@images/icon-ellipsis.svg?react'
 import clsx from 'clsx'
+import { useState } from 'react'
 import { Pot as PotType } from '../../../types'
 
 interface PotProps {
@@ -11,6 +13,9 @@ interface PotProps {
 }
 
 export default function Pot({ pot }: PotProps) {
+    const [isDeletePotModalOpen, setIsDeletePotModalOpen] = useState(false)
+    const [isEditPotModalOpen, setIsEditPotModalOpen] = useState(false)
+
     return (
         <div
             className={clsx(
@@ -28,7 +33,6 @@ export default function Pot({ pot }: PotProps) {
                         {pot.name}
                     </Text>
                 </div>
-
                 <DropDown
                     ButtonComponent={
                         <div
@@ -47,14 +51,14 @@ export default function Pot({ pot }: PotProps) {
                     <Text
                         fontSize='sm'
                         color='pfa-grey-900'
-                        onClick={() => console.log('Edit')}
+                        onClick={() => setIsEditPotModalOpen(true)}
                     >
                         Edit Pot
                     </Text>
                     <Text
                         fontSize='sm'
                         color='pfa-red'
-                        onClick={() => console.log('Delete')}
+                        onClick={() => setIsDeletePotModalOpen(true)}
                     >
                         Delete Pot
                     </Text>
@@ -96,6 +100,14 @@ export default function Pot({ pot }: PotProps) {
                     </Button.Secondary>
                 </div>
             </div>
+            <Modal.Container
+                isOpen={isDeletePotModalOpen}
+                onClose={() => setIsDeletePotModalOpen(false)}
+            >
+                <Modal.Body>
+                    <span>Delete Pot Modal</span>
+                </Modal.Body>
+            </Modal.Container>
         </div>
     )
 }
