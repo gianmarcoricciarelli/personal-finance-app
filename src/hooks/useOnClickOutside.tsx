@@ -1,10 +1,14 @@
 import { RefObject, useEffect } from 'react'
 
-export default function useOnClickOutside(
-    triggerRef: RefObject<HTMLElement> | null,
-    handler: () => void,
+export default function useOnClickOutside({
+    triggerRef,
+    handler,
+    elementsToIgnore,
+}: {
+    triggerRef: RefObject<HTMLElement> | null
+    handler: () => void
     elementsToIgnore?: RefObject<HTMLElement>[]
-) {
+}) {
     useEffect(() => {
         function _handler(event: MouseEvent | TouchEvent) {
             if (triggerRef?.current) {
