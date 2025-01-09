@@ -20,6 +20,11 @@ export default function AddOrEditPotModal({
     const [charactersLeft, setCharactersLeft] = useState(
         pot ? 30 - pot.name.length : 30
     )
+    const [potColor, setPotColor] = useState(
+        Object.entries(colorMap).find(
+            ([, value]) => value === pot?.theme
+        )?.[0] || 'Green'
+    )
 
     const onPotNameChange: ChangeEventHandler<HTMLInputElement> = (event) => {
         setCharactersLeft(30 - event.target.value.length)
@@ -79,13 +84,16 @@ export default function AddOrEditPotModal({
                             <Input
                                 id='colorTag'
                                 name='colorTag'
-                                defaultValue={pot ? pot.theme : 'Green'}
+                                value={potColor}
                                 label='Theme'
                                 prefixComponent={
                                     <div
                                         style={{
                                             backgroundColor:
-                                                pot?.theme || '#277C78',
+                                                Object.entries(colorMap).find(
+                                                    ([name]) =>
+                                                        name === potColor
+                                                )?.[1] || '#277C78',
                                         }}
                                         className='w-4 h-4 rounded-full'
                                     />
@@ -99,6 +107,7 @@ export default function AddOrEditPotModal({
                             <div
                                 key={colorName}
                                 className='flex items-center gap-3'
+                                onClick={() => setPotColor(colorName)}
                             >
                                 <div
                                     style={{
