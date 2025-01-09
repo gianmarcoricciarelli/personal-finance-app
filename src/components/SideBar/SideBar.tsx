@@ -1,7 +1,4 @@
-import {
-    IViewportObserver,
-    ViewportObserver,
-} from '@contexts/ViewportObserver/ViewportObserver.context'
+import { ViewportObserver } from '@contexts/ViewportObserver/ViewportObserver.context'
 import MinimizeMenuIcon from '@images/icon-minimize-menu.svg?react'
 import NavBudgetsIcon from '@images/icon-nav-budgets.svg?react'
 import NavOverviewIcon from '@images/icon-nav-overview.svg?react'
@@ -11,14 +8,12 @@ import NavTransactionIcon from '@images/icon-nav-transactions.svg?react'
 import LargeLogo from '@images/logo-large.svg?react'
 import SmallLogo from '@images/logo-small.svg?react'
 import clsx from 'clsx'
-import { Context, ReactElement, useContext, useState } from 'react'
+import { ReactElement, useContext, useState } from 'react'
 import { To } from 'react-router'
 import Item from './Item/Item'
 
 export default function SideBar() {
-    const { isMobile, isTablet } = useContext(
-        ViewportObserver as Context<IViewportObserver>
-    )
+    const { isMobile, isTablet } = useContext(ViewportObserver)
 
     const [isMenuCollapsed, setIsMenuCollapsed] = useState(false)
     const [showText, setShowText] = useState(true)

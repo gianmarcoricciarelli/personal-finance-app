@@ -5,7 +5,7 @@ export default function useOnClickOutside({
     handler,
     elementsToIgnore,
 }: {
-    triggerRef: RefObject<HTMLElement> | null
+    triggerRef: RefObject<HTMLElement>
     handler: () => void
     elementsToIgnore?: RefObject<HTMLElement>[]
 }) {

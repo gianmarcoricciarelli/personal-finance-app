@@ -22,8 +22,8 @@ export default function DropDown({
     const [isOpen, setIsOpen] = useState(false)
     const [fadeIn, setFadeIn] = useState(false)
 
-    const dropDownButtonRef = useRef<HTMLElement | null>(null)
-    const dropDownMenuRef = useRef<HTMLDivElement | null>(null)
+    const dropDownButtonRef = useRef<HTMLElement>(null)
+    const dropDownMenuRef = useRef<HTMLDivElement>(null)
     const childrenArray = Children.toArray(children)
 
     useOnClickOutside({

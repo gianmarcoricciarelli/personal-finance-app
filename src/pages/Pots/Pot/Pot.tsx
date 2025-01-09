@@ -1,12 +1,12 @@
 import Button from '@components/Button/Button'
 import DropDown from '@components/DropDown/DropDown'
-import Modal from '@components/Modal/Modal'
 import ProgressBar from '@components/ProgressBar/ProgressBar'
 import Text from '@components/Text/Text'
 import IconEllipsis from '@images/icon-ellipsis.svg?react'
 import clsx from 'clsx'
 import { useState } from 'react'
 import { Pot as PotType } from '../../../types'
+import DeletePotModal from './DeletePotModal/DeletePotModal'
 
 interface PotProps {
     pot: PotType
@@ -100,14 +100,11 @@ export default function Pot({ pot }: PotProps) {
                     </Button.Secondary>
                 </div>
             </div>
-            <Modal.Container
+            <DeletePotModal
+                potName={pot.name}
                 isOpen={isDeletePotModalOpen}
                 onClose={() => setIsDeletePotModalOpen(false)}
-            >
-                <Modal.Body>
-                    <span>Delete Pot Modal</span>
-                </Modal.Body>
-            </Modal.Container>
+            />
         </div>
     )
 }

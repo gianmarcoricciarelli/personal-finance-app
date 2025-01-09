@@ -1,13 +1,8 @@
 import clsx from 'clsx'
-import { ComponentProps, ReactNode } from 'react'
+import { ComponentProps, ReactNode, useRef } from 'react'
+import useOnClickOutside from '../../hooks/useOnClickOutside'
 
-function Backdrop({
-    onClick,
-    children,
-}: {
-    onClick: () => void
-    children: ReactNode
-}) {
+function Backdrop({ children }: { children: ReactNode }) {
     return (
         <div
             className={clsx(
@@ -15,7 +10,6 @@ function Backdrop({
                 'flex justify-center items-center',
                 'fixed top-0 bottom-0 left-0 right-0 z-10'
             )}
-            onClick={onClick}
         >
             {children}
         </div>
@@ -28,16 +22,21 @@ function Container({
     children,
     onClose,
 }: { isOpen: boolean; onClose: () => void } & ComponentProps<'div'>) {
+    const containerRef = useRef<HTMLDivElement>(null)
+
+    useOnClickOutside({ triggerRef: containerRef, handler: onClose })
+
     if (!isOpen) {
         return null
     }
 
     return (
-        <Backdrop onClick={() => onClose()}>
+        <Backdrop>
             <div
+                ref={containerRef}
                 className={clsx(
                     className,
-                    'px-5 py-6 bg-pfa-white rounded-xl',
+                    'w-[335px] sm:w-[560px] px-5 py-6 bg-pfa-white rounded-xl',
                     'flex flex-col gap-5'
                 )}
             >

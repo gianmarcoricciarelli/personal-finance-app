@@ -32,7 +32,11 @@ function Secondary({ className, onClick, children }: ComponentProps<'button'>) {
     )
 }
 
-function Tertiary({ onClick, children }: ComponentProps<'button'>) {
+function Tertiary({
+    noIcon,
+    onClick,
+    children,
+}: ComponentProps<'button'> & { noIcon?: boolean }) {
     const buttonText = (
         <Text
             fontSize='sm'
@@ -48,7 +52,29 @@ function Tertiary({ onClick, children }: ComponentProps<'button'>) {
             onClick={onClick}
         >
             {buttonText}
-            <CaretRightIcon className='w-3 h-3 text-pfa-grey-500 group-hover:text-pfa-grey-900 transition-colors duration-300' />
+            {!noIcon && (
+                <CaretRightIcon className='w-3 h-3 text-pfa-grey-500 group-hover:text-pfa-grey-900 transition-colors duration-300' />
+            )}
+        </button>
+    )
+}
+
+function Destroy({ className, onClick, children }: ComponentProps<'button'>) {
+    const buttonText = (
+        <Text fontSize='sm' fontStyle='bold' color='pfa-white'>
+            {children}
+        </Text>
+    )
+
+    return (
+        <button
+            className={clsx(
+                className,
+                'p-4 rounded-lg bg-pfa-red hover:bg-pfa-red/80 transition-colors duration-300'
+            )}
+            onClick={onClick}
+        >
+            {buttonText}
         </button>
     )
 }
@@ -57,6 +83,7 @@ const Button = {
     Primary,
     Secondary,
     Tertiary,
+    Destroy,
 }
 
 export default Button
