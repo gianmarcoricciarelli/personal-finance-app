@@ -6,6 +6,7 @@ import IconEllipsis from '@images/icon-ellipsis.svg?react'
 import clsx from 'clsx'
 import { useState } from 'react'
 import { Pot as PotType } from '../../../types'
+import AddOrEditPotModal from '../AddOrEditPotModal/AddOrEditPotModal'
 import DeletePotModal from './DeletePotModal/DeletePotModal'
 
 interface PotProps {
@@ -100,6 +101,11 @@ export default function Pot({ pot }: PotProps) {
                     </Button.Secondary>
                 </div>
             </div>
+            <AddOrEditPotModal
+                pot={pot}
+                isOpen={isEditPotModalOpen}
+                onClose={() => setIsEditPotModalOpen(false)}
+            />
             <DeletePotModal
                 potName={pot.name}
                 isOpen={isDeletePotModalOpen}
