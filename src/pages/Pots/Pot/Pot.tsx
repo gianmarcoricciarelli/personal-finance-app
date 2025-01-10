@@ -7,6 +7,7 @@ import clsx from 'clsx'
 import { useState } from 'react'
 import { Pot as PotType } from '../../../types'
 import AddOrEditPotModal from '../AddOrEditPotModal/AddOrEditPotModal'
+import AddOrWithdrawModal from './AddOrWithdrawModal/AddOrWithdrawModal'
 import DeletePotModal from './DeletePotModal/DeletePotModal'
 
 interface PotProps {
@@ -16,6 +17,9 @@ interface PotProps {
 export default function Pot({ pot }: PotProps) {
     const [isDeletePotModalOpen, setIsDeletePotModalOpen] = useState(false)
     const [isEditPotModalOpen, setIsEditPotModalOpen] = useState(false)
+    const [isAddOrWithdrawModalOpen, setIsAddOrWithdrawModalOpen] = useState<
+        [boolean, 'add' | 'withdraw']
+    >([false, 'add'])
 
     return (
         <div
@@ -76,9 +80,9 @@ export default function Pot({ pot }: PotProps) {
                 </div>
                 <div className='flex flex-col gap-3'>
                     <ProgressBar
-                        percentage={(pot.total / pot.target) * 100}
+                        percentages={(pot.total / pot.target) * 100}
                         height='xs'
-                        color={pot.theme}
+                        colors={pot.theme}
                     />
                     <div className='flex justify-between items-center'>
                         <Text fontStyle='bold'>
@@ -91,12 +95,22 @@ export default function Pot({ pot }: PotProps) {
             </div>
             <div className='flex gap-4'>
                 <div className='flex-1'>
-                    <Button.Secondary className='w-full'>
+                    <Button.Secondary
+                        className='w-full'
+                        onClick={() =>
+                            setIsAddOrWithdrawModalOpen([true, 'add'])
+                        }
+                    >
                         + Add Money
                     </Button.Secondary>
                 </div>
                 <div className='flex-1'>
-                    <Button.Secondary className='w-full'>
+                    <Button.Secondary
+                        className='w-full'
+                        onClick={() =>
+                            setIsAddOrWithdrawModalOpen([true, 'withdraw'])
+                        }
+                    >
                         Withdraw
                     </Button.Secondary>
                 </div>
@@ -110,6 +124,12 @@ export default function Pot({ pot }: PotProps) {
                 potName={pot.name}
                 isOpen={isDeletePotModalOpen}
                 onClose={() => setIsDeletePotModalOpen(false)}
+            />
+            <AddOrWithdrawModal
+                pot={pot}
+                operation={isAddOrWithdrawModalOpen[1]}
+                isOpen={isAddOrWithdrawModalOpen[0]}
+                onClose={() => setIsAddOrWithdrawModalOpen([false, 'add'])}
             />
         </div>
     )

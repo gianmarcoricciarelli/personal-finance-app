@@ -37,4 +37,5 @@ export const colorMap: Record<string, string> = {
     Pink: '#AF81BA',
     Gold: '#CAB361',
     Orange: '#BE6C49',
+    'Dark Grey': '#201F24',
 }

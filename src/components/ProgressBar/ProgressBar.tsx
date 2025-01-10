@@ -3,15 +3,18 @@ import { FontSize } from '../../types'
 
 interface ProgressBar {
     height: Extract<FontSize, 'xs' | 'xxl'>
-    color: string
-    percentage: number
+    percentages: number | number[]
+    colors: string | string[]
+    total?: number
 }
 
 export default function ProgressBar({
     height,
-    percentage,
-    color,
+    percentages,
+    colors,
+    total = 100,
 }: ProgressBar) {
+    console.log('percentages:', percentages)
     return (
         <div className='flex flex-col gap-3'>
             <div
@@ -23,19 +26,97 @@ export default function ProgressBar({
                     'bg-pfa-beige-100 rounded-[4px]'
                 )}
             >
-                <div
-                    style={{
-                        width: `${percentage.toFixed(2)}%`,
-                        backgroundColor: color,
-                    }}
-                    className={clsx(
-                        {
-                            'h-2': height === 'xs',
-                            'h-8': height === 'xxl',
-                        },
-                        'rounded-[4px]'
-                    )}
-                />
+                {typeof percentages === 'number' && (
+                    <div
+                        style={{
+                            width: `${((percentages / total) * 100).toFixed(
+                                2
+                            )}%`,
+                            backgroundColor: colors as string,
+                        }}
+                        className={clsx(
+                            {
+                                'h-2': height === 'xs',
+                                'h-8': height === 'xxl',
+                            },
+                            'rounded-[4px]'
+                        )}
+                    />
+                )}
+                {typeof percentages === 'object' && (
+                    <div className='flex'>
+                        {percentages.map((percentage, index) => {
+                            let _percentage = 0
+                            let dividerPercentage = (2 / total) * 100
+
+                            if (index === 0 && percentage !== 0) {
+                                _percentage = (percentage / total) * 100
+
+                                if (percentages[index + 1]) {
+                                    const nextPercentage =
+                                        (percentages[index + 1] / total) * 100
+
+                                    if (nextPercentage < dividerPercentage) {
+                                        dividerPercentage =
+                                            dividerPercentage - nextPercentage
+                                    }
+
+                                    _percentage =
+                                        _percentage - dividerPercentage
+                                }
+                            } else {
+                                if (percentage !== 0) {
+                                    _percentage = (percentage / total) * 100
+                                }
+                            }
+
+                            return (
+                                <>
+                                    <div
+                                        key={index}
+                                        style={{
+                                            width: `${_percentage}%`,
+                                            backgroundColor: colors[index],
+                                        }}
+                                        className={clsx(
+                                            {
+                                                'h-2': height === 'xs',
+                                                'h-8': height === 'xxl',
+                                                'rounded-[4px]':
+                                                    (index === 0 &&
+                                                        percentages.filter(
+                                                            (p) => p !== 0
+                                                        ).length === 1) ||
+                                                    percentages[0] === 0,
+                                                'rounded-l-[4px]': index === 0,
+                                                'rounded-r-[4px]':
+                                                    index ===
+                                                    percentages.length - 1,
+                                            },
+                                            'transition-all duration-300'
+                                        )}
+                                    />
+                                    {index !== percentages.length - 1 &&
+                                        percentages.filter((p) => p !== 0)
+                                            .length !== 1 && (
+                                            <div
+                                                style={{
+                                                    width: `${dividerPercentage}%`,
+                                                }}
+                                                className={clsx(
+                                                    'bg-pfa-white',
+                                                    {
+                                                        'h-2': height === 'xs',
+                                                        'h-8': height === 'xxl',
+                                                    }
+                                                )}
+                                            />
+                                        )}
+                                </>
+                            )
+                        })}
+                    </div>
+                )}
             </div>
         </div>
     )
