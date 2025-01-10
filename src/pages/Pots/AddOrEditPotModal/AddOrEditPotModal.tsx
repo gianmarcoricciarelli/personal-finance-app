@@ -40,11 +40,24 @@ export default function AddOrEditPotModal({
     const [potColor, setPotColor] = useState(
         Object.entries(colorMap).find(
             ([, value]) => value === pot?.theme
-        )?.[0] || 'Green'
+        )?.[0] ||
+            Object.keys(colorMap).find(
+                (colorName) => !usedColors.includes(colorName)
+            )
     )
+    const [errors, setErrors] = useState<{
+        potName?: string[]
+        target?: string[]
+        colorTag?: string[]
+    }>({ potName: [], target: [], colorTag: [] })
 
     const onPotNameChange: ChangeEventHandler<HTMLInputElement> = (event) => {
+        setErrors((prevErrors) => ({ ...prevErrors, potName: [] }))
         setCharactersLeft(30 - event.target.value.length)
+    }
+
+    const onTargetChange: ChangeEventHandler<HTMLInputElement> = () => {
+        setErrors((prevErrors) => ({ ...prevErrors, target: [] }))
     }
 
     const onSubmitHandler: FormEventHandler<HTMLFormElement> = (event) => {
@@ -52,8 +65,8 @@ export default function AddOrEditPotModal({
 
         const isEditMode = !!pot
         const formDataSchema = z.object({
-            potName: z.string().min(1),
-            target: z.coerce.number().gt(0),
+            potName: z.string().min(1, 'You must provide a valid name'),
+            target: z.coerce.number().gt(0, 'You must provide a valid amount'),
             colorTag: z.string().min(1),
         })
         const formData = new FormData(event.target as HTMLFormElement)
@@ -61,7 +74,10 @@ export default function AddOrEditPotModal({
 
         const validatedData = formDataSchema.safeParse(formEntries)
         if (!validatedData.success) {
-            // HANDLE ERROR
+            setErrors((prevErrors) => ({
+                ...prevErrors,
+                ...validatedData.error.flatten().fieldErrors,
+            }))
             return
         }
 
@@ -95,13 +111,25 @@ export default function AddOrEditPotModal({
         }
     }
 
+    function reset() {
+        setPotColor(
+            Object.entries(colorMap).find(
+                ([, value]) => value === pot?.theme
+            )?.[0] ||
+                Object.keys(colorMap).find(
+                    (colorName) => !usedColors.includes(colorName)
+                )
+        )
+        onClose()
+    }
+
     return (
-        <Modal.Container isOpen={isOpen} onClose={onClose}>
+        <Modal.Container isOpen={isOpen} onClose={reset}>
             <Modal.Header className='flex justify-between items-center'>
                 <Text fontSize='xl' fontStyle='bold' color='pfa-grey-900'>
                     {pot ? 'Edit Pot' : 'Add New Pot'}
                 </Text>
-                <CloseIcon className='hover:cursor-pointer' onClick={onClose} />
+                <CloseIcon className='hover:cursor-pointer' onClick={reset} />
             </Modal.Header>
             <Modal.Body className='flex flex-col gap-5'>
                 <Text fontSize='sm' color='pfa-grey-500'>
@@ -122,11 +150,11 @@ export default function AddOrEditPotModal({
                         label='Pot Name'
                         helperText={`${charactersLeft} characters left`}
                         onChange={onPotNameChange}
+                        error={errors.potName?.[0]}
                     />
                     <Input
                         id='target'
                         name='target'
-                        type='number'
                         defaultValue={pot ? pot.target : undefined}
                         placeholder='e.g. 2000'
                         label='Target'
@@ -135,6 +163,8 @@ export default function AddOrEditPotModal({
                                 $
                             </Text>
                         }
+                        onChange={onTargetChange}
+                        error={errors.target?.[0]}
                     />
                     <DropDown
                         className='w-full !-translate-x-0 shadow-lg'
@@ -148,11 +178,11 @@ export default function AddOrEditPotModal({
                                 prefix={
                                     <div
                                         style={{
-                                            backgroundColor:
-                                                Object.entries(colorMap).find(
-                                                    ([name]) =>
-                                                        name === potColor
-                                                )?.[1] || '#277C78',
+                                            backgroundColor: Object.entries(
+                                                colorMap
+                                            ).find(
+                                                ([name]) => name === potColor
+                                            )?.[1],
                                         }}
                                         className='w-4 h-4 rounded-full'
                                     />

@@ -16,6 +16,7 @@ interface Input {
     prefix?: ReactNode
     icon?: ReactNode
     helperText?: string
+    error?: string
     onChange?: ChangeEventHandler<HTMLInputElement>
     onClick?: () => void
 }
@@ -35,6 +36,7 @@ const Input = forwardRef<Ref<HTMLElement>, Input>(function Input(
         prefix,
         icon,
         helperText,
+        error,
         onChange,
         onClick,
     }: Input,
@@ -73,11 +75,10 @@ const Input = forwardRef<Ref<HTMLElement>, Input>(function Input(
             </div>
             {helperText && (
                 <div className='flex justify-end'>
-                    <Text fontSize='xs' color='pfa-grey-500'>
-                        {helperText}
-                    </Text>
+                    <Text>{helperText}</Text>
                 </div>
             )}
+            {error && <Text color='pfa-red'>{error}</Text>}
         </div>
     )
 })
