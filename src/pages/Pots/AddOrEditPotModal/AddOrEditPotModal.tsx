@@ -72,7 +72,7 @@ export default function AddOrEditPotModal({
                         defaultValue={pot ? pot.target : undefined}
                         placeholder='e.g. 2000'
                         label='Target'
-                        prefixComponent={
+                        prefix={
                             <Text fontSize='sm' color='pfa-beige-500'>
                                 $
                             </Text>
@@ -86,7 +86,7 @@ export default function AddOrEditPotModal({
                                 name='colorTag'
                                 value={potColor}
                                 label='Theme'
-                                prefixComponent={
+                                prefix={
                                     <div
                                         style={{
                                             backgroundColor:

@@ -12,7 +12,7 @@ interface Input {
     readOnly?: boolean
     maxLength?: number
     label: string
-    prefixComponent?: ReactNode
+    prefix?: ReactNode
     icon?: ReactNode
     helperText?: string
     onChange?: ChangeEventHandler<HTMLInputElement>
@@ -30,7 +30,7 @@ const Input = forwardRef<Ref<HTMLElement>, Input>(function Input(
         readOnly,
         maxLength,
         label,
-        prefixComponent,
+        prefix,
         icon,
         helperText,
         onChange,
@@ -48,7 +48,7 @@ const Input = forwardRef<Ref<HTMLElement>, Input>(function Input(
                 className='px-5 py-3 flex gap-3 items-center border-[1px] border-pfa-beige-500 rounded-lg'
                 onClick={onClick}
             >
-                {prefixComponent && prefixComponent}
+                {prefix && prefix}
                 <input
                     className={clsx(
                         'text-sm text-pfa-grey-900',
