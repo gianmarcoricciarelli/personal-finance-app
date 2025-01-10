@@ -6,6 +6,7 @@ import Text from '@components/Text/Text'
 import DataContext from '@contexts/Data/Data.context'
 import CaretDownIcon from '@images/icon-caret-down.svg?react'
 import CloseIcon from '@images/icon-close-modal.svg?react'
+import SelectedIcon from '@images/icon-selected.svg?react'
 import {
     ChangeEventHandler,
     FormEventHandler,
@@ -26,6 +27,13 @@ export default function AddOrEditPotModal({
 }) {
     const { data, setData } = useContext(DataContext)
 
+    const usedColors = data.pots.map(
+        (pot) =>
+            Object.entries(colorMap).find(
+                ([, value]) => value === pot?.theme
+            )?.[0]
+    )
+
     const [charactersLeft, setCharactersLeft] = useState(
         pot ? 30 - pot.name.length : 30
     )
@@ -43,15 +51,15 @@ export default function AddOrEditPotModal({
         event.preventDefault()
 
         const isEditMode = !!pot
-        const schema = z.object({
-            potName: z.string(),
-            target: z.coerce.number(),
-            colorTag: z.string(),
+        const formDataSchema = z.object({
+            potName: z.string().min(1),
+            target: z.coerce.number().gt(0),
+            colorTag: z.string().min(1),
         })
         const formData = new FormData(event.target as HTMLFormElement)
         const formEntries = Object.fromEntries(formData.entries())
 
-        const validatedData = schema.safeParse(formEntries)
+        const validatedData = formDataSchema.safeParse(formEntries)
         if (!validatedData.success) {
             // HANDLE ERROR
             return
@@ -133,6 +141,7 @@ export default function AddOrEditPotModal({
                         ButtonComponent={
                             <Input
                                 id='colorTag'
+                                className='hover:cursor-pointer'
                                 name='colorTag'
                                 value={potColor}
                                 label='Theme'
@@ -153,27 +162,41 @@ export default function AddOrEditPotModal({
                             />
                         }
                     >
-                        {Object.keys(colorMap).map((colorName) => (
-                            <div
-                                key={colorName}
-                                className='flex items-center gap-3'
-                                onClick={() => setPotColor(colorName)}
-                            >
+                        {Object.keys(colorMap).map((colorName) => {
+                            const isAlreadyUsed =
+                                usedColors.includes(colorName) &&
+                                colorName !== potColor
+                            const isSelected = colorName === potColor
+
+                            return (
                                 <div
-                                    style={{
-                                        backgroundColor: colorMap[colorName],
-                                    }}
-                                    className='w-4 h-4 rounded-full'
-                                />
-                                <Text
-                                    className='grow'
-                                    fontSize='sm'
-                                    color='pfa-grey-900'
+                                    key={colorName}
+                                    className='flex items-center gap-3'
+                                    onClick={
+                                        isAlreadyUsed || isSelected
+                                            ? undefined
+                                            : () => setPotColor(colorName)
+                                    }
                                 >
-                                    {colorName}
-                                </Text>
-                            </div>
-                        ))}
+                                    <div
+                                        style={{
+                                            backgroundColor:
+                                                colorMap[colorName],
+                                        }}
+                                        className='w-4 h-4 rounded-full'
+                                    />
+                                    <Text
+                                        className='grow'
+                                        fontSize='sm'
+                                        color='pfa-grey-900'
+                                    >
+                                        {colorName}
+                                    </Text>
+                                    {isSelected && <SelectedIcon />}
+                                    {isAlreadyUsed && <Text>Already used</Text>}
+                                </div>
+                            )
+                        })}
                     </DropDown>
                     <Button.Primary className='w-full' type='submit'>
                         {pot ? 'Save Changes' : 'Add Pot'}

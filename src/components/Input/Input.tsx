@@ -5,6 +5,7 @@ import { ChangeEventHandler, forwardRef, ReactNode, Ref } from 'react'
 interface Input {
     id: string
     name: string
+    className?: string
     type?: string
     defaultValue?: string | number
     placeholder?: string
@@ -23,6 +24,7 @@ const Input = forwardRef<Ref<HTMLElement>, Input>(function Input(
     {
         id,
         name,
+        className,
         type,
         defaultValue,
         placeholder,
@@ -39,7 +41,9 @@ const Input = forwardRef<Ref<HTMLElement>, Input>(function Input(
     ref
 ) {
     return (
-        <div className='flex flex-col gap-1'>
+        <div
+            className={`${className ? className + ' ' : ''}flex flex-col gap-1`}
+        >
             <label htmlFor={id} className='text-xs font-bold text-pfa-grey-500'>
                 {label}
             </label>
@@ -52,7 +56,7 @@ const Input = forwardRef<Ref<HTMLElement>, Input>(function Input(
                 <input
                     className={clsx(
                         'text-sm text-pfa-grey-900',
-                        'placeholder:text-sm placeholder:text-pfa-beige-500 outline-none',
+                        'placeholder:text-sm placeholder:text-pfa-beige-500 outline-none hover:cursor-pointer',
                         'grow'
                     )}
                     id={id}

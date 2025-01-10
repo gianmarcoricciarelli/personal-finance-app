@@ -86,7 +86,10 @@ export default function DropDown({
                                         } hover:cursor-pointer`,
                                         onClick: () => {
                                             onItemClickHandler()
-                                            child.props?.onClick()
+
+                                            if (child.props?.onClick) {
+                                                child.props.onClick()
+                                            }
                                         },
                                     })}
                                     {index !== childrenArray.length - 1 && (
