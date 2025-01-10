@@ -1,6 +1,5 @@
-import DataContext from '@contexts/Data/Data.context'
+import DataProvider from '@contexts/Data/Data.provider'
 import ViewportObserverProvider from '@contexts/ViewportObserver/ViewportObserver.provider'
-import data from '@data/data.json'
 import { createRoot } from 'react-dom/client'
 import { BrowserRouter, Route, Routes } from 'react-router'
 import './index.css'
@@ -17,11 +16,11 @@ createRoot(document.getElementById('root')!).render(
             <Route
                 path='/'
                 element={
-                    <DataContext.Provider value={{ data: { ...data } }}>
+                    <DataProvider>
                         <ViewportObserverProvider>
                             <Root />
                         </ViewportObserverProvider>
-                    </DataContext.Provider>
+                    </DataProvider>
                 }
             >
                 <Route index element={<Home />} />

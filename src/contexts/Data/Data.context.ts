@@ -1,8 +1,9 @@
 import data from '@data/data.json'
-import { createContext } from 'react'
+import { createContext, Dispatch, SetStateAction } from 'react'
 
 interface DataContext {
     data: typeof data
+    setData?: Dispatch<SetStateAction<typeof data>>
 }
 
 const DataContext = createContext<DataContext>({ data: { ...data } })

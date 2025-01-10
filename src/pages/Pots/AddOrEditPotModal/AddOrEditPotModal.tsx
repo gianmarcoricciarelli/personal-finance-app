@@ -3,9 +3,16 @@ import DropDown from '@components/DropDown/DropDown'
 import Input from '@components/Input/Input'
 import Modal from '@components/Modal/Modal'
 import Text from '@components/Text/Text'
+import DataContext from '@contexts/Data/Data.context'
 import CaretDownIcon from '@images/icon-caret-down.svg?react'
 import CloseIcon from '@images/icon-close-modal.svg?react'
-import { ChangeEventHandler, FormEventHandler, useState } from 'react'
+import {
+    ChangeEventHandler,
+    FormEventHandler,
+    useContext,
+    useState,
+} from 'react'
+import { z } from 'zod'
 import { colorMap, Pot } from '../../../types'
 
 export default function AddOrEditPotModal({
@@ -17,6 +24,8 @@ export default function AddOrEditPotModal({
     isOpen: boolean
     onClose: () => void
 }) {
+    const { data, setData } = useContext(DataContext)
+
     const [charactersLeft, setCharactersLeft] = useState(
         pot ? 30 - pot.name.length : 30
     )
@@ -32,9 +41,50 @@ export default function AddOrEditPotModal({
 
     const onSubmitHandler: FormEventHandler<HTMLFormElement> = (event) => {
         event.preventDefault()
+
+        const isEditMode = !!pot
+        const schema = z.object({
+            potName: z.string(),
+            target: z.coerce.number(),
+            colorTag: z.string(),
+        })
         const formData = new FormData(event.target as HTMLFormElement)
         const formEntries = Object.fromEntries(formData.entries())
-        console.log('formEntries:', formEntries)
+
+        const validatedData = schema.safeParse(formEntries)
+        if (!validatedData.success) {
+            // HANDLE ERROR
+            return
+        }
+
+        if (isEditMode) {
+            const newPots = data.pots
+            const index = data.pots.findIndex(
+                (pot) => pot.name === validatedData.data.potName
+            )
+            newPots[index] = {
+                ...newPots[index],
+                name: validatedData.data.potName,
+                target: validatedData.data.target,
+                theme: colorMap[validatedData.data.colorTag],
+            }
+            setData!({ ...data, pots: newPots })
+            onClose()
+        } else {
+            setData!({
+                ...data,
+                pots: [
+                    ...data.pots,
+                    {
+                        name: validatedData.data.potName,
+                        target: validatedData.data.target,
+                        theme: colorMap[validatedData.data.colorTag],
+                        total: 0,
+                    },
+                ],
+            })
+            onClose()
+        }
     }
 
     return (
