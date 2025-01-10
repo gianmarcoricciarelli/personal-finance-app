@@ -1,7 +1,8 @@
 import Card from '@components/Card/Card'
 import Text from '@components/Text/Text'
-import data from '@data/data.json'
+import DataContext from '@contexts/Data/Data.context'
 import clsx from 'clsx'
+import { useContext } from 'react'
 import { Balance } from '../../types'
 import Budgets from './Budgets/Budgets'
 import Pots from './Pots/Pots'
@@ -9,7 +10,9 @@ import RecurringBills from './RecurringBills/RecurringBills'
 import Transactions from './Transactions/Transactions'
 
 export default function Home() {
-    const summaryItems: Balance = data.balance
+    const { data } = useContext(DataContext)
+
+    const summaryItems = data.balance
 
     return (
         <div

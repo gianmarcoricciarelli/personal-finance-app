@@ -1,18 +1,18 @@
 import Button from '@components/Button/Button'
 import Text from '@components/Text/Text'
 import TextBox from '@components/TextBox/TextBox'
-import data from '@data/data.json'
+import DataContext from '@contexts/Data/Data.context'
 import IconPot from '@images/icon-pot.svg?react'
 import clsx from 'clsx'
+import { useContext } from 'react'
 import { useNavigate } from 'react-router'
 import { Color, Pot } from '../../../types'
 
 export default function Pots() {
     const navigate = useNavigate()
 
-    const pots: Pot[] = data.pots
-        .sort((a: Pot, b: Pot) => b.total - a.total)
-        .slice(1)
+    const { data } = useContext(DataContext)
+    const pots = data.pots.sort((a: Pot, b: Pot) => b.total - a.total).slice(1)
 
     return (
         <div

@@ -1,8 +1,9 @@
 import Button from '@components/Button/Button'
 import Text from '@components/Text/Text'
 import TextBox from '@components/TextBox/TextBox'
-import data from '@data/data.json'
+import DataContext from '@contexts/Data/Data.context'
 import clsx from 'clsx'
+import { useContext } from 'react'
 import { useNavigate } from 'react-router'
 import { Transaction } from '../../../types'
 
@@ -11,6 +12,7 @@ const TRANSACTIONS_IN_PREVIEW = 5
 export default function Transactions() {
     const navigate = useNavigate()
 
+    const { data } = useContext(DataContext)
     const _transactions: Transaction[] = data.transactions.slice(
         0,
         TRANSACTIONS_IN_PREVIEW

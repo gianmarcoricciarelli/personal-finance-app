@@ -1,7 +1,10 @@
-import data from '@data/data.json'
+import DataContext from '@contexts/Data/Data.context'
+import { useContext } from 'react'
 import { Transaction } from '../types'
 
 export default function useRecurringBillsData() {
+    const { data } = useContext(DataContext)
+
     const transactions: Transaction[] = data.transactions
 
     const recurringBills = transactions.filter(

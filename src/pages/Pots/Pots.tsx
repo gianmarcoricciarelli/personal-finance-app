@@ -1,12 +1,13 @@
 import Button from '@components/Button/Button'
 import Text from '@components/Text/Text'
-import data from '@data/data.json'
+import DataContext from '@contexts/Data/Data.context'
 import clsx from 'clsx'
-import { Pot as PotType } from '../../types'
+import { useContext } from 'react'
 import Pot from './Pot/Pot'
 
 export default function Pots() {
-    const pots: PotType[] = data.pots
+    const { data } = useContext(DataContext)
+    const pots = data.pots
 
     return (
         <div
