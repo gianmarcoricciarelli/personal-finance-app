@@ -1,4 +1,5 @@
 import clsx from 'clsx'
+import { useEffect, useRef, useState } from 'react'
 import { FontSize } from '../../types'
 
 interface ProgressBar {
@@ -14,9 +15,19 @@ export default function ProgressBar({
     colors,
     total = 100,
 }: ProgressBar) {
-    console.log('percentages:', percentages)
+    const containerRef = useRef<HTMLDivElement>(null)
+    const [dividerPercentage, setDividerPercentage] = useState(0)
+
+    useEffect(() => {
+        if (containerRef.current && typeof percentages !== 'number') {
+            const containerWidth = containerRef.current.clientWidth
+            const _dividerPercentage = (100 * 2) / containerWidth
+            setDividerPercentage(_dividerPercentage)
+        }
+    }, [percentages])
+
     return (
-        <div className='flex flex-col gap-3'>
+        <div ref={containerRef} className='flex flex-col gap-3'>
             <div
                 className={clsx(
                     {
@@ -46,28 +57,14 @@ export default function ProgressBar({
                 {typeof percentages === 'object' && (
                     <div className='flex'>
                         {percentages.map((percentage, index) => {
-                            let _percentage = 0
-                            let dividerPercentage = (2 / total) * 100
+                            let _percentage = (percentage / total) * 100
 
-                            if (index === 0 && percentage !== 0) {
-                                _percentage = (percentage / total) * 100
-
-                                if (percentages[index + 1]) {
-                                    const nextPercentage =
-                                        (percentages[index + 1] / total) * 100
-
-                                    if (nextPercentage < dividerPercentage) {
-                                        dividerPercentage =
-                                            dividerPercentage - nextPercentage
-                                    }
-
-                                    _percentage =
-                                        _percentage - dividerPercentage
-                                }
-                            } else {
-                                if (percentage !== 0) {
-                                    _percentage = (percentage / total) * 100
-                                }
+                            if (
+                                _percentage !== 0 &&
+                                index !== percentages.length - 1 &&
+                                percentages[index + 1] !== 0
+                            ) {
+                                _percentage = _percentage - dividerPercentage
                             }
 
                             return (
