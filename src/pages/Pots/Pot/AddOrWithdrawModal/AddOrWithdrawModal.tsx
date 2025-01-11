@@ -84,14 +84,36 @@ export default function AddOrWithdrawModal({
                         </Text>
                     </div>
                 </div>
-                <ProgressBar
-                    height='xs'
-                    percentages={percentages}
-                    colors={colors}
-                    total={
-                        typeof percentages !== 'number' ? pot.target : undefined
-                    }
-                />
+                <div className='flex flex-col gap-3'>
+                    <ProgressBar
+                        height='xs'
+                        percentages={percentages}
+                        colors={colors}
+                        total={
+                            typeof percentages !== 'number'
+                                ? pot.target
+                                : undefined
+                        }
+                    />
+                    <div className='flex justify-between items-center'>
+                        <Text
+                            color={
+                                operation === 'add' ? 'pfa-green' : 'pfa-red'
+                            }
+                        >
+                            {operation === 'add'
+                                ? `${(
+                                      (Number(newAmount) / pot.target) *
+                                      100
+                                  ).toFixed(2)}%`
+                                : `${(
+                                      (Number(amount) / pot.total) *
+                                      100
+                                  ).toFixed(2)}%`}
+                        </Text>
+                        <Text>{`Target of $${pot.target.toLocaleString()}`}</Text>
+                    </div>
+                </div>
                 <form
                     className='flex flex-col gap-5'
                     // onSubmit={onSubmitHandler}
