@@ -3,8 +3,14 @@ import Input from '@components/Input/Input'
 import Modal from '@components/Modal/Modal'
 import ProgressBar from '@components/ProgressBar/ProgressBar'
 import Text from '@components/Text/Text'
+import DataContext from '@contexts/Data/Data.context'
 import CloseIcon from '@images/icon-close-modal.svg?react'
-import { ChangeEventHandler, useState } from 'react'
+import {
+    ChangeEventHandler,
+    FormEventHandler,
+    useContext,
+    useState,
+} from 'react'
 import { z } from 'zod'
 import { colorMap, Pot } from '../../../../types'
 
@@ -19,8 +25,16 @@ export default function AddOrWithdrawModal({
     isOpen: boolean
     onClose: () => void
 }) {
+    const { setData } = useContext(DataContext)
+
     const [amount, setAmount] = useState('')
     const [error, setError] = useState<string | undefined>()
+
+    function reset() {
+        setAmount('')
+        setError(undefined)
+        onClose()
+    }
 
     const onAmountChange: ChangeEventHandler<HTMLInputElement> = (event) => {
         const validatedInput = z.coerce.number().safeParse(event.target.value)
@@ -47,13 +61,34 @@ export default function AddOrWithdrawModal({
         }
     }
 
-    function reset() {
-        setAmount('')
-        onClose()
+    const onSubmitHandler: FormEventHandler<HTMLFormElement> = (event) => {
+        event.preventDefault()
+
+        const formEntries = Object.fromEntries(
+            new FormData(event.target as HTMLFormElement).entries()
+        )
+        const validatedInput = z.coerce.number().safeParse(formEntries.amount)
+
+        if (!validatedInput.success) {
+            setError('You must insert a valid amount')
+        } else {
+            setData!((prevData) => {
+                for (let i = 0; i < prevData.pots.length; i++) {
+                    if (prevData.pots[i].name === pot.name) {
+                        prevData.pots[i].total =
+                            operation === 'add'
+                                ? prevData.pots[i].total + Number(amount)
+                                : prevData.pots[i].total - Number(amount)
+                    }
+                }
+                return prevData
+            })
+            reset()
+        }
     }
 
     let newAmount = pot.total.toFixed(2)
-    let percentages: number | number[] = pot.total
+    let percentages = [pot.total, 0]
     let colors: string | string[] = 'Dark Grey'
     if (!error) {
         newAmount =
@@ -103,11 +138,7 @@ export default function AddOrWithdrawModal({
                         height='xs'
                         percentages={percentages}
                         colors={colors}
-                        total={
-                            typeof percentages !== 'number'
-                                ? pot.target
-                                : undefined
-                        }
+                        total={pot.target}
                     />
                     <div className='flex justify-between items-center'>
                         <Text
@@ -116,21 +147,30 @@ export default function AddOrWithdrawModal({
                             }
                         >
                             {operation === 'add'
-                                ? `${(
-                                      (Number(newAmount) / pot.target) *
-                                      100
-                                  ).toFixed(2)}%`
-                                : `${(
-                                      (Number(amount) / pot.total) *
-                                      100
-                                  ).toFixed(2)}%`}
+                                ? `${
+                                      Number(newAmount) !== pot.total
+                                          ? (
+                                                (Number(newAmount) /
+                                                    pot.target) *
+                                                100
+                                            ).toFixed(2)
+                                          : '0.00'
+                                  }%`
+                                : `${
+                                      Number(newAmount) !== pot.total
+                                          ? (
+                                                (Number(amount) / pot.total) *
+                                                100
+                                            ).toFixed(2)
+                                          : '0.00'
+                                  }%`}
                         </Text>
                         <Text>{`Target of $${pot.target.toLocaleString()}`}</Text>
                     </div>
                 </div>
                 <form
                     className='flex flex-col gap-5'
-                    // onSubmit={onSubmitHandler}
+                    onSubmit={onSubmitHandler}
                 >
                     <Input
                         id='amount'

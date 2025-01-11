@@ -52,7 +52,17 @@ const Input = forwardRef<Ref<HTMLElement>, Input>(function Input(
                     <Text>{helperText}</Text>
                 </div>
             )}
-            {error && <Text color='pfa-red'>{error}</Text>}
+            {
+                <Text
+                    className={clsx(
+                        'h-4 opacity-0 transition-opacity duration-300',
+                        { 'opacity-100': error }
+                    )}
+                    color={'pfa-red'}
+                >
+                    {error}
+                </Text>
+            }
         </div>
     )
 })

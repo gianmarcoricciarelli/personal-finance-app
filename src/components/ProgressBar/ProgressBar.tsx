@@ -2,6 +2,13 @@ import clsx from 'clsx'
 import { useEffect, useRef, useState } from 'react'
 import { FontSize } from '../../types'
 
+function scalePxToPercentage(
+    fullWidthInPx: number,
+    pixelsToScale: number
+): number {
+    return (100 * pixelsToScale) / fullWidthInPx
+}
+
 interface ProgressBar {
     height: Extract<FontSize, 'xs' | 'xxl'>
     percentages: number | number[]
@@ -23,7 +30,7 @@ export default function ProgressBar({
     useEffect(() => {
         if (containerRef.current && stackedProgressBars) {
             const containerWidth = containerRef.current.clientWidth
-            const _dividerPercentage = (100 * 2) / containerWidth
+            const _dividerPercentage = scalePxToPercentage(containerWidth, 2)
             setDividerPercentage(_dividerPercentage)
         }
     }, [percentages, stackedProgressBars])

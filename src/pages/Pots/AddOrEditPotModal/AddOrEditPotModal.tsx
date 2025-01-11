@@ -120,6 +120,7 @@ export default function AddOrEditPotModal({
                     (colorName) => !usedColors.includes(colorName)
                 )
         )
+        setErrors({ potName: [], target: [], colorTag: [] })
         onClose()
     }
 
