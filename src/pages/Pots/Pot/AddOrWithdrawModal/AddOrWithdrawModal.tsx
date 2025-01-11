@@ -23,13 +23,27 @@ export default function AddOrWithdrawModal({
     const [error, setError] = useState<string | undefined>()
 
     const onAmountChange: ChangeEventHandler<HTMLInputElement> = (event) => {
-        setAmount(event.target.value)
         const validatedInput = z.coerce.number().safeParse(event.target.value)
 
         if (!validatedInput.success) {
             setError('You must insert a valid amount')
-        } else if (error) {
+            setAmount(event.target.value)
+        } else {
             setError(undefined)
+
+            if (
+                operation === 'add' &&
+                pot.total + validatedInput.data >= pot.target
+            ) {
+                setAmount((pot.target - pot.total).toString())
+            } else if (
+                operation === 'withdraw' &&
+                validatedInput.data >= pot.total
+            ) {
+                setAmount(pot.total.toString())
+            } else {
+                setAmount(event.target.value)
+            }
         }
     }
 
@@ -121,6 +135,8 @@ export default function AddOrWithdrawModal({
                     <Input
                         id='amount'
                         name='amount'
+                        value={amount}
+                        onChange={onAmountChange}
                         label={
                             operation === 'add'
                                 ? 'Amount to Add'
@@ -131,8 +147,6 @@ export default function AddOrWithdrawModal({
                                 $
                             </Text>
                         }
-                        value={amount.toString()}
-                        onChange={onAmountChange}
                         error={error}
                     />
                     <Button.Primary className='w-full' type='submit'>

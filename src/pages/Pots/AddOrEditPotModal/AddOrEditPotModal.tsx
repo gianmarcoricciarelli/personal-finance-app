@@ -171,7 +171,7 @@ export default function AddOrEditPotModal({
                         ButtonComponent={
                             <Input
                                 id='colorTag'
-                                className='hover:cursor-pointer'
+                                containerClassName='hover:cursor-pointer'
                                 name='colorTag'
                                 value={potColor}
                                 label='Theme'

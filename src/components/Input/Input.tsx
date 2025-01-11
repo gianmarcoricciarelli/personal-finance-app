@@ -1,58 +1,40 @@
 import Text from '@components/Text/Text'
 import clsx from 'clsx'
-import { ChangeEventHandler, forwardRef, ReactNode, Ref } from 'react'
+import { ComponentPropsWithoutRef, forwardRef, ReactNode, Ref } from 'react'
 
-interface Input {
-    id: string
-    name: string
-    className?: string
-    type?: string
-    defaultValue?: string | number
-    placeholder?: string
-    value?: string
-    readOnly?: boolean
-    maxLength?: number
+interface Input extends Omit<ComponentPropsWithoutRef<'input'>, 'prefix'> {
     label: string
+    containerClassName?: string
     prefix?: ReactNode
     icon?: ReactNode
     helperText?: string
     error?: string
-    onChange?: ChangeEventHandler<HTMLInputElement>
-    onClick?: () => void
 }
 
 const Input = forwardRef<Ref<HTMLElement>, Input>(function Input(
     {
-        id,
-        name,
-        className,
-        type,
-        defaultValue,
-        placeholder,
-        value,
-        readOnly,
-        maxLength,
         label,
+        containerClassName,
         prefix,
         icon,
         helperText,
         error,
-        onChange,
-        onClick,
+        ...props
     }: Input,
     ref
 ) {
     return (
-        <div
-            className={`${className ? className + ' ' : ''}flex flex-col gap-1`}
-        >
-            <label htmlFor={id} className='text-xs font-bold text-pfa-grey-500'>
+        <div className={clsx(containerClassName, 'flex flex-col gap-1')}>
+            <label
+                htmlFor={props.id}
+                className='text-xs font-bold text-pfa-grey-500'
+            >
                 {label}
             </label>
             <div
                 ref={ref as Ref<HTMLDivElement>}
                 className='px-5 py-3 flex gap-3 items-center border-[1px] border-pfa-beige-500 rounded-lg'
-                onClick={onClick}
+                onClick={props.onClick}
             >
                 {prefix && prefix}
                 <input
@@ -61,15 +43,7 @@ const Input = forwardRef<Ref<HTMLElement>, Input>(function Input(
                         'placeholder:text-sm placeholder:text-pfa-beige-500 outline-none hover:cursor-pointer',
                         'grow'
                     )}
-                    id={id}
-                    name={name}
-                    type={type}
-                    defaultValue={defaultValue}
-                    placeholder={placeholder}
-                    value={value}
-                    readOnly={readOnly}
-                    maxLength={maxLength}
-                    onChange={onChange}
+                    {...props}
                 />
                 {icon && icon}
             </div>
