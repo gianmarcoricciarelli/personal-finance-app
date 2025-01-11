@@ -18,13 +18,15 @@ export default function ProgressBar({
     const containerRef = useRef<HTMLDivElement>(null)
     const [dividerPercentage, setDividerPercentage] = useState(0)
 
+    const stackedProgressBars = typeof percentages !== 'number'
+
     useEffect(() => {
-        if (containerRef.current && typeof percentages !== 'number') {
+        if (containerRef.current && stackedProgressBars) {
             const containerWidth = containerRef.current.clientWidth
             const _dividerPercentage = (100 * 2) / containerWidth
             setDividerPercentage(_dividerPercentage)
         }
-    }, [percentages])
+    }, [percentages, stackedProgressBars])
 
     return (
         <div ref={containerRef} className='flex flex-col gap-3'>
@@ -37,7 +39,7 @@ export default function ProgressBar({
                     'bg-pfa-beige-100 rounded-[4px]'
                 )}
             >
-                {typeof percentages === 'number' && (
+                {!stackedProgressBars && (
                     <div
                         style={{
                             width: `${((percentages / total) * 100).toFixed(
@@ -54,7 +56,7 @@ export default function ProgressBar({
                         )}
                     />
                 )}
-                {typeof percentages === 'object' && (
+                {stackedProgressBars && (
                     <div className='flex'>
                         {percentages.map((percentage, index) => {
                             let _percentage = (percentage / total) * 100
