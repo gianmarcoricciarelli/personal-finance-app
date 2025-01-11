@@ -26,6 +26,9 @@ export default {
                 'pfa-white': '#FFFFFF',
                 'pfa-yellow': '#F2CDAC',
             },
+            screens: {
+                xs: '375px',
+            },
         },
     },
     plugins: [],

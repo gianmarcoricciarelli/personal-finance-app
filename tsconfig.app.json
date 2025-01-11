@@ -27,6 +27,7 @@
         "paths": {
             "@components/*": ["./src/components/*"],
             "@contexts/*": ["./src/contexts/*"],
+            "@hooks/*": ["./src/hooks/*"],
             "@pages/*": ["./src/pages"],
             "@images/*": ["./src/assets/images/*"],
             "@data/*": ["./src/assets/data/*"]

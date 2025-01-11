@@ -54,6 +54,12 @@ export default function useRecurringBillsData() {
         0
     )
 
+    const summary = {
+        'Paid Bills': { bills: paidBills, total: paidBillsTotal },
+        'Total Upcoming': { bills: upcomingBills, total: upcomingBillsTotal },
+        'Due Soon': { bills: dueSoonBills, total: dueSoonBillsTotal },
+    }
+
     return {
         paidBills,
         upcomingBills,
@@ -61,5 +67,6 @@ export default function useRecurringBillsData() {
         paidBillsTotal,
         upcomingBillsTotal,
         dueSoonBillsTotal,
+        summary,
     }
 }
