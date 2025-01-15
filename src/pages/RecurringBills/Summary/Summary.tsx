@@ -1,11 +1,19 @@
 import Text from '@components/Text/Text'
 import useRecurringBillsData from '@hooks/useRecurringBillsData'
+import clsx from 'clsx'
 
 export default function Summary() {
     const { summary } = useRecurringBillsData()
 
     return (
-        <div className='p-4 bg-pfa-white rounded-xl flex flex-col gap-5'>
+        <div
+            className={clsx(
+                'sm:w-1/2',
+                'p-4',
+                'bg-pfa-white rounded-xl',
+                'flex flex-col gap-5'
+            )}
+        >
             <Text fontSize='base' fontStyle='bold' color='pfa-grey-900'>
                 Summary
             </Text>

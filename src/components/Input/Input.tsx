@@ -3,7 +3,7 @@ import clsx from 'clsx'
 import { ComponentPropsWithoutRef, forwardRef, ReactNode, Ref } from 'react'
 
 interface Input extends Omit<ComponentPropsWithoutRef<'input'>, 'prefix'> {
-    label: string
+    label?: string
     containerClassName?: string
     prefix?: ReactNode
     icon?: ReactNode
@@ -25,12 +25,14 @@ const Input = forwardRef<Ref<HTMLElement>, Input>(function Input(
 ) {
     return (
         <div className={clsx(containerClassName, 'flex flex-col gap-1')}>
-            <label
-                htmlFor={props.id}
-                className='text-xs font-bold text-pfa-grey-500'
-            >
-                {label}
-            </label>
+            {label && (
+                <label
+                    htmlFor={props.id}
+                    className='text-xs font-bold text-pfa-grey-500'
+                >
+                    {label}
+                </label>
+            )}
             <div
                 ref={ref as Ref<HTMLDivElement>}
                 className='px-5 py-3 flex gap-3 items-center border-[1px] border-pfa-beige-500 rounded-lg'
@@ -52,7 +54,7 @@ const Input = forwardRef<Ref<HTMLElement>, Input>(function Input(
                     <Text>{helperText}</Text>
                 </div>
             )}
-            {
+            {error && (
                 <Text
                     className={clsx(
                         'h-4 opacity-0 transition-opacity duration-300',
@@ -62,7 +64,7 @@ const Input = forwardRef<Ref<HTMLElement>, Input>(function Input(
                 >
                     {error}
                 </Text>
-            }
+            )}
         </div>
     )
 })

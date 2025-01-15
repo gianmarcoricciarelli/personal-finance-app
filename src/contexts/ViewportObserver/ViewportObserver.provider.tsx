@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { ViewportObserver } from './ViewportObserver.context'
 
 const TABLET_THRESHOLD = 768
-const MOBILE_THRESHOLD = 640
+const MOBILE_THRESHOLD = 375
 
 export default function ViewportObserverProvider({
     children,

@@ -5,14 +5,22 @@ import { ReactElement } from 'react'
 interface Card {
     title: string
     subTitle: string
+    className?: string
     icon?: ReactElement
     isPrimary?: boolean
 }
 
-export default function Card({ title, subTitle, icon, isPrimary }: Card) {
+export default function Card({
+    title,
+    subTitle,
+    className,
+    icon,
+    isPrimary,
+}: Card) {
     return (
         <div
             className={clsx(
+                className,
                 'p-5 rounded-xl sm:p-6',
                 'flex items-center gap-5 sm:grow',
                 {

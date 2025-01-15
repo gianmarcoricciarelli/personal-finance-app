@@ -3,6 +3,7 @@ import Text from '@components/Text/Text'
 import RecurringBillsIcon from '@images/icon-recurring-bills.svg?react'
 import clsx from 'clsx'
 import useRecurringBillsData from '../../hooks/useRecurringBillsData'
+import Bills from './Bills/Bills'
 import Summary from './Summary/Summary'
 
 export default function RecurringBills() {
@@ -18,9 +19,10 @@ export default function RecurringBills() {
             <Text fontSize='xl' fontStyle='bold' color='pfa-grey-900'>
                 Recurring Bills
             </Text>
-            <div className='flex flex-col gap-6 sm:flex-row'>
+            <div className='flex flex-col lg:flex-row gap-6'>
                 <div className='flex flex-col gap-3 xs:flex-row xs:gap-6 sm:flex-row sm:gap-6 md:flex-col md:gap-6'>
                     <Card
+                        className='sm:w-1/2'
                         title='Total Bills'
                         subTitle={`$${(
                             upcomingBillsTotal + dueSoonBillsTotal
@@ -30,6 +32,7 @@ export default function RecurringBills() {
                     />
                     <Summary />
                 </div>
+                <Bills />
             </div>
         </div>
     )
