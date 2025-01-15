@@ -14,9 +14,9 @@ export default function Bills() {
     return (
         <div
             className={clsx(
-                'px-5 py-6 sm:px-8 sm:py-8',
+                'px-5 py-6 tablet:p-8 desktop:p-8',
                 'bg-pfa-white rounded-xl',
-                'flex flex-col gap-6'
+                'flex flex-col gap-6 desktop:grow-[0.75]'
             )}
         >
             <div className='flex items-center gap-6 sm:gap-0'>

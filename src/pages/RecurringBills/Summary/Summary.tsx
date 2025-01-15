@@ -8,10 +8,9 @@ export default function Summary() {
     return (
         <div
             className={clsx(
-                'sm:w-1/2',
                 'p-4',
                 'bg-pfa-white rounded-xl',
-                'flex flex-col gap-5'
+                'flex flex-col gap-5 tablet:grow-[0.5]'
             )}
         >
             <Text fontSize='base' fontStyle='bold' color='pfa-grey-900'>

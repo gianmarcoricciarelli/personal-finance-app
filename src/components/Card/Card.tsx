@@ -1,30 +1,33 @@
 import Text from '@components/Text/Text'
 import clsx from 'clsx'
-import { ReactElement } from 'react'
+import { ComponentProps, ReactElement } from 'react'
 
-interface Card {
+interface Card extends ComponentProps<'div'> {
     title: string
     subTitle: string
-    className?: string
+    layout?: 'vertical' | 'horizontal'
     icon?: ReactElement
     isPrimary?: boolean
 }
 
 export default function Card({
+    className,
     title,
     subTitle,
-    className,
     icon,
     isPrimary,
+    layout = 'horizontal',
 }: Card) {
     return (
         <div
             className={clsx(
                 className,
-                'p-5 rounded-xl sm:p-6',
-                'flex items-center gap-5 sm:grow',
+                'p-5 tablet:p-6 desktop:p-6',
+                'rounded-xl',
+                'flex gap-5 tablet:gap-8 desktop:gap-8',
                 {
-                    'px-5 py-6 sm:grow-0': icon,
+                    'flex-row items-center': layout === 'horizontal',
+                    'flex-col': layout === 'vertical',
                     'bg-pfa-grey-900': isPrimary,
                     'bg-pfa-white': !isPrimary,
                 }

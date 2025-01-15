@@ -1,12 +1,16 @@
 import Card from '@components/Card/Card'
 import Text from '@components/Text/Text'
+import { ViewportObserver } from '@contexts/ViewportObserver/ViewportObserver.context'
 import RecurringBillsIcon from '@images/icon-recurring-bills.svg?react'
 import clsx from 'clsx'
+import { useContext } from 'react'
 import useRecurringBillsData from '../../hooks/useRecurringBillsData'
 import Bills from './Bills/Bills'
 import Summary from './Summary/Summary'
 
 export default function RecurringBills() {
+    const { isMobile } = useContext(ViewportObserver)
+
     const { dueSoonBillsTotal, upcomingBillsTotal } = useRecurringBillsData()
 
     return (
@@ -19,15 +23,16 @@ export default function RecurringBills() {
             <Text fontSize='xl' fontStyle='bold' color='pfa-grey-900'>
                 Recurring Bills
             </Text>
-            <div className='flex flex-col lg:flex-row gap-6'>
-                <div className='flex flex-col gap-3 mobile:flex-row mobile:gap-6 sm:flex-row sm:gap-6 md:flex-col md:gap-6'>
+            <div className='flex flex-col desktop:flex-row gap-6'>
+                <div className='flex flex-col tablet:flex-row desktop:flex-col gap-3 tablet:gap-6 desktop:gap-6 desktop:grow-[0.25]'>
                     <Card
-                        className='sm:w-1/2'
+                        className='tablet:grow-[0.5]'
                         title='Total Bills'
                         subTitle={`$${(
                             upcomingBillsTotal + dueSoonBillsTotal
                         ).toFixed(2)}`}
                         icon={<RecurringBillsIcon />}
+                        layout={isMobile === true ? 'horizontal' : 'vertical'}
                         isPrimary
                     />
                     <Summary />
