@@ -1,3 +1,4 @@
+import Text from '@components/Text/Text'
 import { ViewportObserver } from '@contexts/ViewportObserver/ViewportObserver.context'
 import clsx from 'clsx'
 import { cloneElement, ReactElement, useContext } from 'react'
@@ -6,7 +7,6 @@ import { NavLink, To } from 'react-router'
 interface Item {
     isMenuCollapsed: boolean
     showText: boolean
-    rotateIconOnCollapse?: boolean
     iconComponent: ReactElement
     label: string
     to?: To
@@ -16,7 +16,6 @@ interface Item {
 export default function Item({
     isMenuCollapsed,
     showText,
-    rotateIconOnCollapse,
     iconComponent,
     label,
     to,
@@ -27,29 +26,34 @@ export default function Item({
     const Component = to !== undefined ? NavLink : 'div'
     const _iconComponent = cloneElement(iconComponent, {
         className: clsx(
+            iconComponent.props.className,
             'w-6 min-w-6 h-6 min-h-6',
             'text-pfa-grey-300 group-hover:text-pfa-green',
-            'transition-colors duration-300'
+            'transition-all duration-300'
         ),
     })
 
     return (
         <Component
             className={clsx(
-                'pt-2 pb-3 w-[64px] rounded-t-md group sm:w-[104px] md:rounded-r-xl md:w-[unset] md:h-14 md:px-8 md:py-4',
-                'flex flex-col gap-1 items-center md:flex-row md:gap-4',
-                'hover:bg-pfa-beige-100 hover:cursor-pointer transition-colors duration-300',
-                { 'rotate-180': rotateIconOnCollapse && isMenuCollapsed }
+                'w-[68.6px] tablet:w-[104px] desktop:w-full desktop:h-14',
+                'pt-2 pb-3 desktop:px-8 desktop:py-4',
+                'rounded-t-md desktop:rounded-l-none desktop:rounded-r-xl',
+                'flex tablet:flex-col justify-center desktop:justify-start items-center tablet:gap-2 desktop:gap-4',
+                'group hover:bg-pfa-beige-100 hover:cursor-pointer transition-colors duration-300'
             )}
             to={to as To}
             onClick={onClick}
         >
             {_iconComponent}
             {!isMenuCollapsed && !isMobile && (
-                <span
+                <Text
+                    fontStyle='bold'
+                    color='pfa-grey-300'
                     className={clsx(
-                        'text-xs text-pfa-grey-300 font-bold group-hover:text-pfa-grey-900 md:text-base',
-                        'transition-all duration-300 ',
+                        'tablet:text-xs desktop:text-base whitespace-nowrap',
+                        'group-hover:text-pfa-grey-900',
+                        'transition-all duration-300',
                         {
                             'opacity-100': showText,
                             'opacity-0': !showText,
@@ -57,7 +61,7 @@ export default function Item({
                     )}
                 >
                     {label}
-                </span>
+                </Text>
             )}
         </Component>
     )

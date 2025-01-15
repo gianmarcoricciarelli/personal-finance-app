@@ -43,13 +43,15 @@ export default function SideBar() {
     return (
         <div
             className={clsx(
-                'w-full px-4 pt-2 rounded-t-md sm:px-10 md:pl-0 md:pb-6 md:pt-0 md:rounded-l-none md:rounded-r-xl',
+                'w-full tablet:w-full',
+                'px-4 pt-2 tablet:px-10 desktop:px-0 desktop:pt-0 desktop:pb-6',
+                'rounded-t-lg desktop:rounded-tl-none desktop:rounded-r-lg',
                 'bg-pfa-grey-900',
-                'flex gap-6 md:flex-col',
+                'flex desktop:flex-col desktop:gap-6',
                 'transition-all duration-300',
                 {
-                    'md:pr-1 md:w-[88px]': isMenuCollapsed,
-                    'md:w-[300px] md:pr-6': !isMenuCollapsed,
+                    'w-[88px]': isMenuCollapsed,
+                    'desktop:w-[300px]': !isMenuCollapsed,
                 }
             )}
         >
@@ -59,8 +61,14 @@ export default function SideBar() {
                     {!isMenuCollapsed && <LargeLogo />}
                 </div>
             )}
-
-            <div className='flex justify-center grow sm:justify-evenly sm:gap-1 md:flex-col md:justify-normal'>
+            <div
+                className={clsx(
+                    'tablet:w-full desktop:w-[unset]',
+                    'desktop:pr-6',
+                    'flex desktop:flex-col items-center desktop:items-start tablet:justify-between desktop:justify-start desktop:gap-1 desktop:grow',
+                    { '!pr-2': isMenuCollapsed }
+                )}
+            >
                 {Object.keys(sideBarItemsToIconName).map((sideBarItem) => {
                     let _to: To = ''
                     if (
@@ -87,14 +95,25 @@ export default function SideBar() {
                 })}
             </div>
             {!(isTablet || isMobile) && (
-                <Item
-                    isMenuCollapsed={isMenuCollapsed}
-                    showText={showText}
-                    rotateIconOnCollapse
-                    iconComponent={<MinimizeMenuIcon />}
-                    label='Minimize Menu'
-                    onClick={minimizeMenuHandler}
-                />
+                <div
+                    className={clsx('pr-6 flex flex-col', {
+                        '!pr-2': isMenuCollapsed,
+                    })}
+                >
+                    <Item
+                        isMenuCollapsed={isMenuCollapsed}
+                        showText={showText}
+                        iconComponent={
+                            <MinimizeMenuIcon
+                                className={clsx({
+                                    'rotate-180': isMenuCollapsed,
+                                })}
+                            />
+                        }
+                        label='Minimize Menu'
+                        onClick={minimizeMenuHandler}
+                    />
+                </div>
             )}
         </div>
     )

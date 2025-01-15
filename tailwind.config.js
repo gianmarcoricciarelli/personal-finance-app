@@ -27,7 +27,16 @@ export default {
                 'pfa-yellow': '#F2CDAC',
             },
             screens: {
-                xs: '376px',
+                mobile: {
+                    max: '375px',
+                },
+                tablet: {
+                    min: '376px',
+                    max: '768px',
+                },
+                desktop: {
+                    min: '769px',
+                },
             },
         },
     },

@@ -20,7 +20,7 @@ export default function RecurringBills() {
                 Recurring Bills
             </Text>
             <div className='flex flex-col lg:flex-row gap-6'>
-                <div className='flex flex-col gap-3 xs:flex-row xs:gap-6 sm:flex-row sm:gap-6 md:flex-col md:gap-6'>
+                <div className='flex flex-col gap-3 mobile:flex-row mobile:gap-6 sm:flex-row sm:gap-6 md:flex-col md:gap-6'>
                     <Card
                         className='sm:w-1/2'
                         title='Total Bills'
