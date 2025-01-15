@@ -1,15 +1,64 @@
-import Button from '@components/Button/Button'
 import DropDown from '@components/DropDown/DropDown'
 import Input from '@components/Input/Input'
 import Text from '@components/Text/Text'
 import { ViewportObserver } from '@contexts/ViewportObserver/ViewportObserver.context'
+import useRecurringBillsData from '@hooks/useRecurringBillsData'
 import SearchIcon from '@images/icon-search.svg?react'
 import SortIcon from '@images/icon-sort-mobile.svg?react'
 import clsx from 'clsx'
-import { useContext } from 'react'
+import { ComponentProps, useContext, useState } from 'react'
+import { Transaction } from '../../../types'
+import Bill from './Bill/Bill'
+
+function DropDownButton({ ref, onClick }: ComponentProps<'div'>) {
+    return (
+        <div
+            ref={ref}
+            className={clsx(
+                'px-5 py-3',
+                'flex items-center gap-4',
+                'rounded-lg',
+                'border-[1px] border-pfa-beige-500',
+                'hover:cursor-pointer'
+            )}
+            onClick={onClick}
+        >
+            <Text fontSize='sm' color='pfa-grey-900'>
+                Latest
+            </Text>
+        </div>
+    )
+}
 
 export default function Bills() {
     const { isMobile } = useContext(ViewportObserver)
+    const { paidBills, dueSoonBills } = useRecurringBillsData()
+
+    const [sorting, setSorting] = useState<'ASC' | 'DESC'>('ASC')
+
+    const bills = [...paidBills, ...dueSoonBills].reduce(
+        (prev: Transaction[], curr: Transaction) => {
+            if (prev.map((p) => p.name).includes(curr.name)) {
+                const prev_index = prev.findIndex((p) => p.name === curr.name)
+                if (
+                    Number(new Date(curr!.date)) >
+                    Number(new Date(prev[prev_index]!.date))
+                ) {
+                    prev[prev_index] = curr
+                }
+            } else {
+                prev.push(curr)
+            }
+
+            return prev
+        },
+        [] as Transaction[]
+    )
+    bills.sort((a, b) =>
+        sorting === 'ASC'
+            ? a.name.localeCompare(b.name)
+            : b.name.localeCompare(a.name)
+    )
 
     return (
         <div
@@ -26,20 +75,42 @@ export default function Bills() {
                     icon={<SearchIcon />}
                 />
                 <div className='tablet:w-1/2 desktop:w-1/2 flex tablet:justify-end desktop:justify-end'>
-                    {isMobile && <SortIcon />}
+                    {isMobile && (
+                        <SortIcon
+                            className={clsx({
+                                'rotate-180': sorting === 'DESC',
+                            })}
+                            onClick={() =>
+                                setSorting((prevSorting) =>
+                                    prevSorting === 'ASC' ? 'DESC' : 'ASC'
+                                )
+                            }
+                        />
+                    )}
                     {!isMobile && (
-                        <>
+                        <div className='flex items-center gap-2'>
                             <Text fontSize='sm'>Sort by</Text>
-                            <DropDown
-                                ButtonComponent={
-                                    <Button.Tertiary>Button</Button.Tertiary>
-                                }
-                            >
+                            <DropDown ButtonComponent={<DropDownButton />}>
                                 <span>Hello</span>
                             </DropDown>
-                        </>
+                        </div>
                     )}
                 </div>
+            </div>
+            <div className='flex flex-col gap-5'>
+                {bills.map((b) => (
+                    <Bill
+                        key={b.name}
+                        isPaid={
+                            paidBills.find(
+                                (pb) => pb.name === b.name && pb.date === b.date
+                            )
+                                ? true
+                                : false
+                        }
+                        {...b}
+                    />
+                ))}
             </div>
         </div>
     )

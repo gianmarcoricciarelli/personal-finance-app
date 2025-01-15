@@ -65,8 +65,8 @@ export default function DropDown({
                         'opacity-0',
                         'min-w-[114px] max-h-[120px] sm:max-h-[180px] overflow-y-auto px-5 py-3 bg-pfa-white rounded-lg',
                         'flex flex-col gap-3',
-                        'absolute left-0 bottom-0 -translate-x-1/2 translate-y-[calc(100%_+_4px)]',
-                        'transition-opacity, duration-300',
+                        'absolute left-1/2 bottom-0 -translate-x-1/2 translate-y-[calc(100%_+_4px)]',
+                        'transition-opacity, duration-300 shadow-lg',
                         {
                             'opacity-100': fadeIn,
                         }
