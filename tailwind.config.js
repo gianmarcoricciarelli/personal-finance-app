@@ -26,6 +26,9 @@ export default {
                 'pfa-white': '#FFFFFF',
                 'pfa-yellow': '#F2CDAC',
             },
+            gridTemplateColumns: {
+                'bills-table': '2fr 1fr 1fr',
+            },
             screens: {
                 mobile: {
                     max: '375px',

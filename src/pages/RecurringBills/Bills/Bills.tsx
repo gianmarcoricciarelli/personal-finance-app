@@ -106,25 +106,66 @@ export default function Bills() {
                     )}
                 </div>
             </div>
-            <div className='flex flex-col gap-5'>
-                {bills.map((b, index) => (
-                    <div key={index} className='flex flex-col gap-5'>
-                        <Bill
-                            isPaid={
-                                paidBills.find(
-                                    (pb) =>
-                                        pb.name === b.name && pb.date === b.date
-                                )
-                                    ? true
-                                    : false
-                            }
-                            {...b}
-                        />
-                        {index !== bills.length - 1 && (
-                            <div className='h-[1px] bg-pfa-grey-100' />
-                        )}
-                    </div>
-                ))}
+            <div
+                className={clsx(
+                    'flex flex-col gap-5',
+                    'tablet:grid tablet:grid-cols-bills-table desktop:grid desktop:grid-cols-bills-table'
+                )}
+            >
+                {!isMobile && (
+                    <>
+                        <Text>Bill Title</Text>
+                        <Text>Due Date</Text>
+                        <Text>Amount</Text>
+                        {bills.map((b) => (
+                            <>
+                                <Bill.Title avatar={b.avatar} name={b.name} />
+                                <Bill.DueDate
+                                    isPaid={
+                                        paidBills.find(
+                                            (pb) =>
+                                                pb.name === b.name &&
+                                                pb.date === b.date
+                                        )
+                                            ? true
+                                            : false
+                                    }
+                                    date={b.date}
+                                />
+                                <Text
+                                    fontSize='sm'
+                                    fontStyle='bold'
+                                    color='pfa-grey-900'
+                                >
+                                    {`$${Math.abs(b.amount).toFixed(2)}`}
+                                </Text>
+                            </>
+                        ))}
+                    </>
+                )}
+                {isMobile &&
+                    bills.map((b, index) => (
+                        <div
+                            key={index}
+                            className={clsx('flex flex-col gap-5')}
+                        >
+                            <Bill.Composite
+                                isPaid={
+                                    paidBills.find(
+                                        (pb) =>
+                                            pb.name === b.name &&
+                                            pb.date === b.date
+                                    )
+                                        ? true
+                                        : false
+                                }
+                                {...b}
+                            />
+                            {index !== bills.length - 1 && (
+                                <div className='h-[1px] bg-pfa-grey-100' />
+                            )}
+                        </div>
+                    ))}
             </div>
         </div>
     )

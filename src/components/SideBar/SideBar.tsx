@@ -43,15 +43,15 @@ export default function SideBar() {
     return (
         <div
             className={clsx(
-                'w-full tablet:w-full',
                 'px-4 pt-2 tablet:px-10 desktop:px-0 desktop:pt-0 desktop:pb-6',
                 'rounded-t-lg desktop:rounded-tl-none desktop:rounded-r-lg',
                 'bg-pfa-grey-900',
                 'flex desktop:flex-col desktop:gap-6',
                 'transition-all duration-300',
                 {
-                    'w-[88px]': isMenuCollapsed,
-                    'desktop:w-[300px]': !isMenuCollapsed,
+                    'w-w-full tablet:w-full': isMobile || isTablet,
+                    'w-[88px]': isMenuCollapsed && !(isMobile || isTablet),
+                    'w-[300px]': !isMenuCollapsed && !(isMobile || isTablet),
                 }
             )}
         >
