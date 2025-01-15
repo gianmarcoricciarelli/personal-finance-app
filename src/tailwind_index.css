@@ -714,6 +714,10 @@ video {
   flex-grow: 0;
 }
 
+.grow-\[0\.5\] {
+  flex-grow: 0.5;
+}
+
 .\!-translate-x-0 {
   --tw-translate-x: -0px !important;
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y)) !important;
@@ -1392,8 +1396,16 @@ body {
     width: 104px;
   }
 
+  .tablet\:w-1\/2 {
+    width: 50%;
+  }
+
   .tablet\:grow-\[0\.5\] {
     flex-grow: 0.5;
+  }
+
+  .tablet\:grow-0 {
+    flex-grow: 0;
   }
 
   .tablet\:flex-row {
@@ -1410,6 +1422,10 @@ body {
 
   .tablet\:justify-normal {
     justify-content: normal;
+  }
+
+  .tablet\:justify-end {
+    justify-content: flex-end;
   }
 
   .tablet\:justify-between {
@@ -1525,6 +1541,10 @@ body {
     width: 300px;
   }
 
+  .desktop\:w-1\/2 {
+    width: 50%;
+  }
+
   .desktop\:grow {
     flex-grow: 1;
   }
@@ -1535,6 +1555,14 @@ body {
 
   .desktop\:grow-\[0\.75\] {
     flex-grow: 0.75;
+  }
+
+  .desktop\:grow-\[0\.5\] {
+    flex-grow: 0.5;
+  }
+
+  .desktop\:grow-0 {
+    flex-grow: 0;
   }
 
   .desktop\:flex-row {
@@ -1551,6 +1579,10 @@ body {
 
   .desktop\:justify-start {
     justify-content: flex-start;
+  }
+
+  .desktop\:justify-end {
+    justify-content: flex-end;
   }
 
   .desktop\:gap-6 {

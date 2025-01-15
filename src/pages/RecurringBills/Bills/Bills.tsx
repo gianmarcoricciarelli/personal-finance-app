@@ -19,14 +19,16 @@ export default function Bills() {
                 'flex flex-col gap-6 desktop:grow-[0.75]'
             )}
         >
-            <div className='flex items-center gap-6 sm:gap-0'>
-                <div className='grow'>
-                    <Input placeholder='Search bills' icon={<SearchIcon />} />
-                </div>
-                <div>
+            <div className='flex items-center gap-6'>
+                <Input
+                    containerClassName='grow tablet:grow-0 tablet:w-1/2 desktop:grow-0 desktop:w-1/2'
+                    placeholder='Search bills'
+                    icon={<SearchIcon />}
+                />
+                <div className='tablet:w-1/2 desktop:w-1/2 flex tablet:justify-end desktop:justify-end'>
                     {isMobile && <SortIcon />}
                     {!isMobile && (
-                        <div className='flex gap-2'>
+                        <>
                             <Text fontSize='sm'>Sort by</Text>
                             <DropDown
                                 ButtonComponent={
@@ -35,7 +37,7 @@ export default function Bills() {
                             >
                                 <span>Hello</span>
                             </DropDown>
-                        </div>
+                        </>
                     )}
                 </div>
             </div>
