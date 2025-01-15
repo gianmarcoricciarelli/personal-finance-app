@@ -1163,7 +1163,7 @@ body {
   color: rgb(32 31 36 / var(--tw-text-opacity, 1));
 }
 
-@media (min-width: 375px) {
+@media (min-width: 376px) {
   .xs\:flex-row {
     flex-direction: row;
   }
@@ -1341,5 +1341,11 @@ body {
   .md\:text-base {
     font-size: 1rem;
     line-height: 1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .lg\:flex-col {
+    flex-direction: column;
   }
 }

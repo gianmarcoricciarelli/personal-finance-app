@@ -18,16 +18,18 @@ export default function RecurringBills() {
             <Text fontSize='xl' fontStyle='bold' color='pfa-grey-900'>
                 Recurring Bills
             </Text>
-            <div className='flex flex-col xs:flex-row md:flex-col gap-3 xs:gap-6 md:gap-6'>
-                <Card
-                    title='Total Bills'
-                    subTitle={`$${(
-                        upcomingBillsTotal + dueSoonBillsTotal
-                    ).toFixed(2)}`}
-                    icon={<RecurringBillsIcon />}
-                    isPrimary
-                />
-                <Summary />
+            <div className='flex flex-col gap-6 sm:flex-row'>
+                <div className='flex flex-col gap-3 xs:flex-row xs:gap-6 sm:flex-row sm:gap-6 md:flex-col md:gap-6'>
+                    <Card
+                        title='Total Bills'
+                        subTitle={`$${(
+                            upcomingBillsTotal + dueSoonBillsTotal
+                        ).toFixed(2)}`}
+                        icon={<RecurringBillsIcon />}
+                        isPrimary
+                    />
+                    <Summary />
+                </div>
             </div>
         </div>
     )

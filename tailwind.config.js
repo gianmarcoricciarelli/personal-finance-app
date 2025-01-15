@@ -27,7 +27,7 @@ export default {
                 'pfa-yellow': '#F2CDAC',
             },
             screens: {
-                xs: '375px',
+                xs: '376px',
             },
         },
     },
