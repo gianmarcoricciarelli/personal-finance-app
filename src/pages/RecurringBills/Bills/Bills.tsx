@@ -6,14 +6,23 @@ import useRecurringBillsData from '@hooks/useRecurringBillsData'
 import SearchIcon from '@images/icon-search.svg?react'
 import SortIcon from '@images/icon-sort-mobile.svg?react'
 import clsx from 'clsx'
-import { ComponentProps, useContext, useState } from 'react'
+import {
+    ComponentPropsWithoutRef,
+    forwardRef,
+    Ref,
+    useContext,
+    useState,
+} from 'react'
 import { Transaction } from '../../../types'
 import Bill from './Bill/Bill'
 
-function DropDownButton({ ref, onClick }: ComponentProps<'div'>) {
+const DropDownButton = forwardRef<
+    Ref<HTMLElement>,
+    ComponentPropsWithoutRef<'div'>
+>(function DropDownButton({ onClick }, ref) {
     return (
         <div
-            ref={ref}
+            ref={ref as Ref<HTMLDivElement>}
             className={clsx(
                 'px-5 py-3',
                 'flex items-center gap-4',
@@ -28,7 +37,7 @@ function DropDownButton({ ref, onClick }: ComponentProps<'div'>) {
             </Text>
         </div>
     )
-}
+})
 
 export default function Bills() {
     const { isMobile } = useContext(ViewportObserver)
@@ -98,18 +107,23 @@ export default function Bills() {
                 </div>
             </div>
             <div className='flex flex-col gap-5'>
-                {bills.map((b) => (
-                    <Bill
-                        key={b.name}
-                        isPaid={
-                            paidBills.find(
-                                (pb) => pb.name === b.name && pb.date === b.date
-                            )
-                                ? true
-                                : false
-                        }
-                        {...b}
-                    />
+                {bills.map((b, index) => (
+                    <div key={index} className='flex flex-col gap-5'>
+                        <Bill
+                            isPaid={
+                                paidBills.find(
+                                    (pb) =>
+                                        pb.name === b.name && pb.date === b.date
+                                )
+                                    ? true
+                                    : false
+                            }
+                            {...b}
+                        />
+                        {index !== bills.length - 1 && (
+                            <div className='h-[1px] bg-pfa-grey-100' />
+                        )}
+                    </div>
                 ))}
             </div>
         </div>
