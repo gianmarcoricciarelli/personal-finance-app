@@ -1,5 +1,6 @@
 import Text from '@components/Text/Text'
 import clsx from 'clsx'
+import TransactionTable from './TransactionsTable/TransactionTable'
 
 export default function Transactions() {
     return (
@@ -13,6 +14,7 @@ export default function Transactions() {
             <Text fontSize='xl' fontStyle='bold' color='pfa-grey-900'>
                 Transactions
             </Text>
+            <TransactionTable />
         </div>
     )
 }

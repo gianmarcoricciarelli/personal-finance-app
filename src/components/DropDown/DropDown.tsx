@@ -61,7 +61,7 @@ export default function DropDown({
                 <div
                     ref={dropDownMenuRef}
                     className={clsx(
-                        className || '',
+                        className,
                         'opacity-0',
                         'min-w-[114px] max-h-[120px] sm:max-h-[180px] overflow-y-auto px-5 py-3 bg-pfa-white rounded-lg',
                         'flex flex-col gap-3',
