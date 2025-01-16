@@ -895,6 +895,11 @@ video {
   background-color: rgb(255 255 255 / var(--tw-bg-opacity, 1));
 }
 
+.bg-pfa-beige-500 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(152 144 139 / var(--tw-bg-opacity, 1));
+}
+
 .p-1 {
   padding: 0.25rem;
 }
@@ -1332,6 +1337,11 @@ body {
     padding-right: 2.5rem;
   }
 
+  .tablet\:py-8 {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+  }
+
   .tablet\:text-xs {
     font-size: 0.75rem;
     line-height: 1rem;
@@ -1459,6 +1469,16 @@ body {
   .desktop\:py-4 {
     padding-top: 1rem;
     padding-bottom: 1rem;
+  }
+
+  .desktop\:px-10 {
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
+  }
+
+  .desktop\:py-8 {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
   }
 
   .desktop\:pb-6 {
