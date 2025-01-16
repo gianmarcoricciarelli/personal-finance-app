@@ -1,18 +1,18 @@
 import DropDown from '@components/DropDown/DropDown'
 import Text from '@components/Text/Text'
 import clsx from 'clsx'
-import { ComponentPropsWithoutRef, forwardRef, Ref, useState } from 'react'
-
-type MenuOption =
-    | 'Latest'
-    | 'Oldest'
-    | 'A to Z'
-    | 'Z to A'
-    | 'Highest'
-    | 'Lowest'
+import {
+    ComponentPropsWithoutRef,
+    Dispatch,
+    forwardRef,
+    Ref,
+    SetStateAction,
+    useState,
+} from 'react'
+import { SortMenuOption } from '../../../../types'
 
 interface DropDownButtonProps extends ComponentPropsWithoutRef<'div'> {
-    selectedOption: MenuOption
+    selectedOption: SortMenuOption
 }
 
 const DropDownButton = forwardRef<Ref<HTMLElement>, DropDownButtonProps>(
@@ -37,10 +37,15 @@ const DropDownButton = forwardRef<Ref<HTMLElement>, DropDownButtonProps>(
     }
 )
 
-export default function SortBills() {
-    const [selectedOption, setSelectedOption] = useState<MenuOption>('Latest')
+export default function SortBills({
+    onSortOptionChange,
+}: {
+    onSortOptionChange: Dispatch<SetStateAction<SortMenuOption>>
+}) {
+    const [selectedOption, setSelectedOption] =
+        useState<SortMenuOption>('Latest')
 
-    const menuOptions: MenuOption[] = [
+    const menuOptions: SortMenuOption[] = [
         'Latest',
         'Oldest',
         'A to Z',
@@ -61,8 +66,14 @@ export default function SortBills() {
                     <Text
                         key={option}
                         fontSize='sm'
+                        fontStyle={
+                            selectedOption === option ? 'bold' : 'normal'
+                        }
                         color='pfa-grey-900'
-                        onClick={() => setSelectedOption(option)}
+                        onClick={() => {
+                            setSelectedOption(option)
+                            onSortOptionChange(option)
+                        }}
                     >
                         {option}
                     </Text>

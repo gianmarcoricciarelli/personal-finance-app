@@ -6,7 +6,7 @@ import SearchIcon from '@images/icon-search.svg?react'
 import SortIcon from '@images/icon-sort-mobile.svg?react'
 import clsx from 'clsx'
 import { ChangeEventHandler, useContext, useState } from 'react'
-import { Transaction } from '../../../types'
+import { SortMenuOption, Transaction } from '../../../types'
 import Bill from './Bill/Bill'
 import SortBills from './SortBills/SortBills'
 
@@ -14,7 +14,7 @@ export default function Bills() {
     const { isMobile } = useContext(ViewportObserver)
     const { paidBills, dueSoonBills } = useRecurringBillsData()
 
-    const [sorting, setSorting] = useState<'ASC' | 'DESC'>('ASC')
+    const [sorting, setSorting] = useState<SortMenuOption>('Latest')
     const [searchText, setSearchText] = useState('')
 
     let bills = [...paidBills, ...dueSoonBills].reduce(
@@ -41,11 +41,22 @@ export default function Bills() {
                   b.name.toLowerCase().includes(searchText.toLowerCase())
               )
             : bills
-    bills.sort((a, b) =>
-        sorting === 'ASC'
-            ? a.name.localeCompare(b.name)
-            : b.name.localeCompare(a.name)
-    )
+    bills.sort((a, b) => {
+        switch (sorting) {
+            case 'Latest':
+                return new Date(a.date).getDate() - new Date(b.date).getDate()
+            case 'Oldest':
+                return new Date(b.date).getDate() - new Date(a.date).getDate()
+            case 'A to Z':
+                return a.name.localeCompare(b.name)
+            case 'Z to A':
+                return b.name.localeCompare(a.name)
+            case 'Highest':
+                return Math.abs(b.amount) - Math.abs(a.amount)
+            case 'Lowest':
+                return Math.abs(a.amount) - Math.abs(b.amount)
+        }
+    })
 
     const onSearchBill: ChangeEventHandler<HTMLInputElement> = (event) => {
         setSearchText(event.target.value)
@@ -70,16 +81,18 @@ export default function Bills() {
                     {isMobile && (
                         <SortIcon
                             className={clsx({
-                                'rotate-180': sorting === 'DESC',
+                                'rotate-180': sorting === 'Oldest',
                             })}
                             onClick={() =>
                                 setSorting((prevSorting) =>
-                                    prevSorting === 'ASC' ? 'DESC' : 'ASC'
+                                    prevSorting === 'Latest'
+                                        ? 'Oldest'
+                                        : 'Latest'
                                 )
                             }
                         />
                     )}
-                    {!isMobile && <SortBills />}
+                    {!isMobile && <SortBills onSortOptionChange={setSorting} />}
                 </div>
             </div>
             {bills.length > 0 && (

@@ -21,6 +21,14 @@ export type Color =
     | 'pfa-yellow'
 export type Gap = '1' | '2' | '3'
 
+export type SortMenuOption =
+    | 'Latest'
+    | 'Oldest'
+    | 'A to Z'
+    | 'Z to A'
+    | 'Highest'
+    | 'Lowest'
+
 export const colorMap: Record<string, string> = {
     Green: '#277C78',
     Yellow: '#F2CDAC',
