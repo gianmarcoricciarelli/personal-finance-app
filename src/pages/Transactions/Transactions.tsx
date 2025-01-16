@@ -7,7 +7,7 @@ export default function Transactions() {
         <div
             className={clsx(
                 'px-4 tablet:px-10 desktop:px-10 py-6 tablet:py-8 desktop:py-8',
-                'flex flex-col gap-8',
+                'flex flex-col gap-8 grow',
                 'bg-pfa-beige-100'
             )}
         >
