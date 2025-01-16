@@ -7,6 +7,7 @@ import SearchIcon from '@images/icon-search.svg?react'
 import SortIcon from '@images/icon-sort-mobile.svg?react'
 import clsx from 'clsx'
 import {
+    ChangeEventHandler,
     ComponentPropsWithoutRef,
     forwardRef,
     Ref,
@@ -44,8 +45,9 @@ export default function Bills() {
     const { paidBills, dueSoonBills } = useRecurringBillsData()
 
     const [sorting, setSorting] = useState<'ASC' | 'DESC'>('ASC')
+    const [searchText, setSearchText] = useState('')
 
-    const bills = [...paidBills, ...dueSoonBills].reduce(
+    let bills = [...paidBills, ...dueSoonBills].reduce(
         (prev: Transaction[], curr: Transaction) => {
             if (prev.map((p) => p.name).includes(curr.name)) {
                 const prev_index = prev.findIndex((p) => p.name === curr.name)
@@ -63,11 +65,21 @@ export default function Bills() {
         },
         [] as Transaction[]
     )
+    bills =
+        searchText !== ''
+            ? bills.filter((b) =>
+                  b.name.toLowerCase().includes(searchText.toLowerCase())
+              )
+            : bills
     bills.sort((a, b) =>
         sorting === 'ASC'
             ? a.name.localeCompare(b.name)
             : b.name.localeCompare(a.name)
     )
+
+    const onSearchBill: ChangeEventHandler<HTMLInputElement> = (event) => {
+        setSearchText(event.target.value)
+    }
 
     return (
         <div
@@ -82,6 +94,7 @@ export default function Bills() {
                     containerClassName='grow tablet:grow-0 tablet:w-1/2 desktop:grow-0 desktop:w-1/2'
                     placeholder='Search bills'
                     icon={<SearchIcon />}
+                    onChange={onSearchBill}
                 />
                 <div className='tablet:w-1/2 desktop:w-1/2 flex tablet:justify-end desktop:justify-end'>
                     {isMobile && (
@@ -106,21 +119,54 @@ export default function Bills() {
                     )}
                 </div>
             </div>
-            <div
-                className={clsx(
-                    'flex flex-col gap-5',
-                    'tablet:grid tablet:grid-cols-bills-table desktop:grid desktop:grid-cols-bills-table'
-                )}
-            >
-                {!isMobile && (
-                    <>
-                        <Text>Bill Title</Text>
-                        <Text>Due Date</Text>
-                        <Text>Amount</Text>
-                        {bills.map((b) => (
-                            <>
-                                <Bill.Title avatar={b.avatar} name={b.name} />
-                                <Bill.DueDate
+            {bills.length > 0 && (
+                <div
+                    className={clsx(
+                        'flex flex-col gap-5',
+                        'tablet:grid tablet:grid-cols-bills-table desktop:grid desktop:grid-cols-bills-table'
+                    )}
+                >
+                    {!isMobile && (
+                        <>
+                            <Text>Bill Title</Text>
+                            <Text>Due Date</Text>
+                            <Text>Amount</Text>
+                            {bills.map((b) => (
+                                <>
+                                    <Bill.Title
+                                        avatar={b.avatar}
+                                        name={b.name}
+                                    />
+                                    <Bill.DueDate
+                                        isPaid={
+                                            paidBills.find(
+                                                (pb) =>
+                                                    pb.name === b.name &&
+                                                    pb.date === b.date
+                                            )
+                                                ? true
+                                                : false
+                                        }
+                                        date={b.date}
+                                    />
+                                    <Text
+                                        fontSize='sm'
+                                        fontStyle='bold'
+                                        color='pfa-grey-900'
+                                    >
+                                        {`$${Math.abs(b.amount).toFixed(2)}`}
+                                    </Text>
+                                </>
+                            ))}
+                        </>
+                    )}
+                    {isMobile &&
+                        bills.map((b, index) => (
+                            <div
+                                key={index}
+                                className={clsx('flex flex-col gap-5')}
+                            >
+                                <Bill.Composite
                                     isPaid={
                                         paidBills.find(
                                             (pb) =>
@@ -130,43 +176,24 @@ export default function Bills() {
                                             ? true
                                             : false
                                     }
-                                    date={b.date}
+                                    {...b}
                                 />
-                                <Text
-                                    fontSize='sm'
-                                    fontStyle='bold'
-                                    color='pfa-grey-900'
-                                >
-                                    {`$${Math.abs(b.amount).toFixed(2)}`}
-                                </Text>
-                            </>
+                                {index !== bills.length - 1 && (
+                                    <div className='h-[1px] bg-pfa-grey-100' />
+                                )}
+                            </div>
                         ))}
-                    </>
-                )}
-                {isMobile &&
-                    bills.map((b, index) => (
-                        <div
-                            key={index}
-                            className={clsx('flex flex-col gap-5')}
-                        >
-                            <Bill.Composite
-                                isPaid={
-                                    paidBills.find(
-                                        (pb) =>
-                                            pb.name === b.name &&
-                                            pb.date === b.date
-                                    )
-                                        ? true
-                                        : false
-                                }
-                                {...b}
-                            />
-                            {index !== bills.length - 1 && (
-                                <div className='h-[1px] bg-pfa-grey-100' />
-                            )}
-                        </div>
-                    ))}
-            </div>
+                </div>
+            )}
+            {bills.length === 0 && (
+                <div className='h-full flex justify-center items-center'>
+                    <Text
+                        fontSize='xl'
+                        fontStyle='bold'
+                        color='pfa-grey-900'
+                    >{`No results for "${searchText}"`}</Text>
+                </div>
+            )}
         </div>
     )
 }

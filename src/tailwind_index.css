@@ -646,14 +646,6 @@ video {
   min-height: 1.5rem;
 }
 
-.\!w-\[300px\] {
-  width: 300px !important;
-}
-
-.\!w-\[88px\] {
-  width: 88px !important;
-}
-
 .w-1 {
   width: 0.25rem;
 }
@@ -682,6 +674,10 @@ video {
   width: 2rem;
 }
 
+.w-\[300px\] {
+  width: 300px;
+}
+
 .w-\[335px\] {
   width: 335px;
 }
@@ -690,16 +686,12 @@ video {
   width: 68.6px;
 }
 
-.w-full {
-  width: 100%;
-}
-
-.w-\[300px\] {
-  width: 300px;
-}
-
 .w-\[88px\] {
   width: 88px;
+}
+
+.w-full {
+  width: 100%;
 }
 
 .min-w-6 {
@@ -742,10 +734,6 @@ video {
   grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
-.grid-cols-bills-table {
-  grid-template-columns: 2fr 1fr 1fr;
-}
-
 .flex-row {
   flex-direction: row;
 }
@@ -772,10 +760,6 @@ video {
 
 .gap-1 {
   gap: 0.25rem;
-}
-
-.gap-14 {
-  gap: 3.5rem;
 }
 
 .gap-2 {
