@@ -1,4 +1,3 @@
-import DropDown from '@components/DropDown/DropDown'
 import Input from '@components/Input/Input'
 import Text from '@components/Text/Text'
 import { ViewportObserver } from '@contexts/ViewportObserver/ViewportObserver.context'
@@ -6,39 +5,10 @@ import useRecurringBillsData from '@hooks/useRecurringBillsData'
 import SearchIcon from '@images/icon-search.svg?react'
 import SortIcon from '@images/icon-sort-mobile.svg?react'
 import clsx from 'clsx'
-import {
-    ChangeEventHandler,
-    ComponentPropsWithoutRef,
-    forwardRef,
-    Ref,
-    useContext,
-    useState,
-} from 'react'
+import { ChangeEventHandler, useContext, useState } from 'react'
 import { Transaction } from '../../../types'
 import Bill from './Bill/Bill'
-
-const DropDownButton = forwardRef<
-    Ref<HTMLElement>,
-    ComponentPropsWithoutRef<'div'>
->(function DropDownButton({ onClick }, ref) {
-    return (
-        <div
-            ref={ref as Ref<HTMLDivElement>}
-            className={clsx(
-                'px-5 py-3',
-                'flex items-center gap-4',
-                'rounded-lg',
-                'border-[1px] border-pfa-beige-500',
-                'hover:cursor-pointer'
-            )}
-            onClick={onClick}
-        >
-            <Text fontSize='sm' color='pfa-grey-900'>
-                Latest
-            </Text>
-        </div>
-    )
-})
+import SortBills from './SortBills/SortBills'
 
 export default function Bills() {
     const { isMobile } = useContext(ViewportObserver)
@@ -109,14 +79,7 @@ export default function Bills() {
                             }
                         />
                     )}
-                    {!isMobile && (
-                        <div className='flex items-center gap-2'>
-                            <Text fontSize='sm'>Sort by</Text>
-                            <DropDown ButtonComponent={<DropDownButton />}>
-                                <span>Hello</span>
-                            </DropDown>
-                        </div>
-                    )}
+                    {!isMobile && <SortBills />}
                 </div>
             </div>
             {bills.length > 0 && (

@@ -34,7 +34,12 @@ function Secondary({ className, onClick, children }: ComponentProps<'button'>) {
             )}
             onClick={onClick}
         >
-            <Text fontSize='sm' fontStyle='bold' color='pfa-grey-900'>
+            <Text
+                className='whitespace-nowrap'
+                fontSize='sm'
+                fontStyle='bold'
+                color='pfa-grey-900'
+            >
                 {children}
             </Text>
         </button>

@@ -1201,10 +1201,6 @@ body {
     width: 247px;
   }
 
-  .sm\:w-\[560px\] {
-    width: 560px;
-  }
-
   .sm\:grow {
     flex-grow: 1;
   }
@@ -1273,6 +1269,10 @@ body {
 
   .tablet\:w-\[104px\] {
     width: 104px;
+  }
+
+  .tablet\:w-\[560px\] {
+    width: 560px;
   }
 
   .tablet\:w-full {
@@ -1349,6 +1349,10 @@ body {
 
   .desktop\:w-1\/2 {
     width: 50%;
+  }
+
+  .desktop\:w-\[560px\] {
+    width: 560px;
   }
 
   .desktop\:w-\[unset\] {
