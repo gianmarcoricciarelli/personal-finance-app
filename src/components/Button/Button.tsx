@@ -1,7 +1,7 @@
 import Text from '@components/Text/Text'
 import CaretRightIcon from '@images/icon-caret-right.svg?react'
 import clsx from 'clsx'
-import { ComponentProps } from 'react'
+import { ComponentProps, ReactElement } from 'react'
 
 function Primary({
     className,
@@ -62,7 +62,7 @@ function Tertiary({
 
     return (
         <button
-            className='group flex flex-row gap-3 items-center'
+            className='group flex flex-row items-center gap-3'
             onClick={onClick}
         >
             {buttonText}
@@ -93,11 +93,39 @@ function Destroy({ className, onClick, children }: ComponentProps<'button'>) {
     )
 }
 
+interface PaginationProps extends ComponentProps<'button'> {
+    leftIcon?: ReactElement
+    rightIcon?: ReactElement
+}
+
+function Pagination({
+    leftIcon,
+    rightIcon,
+    onClick,
+    children,
+}: PaginationProps) {
+    return (
+        <button
+            className={clsx(
+                'transition-colors duration-300 group rounded-lg border-[1px] border-pfa-beige-500 bg-pfa-white h-10 p-4',
+                'flex items-center gap-4',
+                'hover:bg-pfa-beige-500'
+            )}
+            onClick={onClick}
+        >
+            {leftIcon && leftIcon}
+            {children}
+            {rightIcon && rightIcon}
+        </button>
+    )
+}
+
 const Button = {
     Primary,
     Secondary,
     Tertiary,
     Destroy,
+    Pagination,
 }
 
 export default Button
