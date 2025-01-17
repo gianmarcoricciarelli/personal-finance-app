@@ -99,8 +99,104 @@ function Body({ transactions }: { transactions: TransactionType[] }) {
     )
 }
 
-export default function TransactionTable() {
+function Footer({ pages }: { pages: number }) {
     const { isMobile } = useContext(ViewportObserver)
+
+    const [selectedPage, setSelectedPage] = useState('1')
+
+    let pageNumbers: string[] = []
+    if (isMobile) {
+        switch (selectedPage) {
+            case '1':
+            case '2':
+                pageNumbers = ['1', '2', '...', pages.toString()]
+                break
+            case (pages - 1).toString():
+                pageNumbers = [
+                    '1',
+                    '...',
+                    (pages - 1).toString(),
+                    pages.toString(),
+                ]
+                break
+            default:
+                pageNumbers = ['...', selectedPage, '...', pages.toString()]
+                break
+        }
+    } else if (pages > 5) {
+        switch (selectedPage) {
+            case '1':
+            case '2':
+            case (pages - 1).toString():
+            case pages.toString():
+                pageNumbers = [
+                    '1',
+                    '2',
+                    '...',
+                    (pages - 1).toString(),
+                    pages.toString(),
+                ]
+                break
+            default:
+                pageNumbers = [
+                    '1',
+                    '...',
+                    selectedPage,
+                    '...',
+                    pages.toString(),
+                ]
+        }
+    } else {
+        pageNumbers = ['1', '2', '3', '4', '5']
+    }
+
+    return (
+        <div className='pt-6 flex'>
+            <span>P</span>
+            <div className='flex gap-2'>
+                {pageNumbers.map((pageNumber, index) => (
+                    <div
+                        key={index}
+                        className={clsx(
+                            'h-10 w-10 transition-colors duration-300',
+                            'flex justify-center items-center',
+                            'rounded-lg',
+                            'group hover:cursor-pointer',
+                            {
+                                'bg-pfa-white border-[1px] border-pfa-beige-500 hover:bg-pfa-beige-500 hover:border-0':
+                                    selectedPage !== pageNumber,
+                                'bg-pfa-grey-900': selectedPage === pageNumber,
+                            }
+                        )}
+                        onClick={
+                            pageNumber !== '...'
+                                ? () => setSelectedPage(pageNumber)
+                                : undefined
+                        }
+                    >
+                        <Text
+                            className={clsx('transition-colors duration-300', {
+                                'group-hover:text-pfa-white':
+                                    selectedPage !== pageNumber,
+                            })}
+                            fontSize='sm'
+                            color={
+                                selectedPage === pageNumber
+                                    ? 'pfa-white'
+                                    : 'pfa-grey-900'
+                            }
+                        >
+                            {pageNumber}
+                        </Text>
+                    </div>
+                ))}
+            </div>
+            <span>N</span>
+        </div>
+    )
+}
+
+export default function TransactionTable() {
     const {
         data: { transactions },
     } = useContext(DataContext)
@@ -113,6 +209,9 @@ export default function TransactionTable() {
         filtering === 'All transactions'
             ? transactions
             : transactions.filter((t) => t.category === filtering)
+    const pages =
+        Math.floor(_transactions.length / 10) +
+        (_transactions.length % 10 > 0 ? 1 : 0)
 
     return (
         <div
@@ -128,6 +227,7 @@ export default function TransactionTable() {
                 onFilterChange={setFiltering}
             />
             <Body transactions={_transactions} />
+            <Footer pages={pages} />
         </div>
     )
 }
