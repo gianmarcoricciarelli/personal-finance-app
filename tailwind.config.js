@@ -28,6 +28,7 @@ export default {
             },
             gridTemplateColumns: {
                 'bills-table': '2fr 1fr 1fr',
+                'transactions-table': '2fr 1fr 1fr 1fr',
             },
             screens: {
                 mobile: {

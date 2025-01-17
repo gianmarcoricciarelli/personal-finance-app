@@ -60,7 +60,11 @@ export default function SortBy({
 
     return (
         <div className='flex items-center gap-2'>
-            {!isMobile && <Text fontSize='sm'>Sort by</Text>}
+            {!isMobile && (
+                <Text className='whitespace-nowrap' fontSize='sm'>
+                    Sort by
+                </Text>
+            )}
             <DropDown
                 className={clsx({
                     'left-[unset] right-0 translate-x-0': isMobile,

@@ -578,6 +578,10 @@ video {
   left: 50%;
 }
 
+.left-\[unset\] {
+  left: unset;
+}
+
 .right-0 {
   right: 0px;
 }
@@ -586,12 +590,12 @@ video {
   top: 0px;
 }
 
-.left-\[unset\] {
-  left: unset;
-}
-
 .z-10 {
   z-index: 10;
+}
+
+.col-span-full {
+  grid-column: 1 / -1;
 }
 
 .flex {
@@ -724,13 +728,13 @@ video {
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
 
-.translate-y-\[calc\(100\%_\+_4px\)\] {
-  --tw-translate-y: calc(100% + 4px);
+.translate-x-0 {
+  --tw-translate-x: 0px;
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
 
-.translate-x-0 {
-  --tw-translate-x: 0px;
+.translate-y-\[calc\(100\%_\+_4px\)\] {
+  --tw-translate-y: calc(100% + 4px);
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
 
@@ -741,6 +745,10 @@ video {
 
 .grid-cols-2 {
   grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.grid-cols-transactions-table {
+  grid-template-columns: 2fr 1fr 1fr 1fr;
 }
 
 .flex-row {
@@ -902,11 +910,6 @@ video {
 .bg-pfa-white {
   --tw-bg-opacity: 1;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity, 1));
-}
-
-.bg-pfa-beige-500 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(152 144 139 / var(--tw-bg-opacity, 1));
 }
 
 .p-1 {
@@ -1277,6 +1280,10 @@ body {
     display: grid;
   }
 
+  .tablet\:h-10 {
+    height: 2.5rem;
+  }
+
   .tablet\:w-1\/2 {
     width: 50%;
   }
@@ -1291,6 +1298,10 @@ body {
 
   .tablet\:w-full {
     width: 100%;
+  }
+
+  .tablet\:w-10 {
+    width: 2.5rem;
   }
 
   .tablet\:grow-0 {
@@ -1366,6 +1377,10 @@ body {
     height: 3.5rem;
   }
 
+  .desktop\:h-10 {
+    height: 2.5rem;
+  }
+
   .desktop\:w-1\/2 {
     width: 50%;
   }
@@ -1380,6 +1395,10 @@ body {
 
   .desktop\:w-full {
     width: 100%;
+  }
+
+  .desktop\:w-10 {
+    width: 2.5rem;
   }
 
   .desktop\:grow {
@@ -1470,6 +1489,11 @@ body {
     padding-right: 0px;
   }
 
+  .desktop\:px-10 {
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
+  }
+
   .desktop\:px-8 {
     padding-left: 2rem;
     padding-right: 2rem;
@@ -1478,11 +1502,6 @@ body {
   .desktop\:py-4 {
     padding-top: 1rem;
     padding-bottom: 1rem;
-  }
-
-  .desktop\:px-10 {
-    padding-left: 2.5rem;
-    padding-right: 2.5rem;
   }
 
   .desktop\:py-8 {
