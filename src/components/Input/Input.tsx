@@ -24,7 +24,9 @@ const Input = forwardRef<Ref<HTMLElement>, Input>(function Input(
     ref
 ) {
     return (
-        <div className={clsx(containerClassName, 'flex flex-col gap-1')}>
+        <div
+            className={clsx(containerClassName, 'min-w-0 flex flex-col gap-1')}
+        >
             {label && (
                 <label
                     htmlFor={props.id}
@@ -41,6 +43,7 @@ const Input = forwardRef<Ref<HTMLElement>, Input>(function Input(
                 {prefix && prefix}
                 <input
                     className={clsx(
+                        'min-w-0',
                         'text-sm text-pfa-grey-900',
                         'placeholder:text-sm placeholder:text-pfa-beige-500 outline-none hover:cursor-pointer',
                         'grow'

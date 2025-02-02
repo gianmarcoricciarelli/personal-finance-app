@@ -598,6 +598,14 @@ video {
   grid-column: 1 / -1;
 }
 
+.col-span-2 {
+  grid-column: span 2 / span 2;
+}
+
+.col-span-1 {
+  grid-column: span 1 / span 1;
+}
+
 .flex {
   display: flex;
 }
@@ -714,12 +722,20 @@ video {
   width: 177px;
 }
 
+.w-\[216px\] {
+  width: 216px;
+}
+
 .min-w-6 {
   min-width: 1.5rem;
 }
 
 .min-w-\[114px\] {
   min-width: 114px;
+}
+
+.min-w-0 {
+  min-width: 0px;
 }
 
 .flex-1 {
@@ -763,8 +779,16 @@ video {
   grid-template-columns: 2fr 1fr 1fr 1fr;
 }
 
+.grid-cols-3 {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
 .grid-rows-transactions-table {
   grid-template-rows: repeat(21, 40px);
+}
+
+.grid-rows-1 {
+  grid-template-rows: repeat(1, minmax(0, 1fr));
 }
 
 .flex-row {

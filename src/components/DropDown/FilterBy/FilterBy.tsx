@@ -32,7 +32,11 @@ const FilterButton = forwardRef<Ref<HTMLElement>, FilterButtonProps>(
                 )}
                 onClick={onClick}
             >
-                <Text fontSize='sm' color='pfa-grey-900'>
+                <Text
+                    className='whitespace-nowrap'
+                    fontSize='sm'
+                    color='pfa-grey-900'
+                >
                     {selectedFilter}
                 </Text>
             </div>

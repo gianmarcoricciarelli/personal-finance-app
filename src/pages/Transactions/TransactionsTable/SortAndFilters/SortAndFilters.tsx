@@ -18,13 +18,15 @@ export default function SortAndFilters({
     return isMobile ? (
         <div className='flex items-center gap-6'>
             <Input icon={<SearchIcon />} placeholder='Search transaction' />
-            <SortBy onSortOptionChange={onSortChange} />
-            <FilterBy onFilterOptionChange={onFilterChange} />
+            <div className='flex items-center gap-6'>
+                <SortBy onSortOptionChange={onSortChange} />
+                <FilterBy onFilterOptionChange={onFilterChange} />
+            </div>
         </div>
     ) : (
-        <div className='flex items-center'>
+        <div className='flex items-center tablet:gap-6'>
             <Input icon={<SearchIcon />} placeholder='Search transaction' />
-            <div className='flex justify-end items-center gap-6 grow'>
+            <div className='flex desktop:justify-end items-center gap-6 desktop:grow'>
                 <SortBy onSortOptionChange={onSortChange} />
                 <FilterBy onFilterOptionChange={onFilterChange} />
             </div>
