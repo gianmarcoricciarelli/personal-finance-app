@@ -29,7 +29,7 @@ export default function Body({
                 </div>
             )}
             {!isMobile && (
-                <div className='h-[924px] grid grid-cols-transactions-table items-center'>
+                <div className='grid grid-cols-transactions-table grid-rows-transactions-table items-center'>
                     <Text>Recipient / Sender</Text>
                     <Text>Category</Text>
                     <Text>Transaction Date</Text>

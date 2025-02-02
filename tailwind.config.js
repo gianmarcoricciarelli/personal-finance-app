@@ -30,6 +30,9 @@ export default {
                 'bills-table': '2fr 1fr 1fr',
                 'transactions-table': '2fr 1fr 1fr 1fr',
             },
+            gridTemplateRows: {
+                'transactions-table': 'repeat(21, 40px)',
+            },
             screens: {
                 mobile: {
                     max: '375px',

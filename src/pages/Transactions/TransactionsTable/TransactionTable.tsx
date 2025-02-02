@@ -43,7 +43,9 @@ export default function TransactionTable() {
                 onFilterChange={setFiltering}
             />
             <Body transactions={paginatedTransactions[page - 1]} />
-            <Footer pages={pages} onPageChange={setPage} />
+            {paginatedTransactions.length > 1 && (
+                <Footer pages={pages} onPageChange={setPage} />
+            )}
         </div>
     )
 }
