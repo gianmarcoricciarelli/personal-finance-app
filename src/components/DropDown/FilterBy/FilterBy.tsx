@@ -52,15 +52,16 @@ export default function FilterBy({
 
     const [selectedFilter, setSelectedFilter] = useState('All transactions')
 
-    const transactionCategories = new Array(
-        ...new Set(transactions.map((t) => t.category))
-    ).sort((a, b) => a.localeCompare(b))
+    const transactionCategories = [
+        ...['All transactions'],
+        ...new Set(transactions.map((t) => t.category)),
+    ].sort((a, b) => a.localeCompare(b))
 
     return (
         <div className='flex items-center gap-2'>
             {!isMobile && <Text fontSize='sm'>Category</Text>}
             <DropDown
-                className={clsx({
+                className={clsx('w-[177px]', {
                     'left-[unset] right-0 translate-x-0': isMobile,
                 })}
                 ButtonComponent={
@@ -75,6 +76,7 @@ export default function FilterBy({
                 {transactionCategories.map((t) => (
                     <Text
                         key={t}
+                        className='whitespace-nowrap'
                         fontSize='sm'
                         fontStyle={selectedFilter === t ? 'bold' : 'normal'}
                         color='pfa-grey-900'

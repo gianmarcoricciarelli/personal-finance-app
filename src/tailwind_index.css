@@ -710,6 +710,10 @@ video {
   width: 100%;
 }
 
+.w-\[177px\] {
+  width: 177px;
+}
+
 .min-w-6 {
   min-width: 1.5rem;
 }
