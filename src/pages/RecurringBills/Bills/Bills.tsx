@@ -5,7 +5,7 @@ import useRecurringBillsData from '@hooks/useRecurringBillsData'
 import SearchIcon from '@images/icon-search.svg?react'
 import SortIcon from '@images/icon-sort-mobile.svg?react'
 import clsx from 'clsx'
-import { ChangeEventHandler, useContext, useState } from 'react'
+import { ChangeEventHandler, Fragment, useContext, useState } from 'react'
 import { SortMenuOption, Transaction } from '../../../types'
 import Bill from './Bill/Bill'
 import SortBills from './SortBills/SortBills'
@@ -107,37 +107,10 @@ export default function Bills() {
                             <Text>Bill Title</Text>
                             <Text>Due Date</Text>
                             <Text>Amount</Text>
-                            {bills.map((b) => (
-                                <>
-                                    <Bill.Title
-                                        avatar={b.avatar}
-                                        name={b.name}
-                                    />
-                                    <Bill.DueDate
-                                        isPaid={
-                                            paidBills.find(
-                                                (pb) =>
-                                                    pb.name === b.name &&
-                                                    pb.date === b.date
-                                            )
-                                                ? true
-                                                : false
-                                        }
-                                        date={b.date}
-                                    />
-                                    <Text
-                                        fontSize='sm'
-                                        fontStyle='bold'
-                                        color='pfa-grey-900'
-                                    >
-                                        {`$${Math.abs(b.amount).toFixed(2)}`}
-                                    </Text>
-                                </>
-                            ))}
                         </>
                     )}
-                    {isMobile &&
-                        bills.map((b, index) => (
+                    {bills.map((b, index) =>
+                        isMobile ? (
                             <div
                                 key={index}
                                 className={clsx('flex flex-col gap-5')}
@@ -158,7 +131,34 @@ export default function Bills() {
                                     <div className='h-[1px] bg-pfa-grey-100' />
                                 )}
                             </div>
-                        ))}
+                        ) : (
+                            <Fragment key={index}>
+                                <Bill.Title avatar={b.avatar} name={b.name} />
+                                <Bill.DueDate
+                                    isPaid={
+                                        paidBills.find(
+                                            (pb) =>
+                                                pb.name === b.name &&
+                                                pb.date === b.date
+                                        )
+                                            ? true
+                                            : false
+                                    }
+                                    date={b.date}
+                                />
+                                <Text
+                                    fontSize='sm'
+                                    fontStyle='bold'
+                                    color='pfa-grey-900'
+                                >
+                                    {`$${Math.abs(b.amount).toFixed(2)}`}
+                                </Text>
+                                {index !== bills.length - 1 && (
+                                    <div className='h-[1px] bg-pfa-grey-100 col-span-full' />
+                                )}
+                            </Fragment>
+                        )
+                    )}
                 </div>
             )}
             {bills.length === 0 && (

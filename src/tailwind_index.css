@@ -598,14 +598,6 @@ video {
   grid-column: 1 / -1;
 }
 
-.col-span-2 {
-  grid-column: span 2 / span 2;
-}
-
-.col-span-1 {
-  grid-column: span 1 / span 1;
-}
-
 .flex {
   display: flex;
 }
@@ -654,10 +646,6 @@ video {
   height: 697px;
 }
 
-.h-\[924px\] {
-  height: 924px;
-}
-
 .h-full {
   height: 100%;
 }
@@ -698,6 +686,10 @@ video {
   width: 2rem;
 }
 
+.w-\[177px\] {
+  width: 177px;
+}
+
 .w-\[300px\] {
   width: 300px;
 }
@@ -718,12 +710,8 @@ video {
   width: 100%;
 }
 
-.w-\[177px\] {
-  width: 177px;
-}
-
-.w-\[216px\] {
-  width: 216px;
+.min-w-0 {
+  min-width: 0px;
 }
 
 .min-w-6 {
@@ -732,10 +720,6 @@ video {
 
 .min-w-\[114px\] {
   min-width: 114px;
-}
-
-.min-w-0 {
-  min-width: 0px;
 }
 
 .flex-1 {
@@ -779,16 +763,8 @@ video {
   grid-template-columns: 2fr 1fr 1fr 1fr;
 }
 
-.grid-cols-3 {
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-}
-
 .grid-rows-transactions-table {
   grid-template-rows: repeat(21, 40px);
-}
-
-.grid-rows-1 {
-  grid-template-rows: repeat(1, minmax(0, 1fr));
 }
 
 .flex-row {
@@ -1186,6 +1162,14 @@ body {
 
 #root {
   height: 100%;
+}
+
+.placeholder\:text-ellipsis::-moz-placeholder {
+  text-overflow: ellipsis;
+}
+
+.placeholder\:text-ellipsis::placeholder {
+  text-overflow: ellipsis;
 }
 
 .placeholder\:text-sm::-moz-placeholder {

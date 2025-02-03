@@ -45,7 +45,7 @@ const Input = forwardRef<Ref<HTMLElement>, Input>(function Input(
                     className={clsx(
                         'min-w-0',
                         'text-sm text-pfa-grey-900',
-                        'placeholder:text-sm placeholder:text-pfa-beige-500 outline-none hover:cursor-pointer',
+                        'placeholder:text-sm placeholder:text-pfa-beige-500 placeholder:text-ellipsis outline-none hover:cursor-pointer',
                         'grow'
                     )}
                     {...props}
