@@ -9,9 +9,17 @@ function Tag({ color }: { color: Color }) {
     )
 }
 
-function WithTag({ color, children }: { color: Color; children: ReactNode }) {
+function WithTag({
+    className,
+    color,
+    children,
+}: {
+    color: Color
+    children: ReactNode
+    className?: string
+}) {
     return (
-        <div className='flex gap-4'>
+        <div className={clsx(className, 'flex gap-4')}>
             <Tag color={color} />
             {children}
         </div>

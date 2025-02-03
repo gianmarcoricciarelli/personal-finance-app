@@ -54,13 +54,7 @@ export default function ProgressBar({
                             )}%`,
                             backgroundColor: colors as string,
                         }}
-                        className={clsx(
-                            {
-                                'h-2': height === 'xs',
-                                'h-8': height === 'xxl',
-                            },
-                            'rounded-[4px]'
-                        )}
+                        className={clsx('h-full rounded-[4px]')}
                     />
                 )}
                 {stackedProgressBars && (
