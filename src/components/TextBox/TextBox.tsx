@@ -3,7 +3,7 @@ import clsx from 'clsx'
 import { ReactNode } from 'react'
 import { Color } from '../../types'
 
-function Tag({ color }: { color: Color }) {
+function Tag({ color }: { color: Color | string }) {
     return (
         <div style={{ backgroundColor: color }} className={`w-1 rounded-lg`} />
     )
@@ -12,9 +12,9 @@ function Tag({ color }: { color: Color }) {
 function WithTag({
     className,
     color,
-    children,
+    children
 }: {
-    color: Color
+    color: Color | string
     children: ReactNode
     className?: string
 }) {
@@ -29,7 +29,7 @@ function WithTag({
 function WithSubText({
     title,
     subTitle,
-    className,
+    className
 }: {
     title: ReactNode
     subTitle: ReactNode
@@ -47,7 +47,7 @@ const TextBox = {
     Tag,
     Text,
     WithSubText,
-    WithTag,
+    WithTag
 }
 
 export default TextBox

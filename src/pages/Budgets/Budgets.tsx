@@ -4,10 +4,23 @@ import DataContext from '@contexts/Data/Data.context'
 import clsx from 'clsx'
 import { useContext } from 'react'
 import Budget from './Budget/Budget'
+import SpendingSummary from './SpendingSummary/SpendingSummary'
 
 export default function Budgets() {
-    const { data } = useContext(DataContext)
-    const { budgets } = data
+    const {
+        data: { budgets, transactions }
+    } = useContext(DataContext)
+    const categories = new Set(budgets.map((b) => b.category))
+    const transactionsByCategory = transactions.filter(
+        (t) => categories.has(t.category) && new Date(t.date).getMonth() === 7
+    )
+    const spentByCategory = transactionsByCategory.reduce((prev, curr) => {
+        prev[curr.category] = prev[curr.category]
+            ? prev[curr.category] + Math.abs(curr.amount)
+            : Math.abs(curr.amount)
+
+        return prev
+    }, {} as Record<string, number>)
 
     return (
         <div
@@ -25,11 +38,29 @@ export default function Budgets() {
                     + Add New Budget
                 </Button.Primary>
             </div>
-            <div className='flex flex-col tablet:flex-row desktop:flex-row gap-6'>
-                <div>Placeholder</div>
+            <div className='flex flex-col desktop:flex-row gap-6'>
+                <div
+                    className={clsx(
+                        'px-5 py-6 tablet:px-8 tablet:py-8 desktop:px-8 desktop:py-8',
+                        'bg-pfa-white rounded-xl',
+                        'flex flex-col tablet:flex-row gap-8'
+                    )}
+                >
+                    <span>Chart</span>
+                    <SpendingSummary spentByCategory={spentByCategory} />
+                </div>
                 <div className='flex flex-col gap-6'>
                     {budgets.map((budget, index) => {
-                        return <Budget key={index} {...budget} />
+                        return (
+                            <Budget
+                                key={index}
+                                {...budget}
+                                transactions={transactionsByCategory.filter(
+                                    (t) => t.category === budget.category
+                                )}
+                                spent={spentByCategory[budget.category]}
+                            />
+                        )
                     })}
                 </div>
             </div>

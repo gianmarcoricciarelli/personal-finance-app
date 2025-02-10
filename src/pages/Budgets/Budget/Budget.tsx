@@ -1,32 +1,27 @@
 import ProgressBar from '@components/ProgressBar/ProgressBar'
 import Text from '@components/Text/Text'
 import TextBox from '@components/TextBox/TextBox'
-import DataContext from '@contexts/Data/Data.context'
 import CaretRightIcon from '@images/icon-caret-right.svg?react'
 import EllipsisIcon from '@images/icon-ellipsis.svg?react'
 import clsx from 'clsx'
-import { Fragment, useContext } from 'react'
-import { Budget as BudgetType, Color } from '../../../types'
+import { Fragment } from 'react'
+import { Budget as BudgetType, Transaction } from '../../../types'
 
 interface BudgetProps {
     category: BudgetType['category']
     maximum: BudgetType['maximum']
     theme: BudgetType['theme']
+    transactions: Transaction[]
+    spent: number
 }
 
-export default function Budget({ category, maximum, theme }: BudgetProps) {
-    const {
-        data: { transactions },
-    } = useContext(DataContext)
-    const transactionByCategory = transactions
-        .filter(
-            (t) => t.category === category && new Date(t.date).getMonth() === 7
-        )
-        .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
-    const spent = Math.abs(
-        transactionByCategory.reduce((prev, curr) => prev + curr.amount, 0)
-    )
-
+export default function Budget({
+    category,
+    maximum,
+    theme,
+    transactions,
+    spent
+}: BudgetProps) {
     return (
         <div
             className={clsx(
@@ -62,7 +57,7 @@ export default function Budget({ category, maximum, theme }: BudgetProps) {
                     colors={theme}
                 />
                 <div className='flex'>
-                    <TextBox.WithTag className='grow' color={theme as Color}>
+                    <TextBox.WithTag className='grow' color={theme}>
                         <div className='flex flex-col gap-2'>
                             <Text>Spent</Text>
                             <Text
@@ -74,10 +69,7 @@ export default function Budget({ category, maximum, theme }: BudgetProps) {
                             </Text>
                         </div>
                     </TextBox.WithTag>
-                    <TextBox.WithTag
-                        className='grow'
-                        color={'#F8F4F0' as Color}
-                    >
+                    <TextBox.WithTag className='grow' color={'#F8F4F0'}>
                         <div className='flex flex-col gap-2'>
                             <Text>Free</Text>
                             <Text
@@ -105,7 +97,7 @@ export default function Budget({ category, maximum, theme }: BudgetProps) {
                     </div>
                 </div>
                 <div className='flex flex-col gap-5'>
-                    {transactionByCategory.slice(0, 3).map((t, index) => (
+                    {transactions.slice(0, 3).map((t, index) => (
                         <Fragment key={index}>
                             <div className='flex justify-between items-center'>
                                 <Text fontStyle='bold' color='pfa-grey-900'>
@@ -123,7 +115,7 @@ export default function Budget({ category, maximum, theme }: BudgetProps) {
                                     } ${new Date(t.date).getFullYear()}`}</Text>
                                 </div>
                             </div>
-                            {index !== transactionByCategory.length - 1 && (
+                            {index !== transactions.length - 1 && (
                                 <div className='h-[1px] bg-pfa-grey-500/15' />
                             )}
                         </Fragment>

@@ -7,12 +7,12 @@ import { useContext } from 'react'
 import { useNavigate } from 'react-router'
 import { Cell, Label, LabelProps, Pie, PieChart } from 'recharts'
 import { PolarViewBox } from 'recharts/types/util/types'
-import { Budget, Color } from '../../../types'
+import { Budget } from '../../../types'
 
 function CustomLabel({
     viewBox,
     text,
-    subText,
+    subText
 }: LabelProps & {
     text: string
     subText: string
@@ -103,7 +103,7 @@ export default function Budgets() {
                     {budgets.map((budget) => (
                         <TextBox.WithTag
                             key={budget.category}
-                            color={budget.theme as Color}
+                            color={budget.theme}
                         >
                             <TextBox.WithSubText
                                 title={

@@ -6,7 +6,7 @@ import IconPot from '@images/icon-pot.svg?react'
 import clsx from 'clsx'
 import { useContext } from 'react'
 import { useNavigate } from 'react-router'
-import { Color, Pot } from '../../../types'
+import { Pot } from '../../../types'
 
 export default function Pots() {
     const navigate = useNavigate()
@@ -59,10 +59,7 @@ export default function Pots() {
                 </div>
                 <div className={clsx('sm:grow', 'grid grid-cols-2 gap-4')}>
                     {pots.map((pot) => (
-                        <TextBox.WithTag
-                            key={pot.name}
-                            color={pot.theme as Color}
-                        >
+                        <TextBox.WithTag key={pot.name} color={pot.theme}>
                             <TextBox.WithSubText
                                 title={<TextBox.Text>{pot.name}</TextBox.Text>}
                                 subTitle={
