@@ -1,12 +1,12 @@
 import { ViewportObserver } from '@contexts/ViewportObserver/ViewportObserver.context'
-import MinimizeMenuIcon from '@images/icon-minimize-menu.svg?react'
-import NavBudgetsIcon from '@images/icon-nav-budgets.svg?react'
-import NavOverviewIcon from '@images/icon-nav-overview.svg?react'
-import NavPotsIcon from '@images/icon-nav-pots.svg?react'
-import NavRecurringBillsIcon from '@images/icon-nav-recurring-bills.svg?react'
-import NavTransactionIcon from '@images/icon-nav-transactions.svg?react'
-import LargeLogo from '@images/logo-large.svg?react'
-import SmallLogo from '@images/logo-small.svg?react'
+import MinimizeMenuIcon from '@icons/icon-minimize-menu.svg?react'
+import NavBudgetsIcon from '@icons/icon-nav-budgets.svg?react'
+import NavOverviewIcon from '@icons/icon-nav-overview.svg?react'
+import NavPotsIcon from '@icons/icon-nav-pots.svg?react'
+import NavRecurringBillsIcon from '@icons/icon-nav-recurring-bills.svg?react'
+import NavTransactionIcon from '@icons/icon-nav-transactions.svg?react'
+import LargeLogo from '@icons/logo-large.svg?react'
+import SmallLogo from '@icons/logo-small.svg?react'
 import clsx from 'clsx'
 import { ReactElement, useContext, useState } from 'react'
 import { To } from 'react-router'
@@ -23,7 +23,7 @@ export default function SideBar() {
         Transactions: <NavTransactionIcon />,
         Budgets: <NavBudgetsIcon />,
         Pots: <NavPotsIcon />,
-        'Recurring bills': <NavRecurringBillsIcon />,
+        'Recurring bills': <NavRecurringBillsIcon />
     } as const
 
     function minimizeMenuHandler() {
@@ -51,7 +51,7 @@ export default function SideBar() {
                 {
                     'w-w-full tablet:w-full': isMobile || isTablet,
                     'w-[88px]': isMenuCollapsed && !(isMobile || isTablet),
-                    'w-[300px]': !isMenuCollapsed && !(isMobile || isTablet),
+                    'w-[300px]': !isMenuCollapsed && !(isMobile || isTablet)
                 }
             )}
         >
@@ -97,7 +97,7 @@ export default function SideBar() {
             {!(isTablet || isMobile) && (
                 <div
                     className={clsx('pr-6 flex flex-col', {
-                        '!pr-2': isMenuCollapsed,
+                        '!pr-2': isMenuCollapsed
                     })}
                 >
                     <Item
@@ -106,7 +106,7 @@ export default function SideBar() {
                         iconComponent={
                             <MinimizeMenuIcon
                                 className={clsx({
-                                    'rotate-180': isMenuCollapsed,
+                                    'rotate-180': isMenuCollapsed
                                 })}
                             />
                         }

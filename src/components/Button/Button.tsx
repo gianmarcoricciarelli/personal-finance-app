@@ -1,5 +1,5 @@
 import Text from '@components/Text/Text'
-import CaretRightIcon from '@images/icon-caret-right.svg?react'
+import CaretRightIcon from '@icons/icon-caret-right.svg?react'
 import clsx from 'clsx'
 import { ComponentProps, ReactElement } from 'react'
 
@@ -7,7 +7,7 @@ function Primary({
     className,
     type,
     onClick,
-    children,
+    children
 }: ComponentProps<'button'>) {
     return (
         <button
@@ -49,7 +49,7 @@ function Secondary({ className, onClick, children }: ComponentProps<'button'>) {
 function Tertiary({
     noIcon,
     onClick,
-    children,
+    children
 }: ComponentProps<'button'> & { noIcon?: boolean }) {
     const buttonText = (
         <Text
@@ -102,7 +102,7 @@ function Pagination({
     leftIcon,
     rightIcon,
     onClick,
-    children,
+    children
 }: PaginationProps) {
     return (
         <button
@@ -125,7 +125,7 @@ const Button = {
     Secondary,
     Tertiary,
     Destroy,
-    Pagination,
+    Pagination
 }
 
 export default Button

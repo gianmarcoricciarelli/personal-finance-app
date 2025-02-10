@@ -4,12 +4,12 @@ import Modal from '@components/Modal/Modal'
 import ProgressBar from '@components/ProgressBar/ProgressBar'
 import Text from '@components/Text/Text'
 import DataContext from '@contexts/Data/Data.context'
-import CloseIcon from '@images/icon-close-modal.svg?react'
+import CloseIcon from '@icons/icon-close-modal.svg?react'
 import {
     ChangeEventHandler,
     FormEventHandler,
     useContext,
-    useState,
+    useState
 } from 'react'
 import { z } from 'zod'
 import { colorMap, Pot } from '../../../../types'
@@ -18,7 +18,7 @@ export default function AddOrWithdrawModal({
     operation,
     pot,
     isOpen,
-    onClose,
+    onClose
 }: {
     operation: 'add' | 'withdraw'
     pot: Pot
@@ -101,7 +101,7 @@ export default function AddOrWithdrawModal({
                 : [pot.total - Number(amount), Number(amount)]
         colors = [
             colorMap['Dark Grey'],
-            operation === 'add' ? colorMap['Green'] : colorMap['Red'],
+            operation === 'add' ? colorMap['Green'] : colorMap['Red']
         ]
     }
 

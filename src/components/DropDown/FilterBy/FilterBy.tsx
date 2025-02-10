@@ -1,7 +1,7 @@
 import Text from '@components/Text/Text'
 import DataContext from '@contexts/Data/Data.context'
 import { ViewportObserver } from '@contexts/ViewportObserver/ViewportObserver.context'
-import FilterIcon from '@images/icon-filter-mobile.svg?react'
+import FilterIcon from '@icons/icon-filter-mobile.svg?react'
 import clsx from 'clsx'
 import {
     ComponentPropsWithoutRef,
@@ -10,7 +10,7 @@ import {
     Ref,
     SetStateAction,
     useContext,
-    useState,
+    useState
 } from 'react'
 import DropDown from '../DropDown'
 
@@ -45,20 +45,20 @@ const FilterButton = forwardRef<Ref<HTMLElement>, FilterButtonProps>(
 )
 
 export default function FilterBy({
-    onFilterOptionChange,
+    onFilterOptionChange
 }: {
     onFilterOptionChange: Dispatch<SetStateAction<string>>
 }) {
     const { isMobile } = useContext(ViewportObserver)
     const {
-        data: { transactions },
+        data: { transactions }
     } = useContext(DataContext)
 
     const [selectedFilter, setSelectedFilter] = useState('All transactions')
 
     const transactionCategories = [
         ...['All transactions'],
-        ...new Set(transactions.map((t) => t.category)),
+        ...new Set(transactions.map((t) => t.category))
     ].sort((a, b) => a.localeCompare(b))
 
     return (
@@ -66,7 +66,7 @@ export default function FilterBy({
             {!isMobile && <Text fontSize='sm'>Category</Text>}
             <DropDown
                 className={clsx('w-[177px]', {
-                    'left-[unset] right-0 translate-x-0': isMobile,
+                    'left-[unset] right-0 translate-x-0': isMobile
                 })}
                 ButtonComponent={
                     isMobile ? (

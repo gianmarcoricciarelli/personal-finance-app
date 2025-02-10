@@ -1,7 +1,7 @@
 import Card from '@components/Card/Card'
 import Text from '@components/Text/Text'
 import { ViewportObserver } from '@contexts/ViewportObserver/ViewportObserver.context'
-import RecurringBillsIcon from '@images/icon-recurring-bills.svg?react'
+import RecurringBillsIcon from '@icons/icon-recurring-bills.svg?react'
 import clsx from 'clsx'
 import { useContext } from 'react'
 import useRecurringBillsData from '../../hooks/useRecurringBillsData'

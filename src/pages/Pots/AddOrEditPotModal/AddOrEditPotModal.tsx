@@ -4,14 +4,14 @@ import Input from '@components/Input/Input'
 import Modal from '@components/Modal/Modal'
 import Text from '@components/Text/Text'
 import DataContext from '@contexts/Data/Data.context'
-import CaretDownIcon from '@images/icon-caret-down.svg?react'
-import CloseIcon from '@images/icon-close-modal.svg?react'
-import SelectedIcon from '@images/icon-selected.svg?react'
+import CaretDownIcon from '@icons/icon-caret-down.svg?react'
+import CloseIcon from '@icons/icon-close-modal.svg?react'
+import SelectedIcon from '@icons/icon-selected.svg?react'
 import {
     ChangeEventHandler,
     FormEventHandler,
     useContext,
-    useState,
+    useState
 } from 'react'
 import { z } from 'zod'
 import { colorMap, Pot } from '../../../types'
@@ -19,7 +19,7 @@ import { colorMap, Pot } from '../../../types'
 export default function AddOrEditPotModal({
     pot,
     isOpen,
-    onClose,
+    onClose
 }: {
     pot?: Pot
     isOpen: boolean
@@ -67,7 +67,7 @@ export default function AddOrEditPotModal({
         const formDataSchema = z.object({
             potName: z.string().min(1, 'You must provide a valid name'),
             target: z.coerce.number().gt(0, 'You must provide a valid amount'),
-            colorTag: z.string().min(1),
+            colorTag: z.string().min(1)
         })
         const formData = new FormData(event.target as HTMLFormElement)
         const formEntries = Object.fromEntries(formData.entries())
@@ -76,7 +76,7 @@ export default function AddOrEditPotModal({
         if (!validatedData.success) {
             setErrors((prevErrors) => ({
                 ...prevErrors,
-                ...validatedData.error.flatten().fieldErrors,
+                ...validatedData.error.flatten().fieldErrors
             }))
             return
         }
@@ -90,7 +90,7 @@ export default function AddOrEditPotModal({
                 ...newPots[index],
                 name: validatedData.data.potName,
                 target: validatedData.data.target,
-                theme: colorMap[validatedData.data.colorTag],
+                theme: colorMap[validatedData.data.colorTag]
             }
             setData!({ ...data, pots: newPots })
             onClose()
@@ -103,9 +103,9 @@ export default function AddOrEditPotModal({
                         name: validatedData.data.potName,
                         target: validatedData.data.target,
                         theme: colorMap[validatedData.data.colorTag],
-                        total: 0,
-                    },
-                ],
+                        total: 0
+                    }
+                ]
             })
             onClose()
         }
@@ -183,7 +183,7 @@ export default function AddOrEditPotModal({
                                                 colorMap
                                             ).find(
                                                 ([name]) => name === potColor
-                                            )?.[1],
+                                            )?.[1]
                                         }}
                                         className='w-4 h-4 rounded-full'
                                     />
@@ -211,8 +211,7 @@ export default function AddOrEditPotModal({
                                 >
                                     <div
                                         style={{
-                                            backgroundColor:
-                                                colorMap[colorName],
+                                            backgroundColor: colorMap[colorName]
                                         }}
                                         className='w-4 h-4 rounded-full'
                                     />

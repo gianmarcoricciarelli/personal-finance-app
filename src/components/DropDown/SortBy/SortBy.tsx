@@ -1,6 +1,6 @@
 import Text from '@components/Text/Text'
 import { ViewportObserver } from '@contexts/ViewportObserver/ViewportObserver.context'
-import SortIcon from '@images/icon-sort-mobile.svg?react'
+import SortIcon from '@icons/icon-sort-mobile.svg?react'
 import clsx from 'clsx'
 import {
     ComponentPropsWithoutRef,
@@ -9,7 +9,7 @@ import {
     Ref,
     SetStateAction,
     useContext,
-    useState,
+    useState
 } from 'react'
 import { SortMenuOption } from '../../../types'
 import DropDown from '../DropDown'
@@ -41,7 +41,7 @@ const SortButton = forwardRef<Ref<HTMLElement>, SortButtonProps>(
 )
 
 export default function SortBy({
-    onSortOptionChange,
+    onSortOptionChange
 }: {
     onSortOptionChange: Dispatch<SetStateAction<SortMenuOption>>
 }) {
@@ -55,7 +55,7 @@ export default function SortBy({
         'A to Z',
         'Z to A',
         'Highest',
-        'Lowest',
+        'Lowest'
     ]
 
     return (
@@ -67,7 +67,7 @@ export default function SortBy({
             )}
             <DropDown
                 className={clsx({
-                    'left-[unset] right-0 translate-x-0': isMobile,
+                    'left-[unset] right-0 translate-x-0': isMobile
                 })}
                 ButtonComponent={
                     isMobile ? (

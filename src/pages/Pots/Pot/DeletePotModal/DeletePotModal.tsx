@@ -2,13 +2,13 @@ import Button from '@components/Button/Button'
 import Modal from '@components/Modal/Modal'
 import Text from '@components/Text/Text'
 import DataContext from '@contexts/Data/Data.context'
-import CloseIcon from '@images/icon-close-modal.svg?react'
+import CloseIcon from '@icons/icon-close-modal.svg?react'
 import { useContext } from 'react'
 
 export default function DeletePotModal({
     potName,
     isOpen,
-    onClose,
+    onClose
 }: {
     potName: string
     isOpen: boolean

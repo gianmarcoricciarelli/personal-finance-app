@@ -1,6 +1,6 @@
 import Text from '@components/Text/Text'
-import IconBillDue from '@images/icon-bill-due.svg?react'
-import IconBillPaid from '@images/icon-bill-paid.svg?react'
+import IconBillDue from '@icons/icon-bill-due.svg?react'
+import IconBillPaid from '@icons/icon-bill-paid.svg?react'
 import { Transaction } from '../../../../types'
 
 function dateDayToOrdinal(dateString: string): string {
@@ -69,7 +69,7 @@ function Composite({ avatar, name, date, amount, isPaid }: CompositeProps) {
 const Bill = {
     Title,
     DueDate,
-    Composite,
+    Composite
 }
 
 export default Bill

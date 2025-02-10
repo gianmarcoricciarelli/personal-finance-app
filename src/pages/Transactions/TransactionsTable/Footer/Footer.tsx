@@ -1,14 +1,14 @@
 import Button from '@components/Button/Button'
 import Text from '@components/Text/Text'
 import { ViewportObserver } from '@contexts/ViewportObserver/ViewportObserver.context'
-import PrevIcon from '@images/icon-caret-left.svg?react'
-import NextIcon from '@images/icon-caret-right.svg?react'
+import PrevIcon from '@icons/icon-caret-left.svg?react'
+import NextIcon from '@icons/icon-caret-right.svg?react'
 import clsx from 'clsx'
 import { Dispatch, SetStateAction, useContext, useState } from 'react'
 
 export default function Footer({
     pages,
-    onPageChange,
+    onPageChange
 }: {
     pages: number
     onPageChange: Dispatch<SetStateAction<number>>
@@ -30,7 +30,7 @@ export default function Footer({
                     '1',
                     '...',
                     (pages - 1).toString(),
-                    pages.toString(),
+                    pages.toString()
                 ]
                 break
             default:
@@ -48,7 +48,7 @@ export default function Footer({
                     '2',
                     '...',
                     (pages - 1).toString(),
-                    pages.toString(),
+                    pages.toString()
                 ]
                 break
             default:
@@ -57,7 +57,7 @@ export default function Footer({
                     '...',
                     selectedPage,
                     '...',
-                    pages.toString(),
+                    pages.toString()
                 ]
                 break
         }
@@ -106,7 +106,7 @@ export default function Footer({
                                 'hover:cursor-pointer hover:bg-pfa-beige-500 hover:border-0':
                                     pageNumber !== '...',
                                 'bg-pfa-grey-900 hover:bg-pfa-grey-900':
-                                    selectedPage === pageNumber,
+                                    selectedPage === pageNumber
                             }
                         )}
                         onClick={
@@ -124,7 +124,7 @@ export default function Footer({
                                     selectedPage !== pageNumber,
                                 'text-pfa-white': selectedPage === pageNumber,
                                 'group-hover:text-pfa-white':
-                                    pageNumber !== '...',
+                                    pageNumber !== '...'
                             })}
                             fontSize='sm'
                         >

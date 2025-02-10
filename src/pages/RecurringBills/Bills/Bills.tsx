@@ -2,8 +2,8 @@ import Input from '@components/Input/Input'
 import Text from '@components/Text/Text'
 import { ViewportObserver } from '@contexts/ViewportObserver/ViewportObserver.context'
 import useRecurringBillsData from '@hooks/useRecurringBillsData'
-import SearchIcon from '@images/icon-search.svg?react'
-import SortIcon from '@images/icon-sort-mobile.svg?react'
+import SearchIcon from '@icons/icon-search.svg?react'
+import SortIcon from '@icons/icon-sort-mobile.svg?react'
 import clsx from 'clsx'
 import { ChangeEventHandler, Fragment, useContext, useState } from 'react'
 import { SortMenuOption, Transaction } from '../../../types'
@@ -81,7 +81,7 @@ export default function Bills() {
                     {isMobile && (
                         <SortIcon
                             className={clsx({
-                                'rotate-180': sorting === 'Oldest',
+                                'rotate-180': sorting === 'Oldest'
                             })}
                             onClick={() =>
                                 setSorting((prevSorting) =>
