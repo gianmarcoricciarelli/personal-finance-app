@@ -42,9 +42,9 @@ export default function Pot({ pot }: PotProps) {
                     ButtonComponent={
                         <div
                             className={clsx(
-                                'w-5 h-5 transition-all duration-300 rounded-sm',
+                                'w-5 h-5 transition-all duration-300 rounded-xs',
                                 'flex justify-center items-center',
-                                'hover:cursor-pointer hover:shadow-sm-solid-pfa-grey-300'
+                                'hover:cursor-pointer hover:shadow-(--solid-grey-shadow)'
                             )}
                         >
                             <IconEllipsis

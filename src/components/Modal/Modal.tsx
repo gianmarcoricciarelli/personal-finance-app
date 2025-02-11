@@ -20,7 +20,7 @@ function Container({
     className,
     isOpen,
     children,
-    onClose,
+    onClose
 }: { isOpen: boolean; onClose: () => void } & ComponentProps<'div'>) {
     const containerRef = useRef<HTMLDivElement>(null)
 
@@ -36,7 +36,7 @@ function Container({
                 ref={containerRef}
                 className={clsx(
                     className,
-                    'w-[335px] tablet:w-[560px] desktop:w-[560px] px-5 py-6 bg-pfa-white rounded-xl',
+                    'w-[335px] tablet:max-desktop:w-[560px] desktop:w-[560px] px-5 py-6 bg-pfa-white rounded-xl',
                     'flex flex-col gap-5'
                 )}
             >
@@ -62,7 +62,7 @@ const Modal = {
     Container,
     Header,
     Body,
-    Footer,
+    Footer
 }
 
 export default Modal

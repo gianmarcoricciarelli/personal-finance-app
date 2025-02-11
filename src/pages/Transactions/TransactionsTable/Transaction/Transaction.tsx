@@ -4,7 +4,7 @@ import useFormatDate from '@hooks/useFormatDate'
 function RecipientOrSender({
     avatar,
     name,
-    category,
+    category
 }: {
     avatar: string
     name: string
@@ -13,7 +13,7 @@ function RecipientOrSender({
     return (
         <div className='flex gap-3 items-center'>
             <img
-                className='w-5 tablet:w-10 desktop:w-10 h-5 tablet:h-10 desktop:h-10 rounded-full'
+                className='w-5 tablet:max-desktop:w-10 desktop:w-10 h-5 tablet:max-desktop:h-10 desktop:h-10 rounded-full'
                 src={'src' + avatar.slice(1)}
                 alt='aaa'
             />
@@ -32,7 +32,7 @@ function Composite({
     avatar,
     category,
     date,
-    name,
+    name
 }: {
     avatar: string
     name: string
@@ -63,7 +63,7 @@ function Composite({
 
 const Transaction = {
     RecipientOrSender,
-    Composite,
+    Composite
 }
 
 export default Transaction

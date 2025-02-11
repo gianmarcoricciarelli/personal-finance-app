@@ -16,20 +16,20 @@ export default function Card({
     subTitle,
     icon,
     isPrimary,
-    layout = 'horizontal',
+    layout = 'horizontal'
 }: Card) {
     return (
         <div
             className={clsx(
                 className,
-                'p-5 tablet:p-6 desktop:p-6',
+                'p-5 tablet:max-desktop:p-6 desktop:p-6',
                 'rounded-xl',
-                'flex gap-5 tablet:gap-8 desktop:gap-8',
+                'flex gap-5 tablet:max-desktop:gap-8 desktop:gap-8',
                 {
                     'flex-row items-center': layout === 'horizontal',
                     'flex-col': layout === 'vertical',
                     'bg-pfa-grey-900': isPrimary,
-                    'bg-pfa-white': !isPrimary,
+                    'bg-pfa-white': !isPrimary
                 }
             )}
         >
@@ -38,7 +38,7 @@ export default function Card({
                 <Text
                     className={clsx({
                         'text-pfa-white': isPrimary,
-                        'text-pfa-grey-500': !isPrimary,
+                        'text-pfa-grey-500': !isPrimary
                     })}
                     fontSize='sm'
                 >
@@ -47,7 +47,7 @@ export default function Card({
                 <Text
                     className={clsx({
                         'text-pfa-white': isPrimary,
-                        'text-pfa-grey-900': !isPrimary,
+                        'text-pfa-grey-900': !isPrimary
                     })}
                     fontSize='xxl'
                 >

@@ -10,7 +10,7 @@ export default function Summary() {
             className={clsx(
                 'p-4',
                 'bg-pfa-white rounded-xl',
-                'flex flex-col gap-5 tablet:grow-[0.5]',
+                'flex flex-col gap-5 tablet:max-desktop:grow-[0.5]'
             )}
         >
             <Text fontSize='base' fontStyle='bold' color='pfa-grey-900'>
@@ -34,7 +34,7 @@ export default function Summary() {
                                         _summary.bills.length
                                     } ($${_summary.total.toLocaleString(
                                         undefined,
-                                        { minimumFractionDigits: 2 },
+                                        { minimumFractionDigits: 2 }
                                     )})`}
                                 </Text>
                             </div>
@@ -42,7 +42,7 @@ export default function Summary() {
                                 <div className='h-[1px] bg-pfa-grey-500/15' />
                             )}
                         </div>
-                    ),
+                    )
                 )}
             </div>
         </div>

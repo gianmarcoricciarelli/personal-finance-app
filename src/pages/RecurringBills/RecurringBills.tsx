@@ -24,9 +24,9 @@ export default function RecurringBills() {
                 Recurring Bills
             </Text>
             <div className='flex flex-col desktop:flex-row gap-6'>
-                <div className='flex flex-col tablet:flex-row desktop:flex-col gap-3 tablet:gap-6 desktop:gap-6 desktop:grow-[0.25]'>
+                <div className='flex flex-col tablet:max-desktop:flex-row desktop:flex-col gap-3 tablet:max-desktop:gap-6 desktop:gap-6 desktop:grow-[0.25]'>
                     <Card
-                        className='tablet:grow-[0.5]'
+                        className='tablet:max-desktop:grow-[0.5]'
                         title='Total Bills'
                         subTitle={`$${(
                             upcomingBillsTotal + dueSoonBillsTotal

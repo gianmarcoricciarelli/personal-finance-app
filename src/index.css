@@ -1,6 +1,50 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
+
+/*
+  The default border color has changed to `currentColor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+    *,
+    ::after,
+    ::before,
+    ::backdrop,
+    ::file-selector-button {
+        border-color: var(--color-gray-200, currentColor);
+    }
+}
+
+@theme {
+    --color-pfa-beige-100: '#F8F4F0';
+    --color-pfa-beige-500: '#98908B';
+    --color-pfa-cyan: '#82C9D7';
+    --color-pfa-green: '#277C78';
+    --color-pfa-grey-100: '#F2F2F2';
+    --color-pfa-grey-300: '#B3B3B3';
+    --color-pfa-grey-500: '#696868';
+    --color-pfa-grey-900: '#201F24';
+    --color-pfa-navy: '#626070';
+    --color-pfa-purple: '#826CB0';
+    --color-pfa-red: '#C94736';
+    --color-pfa-white: '#FFFFFF';
+    --color-pfa-yellow: '#F2CDAC';
+
+    --breakpoint-mobile: 375px;
+    --breakpoint-tablet: 768px;
+    --breakpoint-desktop: 1024px;
+
+    --bills-table-columns: 2fr 1fr 1fr 1fr;
+
+    --transactions-table-columns: 2fr 1fr 1fr;
+    --transactions-table-rows: repeat(21, 40px);
+
+    --solid-beige-shadow: 0 0 0 2px var(--pfa-beige-500);
+    --solid-grey-shadow: 0 0 0 2px var(--pfa-grey-300);
+}
 
 @font-face {
     font-family: 'Public Sans';

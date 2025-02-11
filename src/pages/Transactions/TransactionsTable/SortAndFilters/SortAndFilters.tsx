@@ -24,7 +24,7 @@ export default function SortAndFilters({
             </div>
         </div>
     ) : (
-        <div className='flex items-center tablet:gap-6'>
+        <div className='flex items-center tablet:max-desktop:gap-6'>
             <Input icon={<SearchIcon />} placeholder='Search transaction' />
             <div className='flex desktop:justify-end items-center gap-6 desktop:grow'>
                 <SortBy onSortOptionChange={onSortChange} />

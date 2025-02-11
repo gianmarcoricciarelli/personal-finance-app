@@ -5,7 +5,7 @@ import { Transaction as TransactionType } from '../../../../types'
 import Transaction from '../Transaction/Transaction'
 
 export default function Body({
-    transactions,
+    transactions
 }: {
     transactions: TransactionType[]
 }) {
@@ -29,7 +29,7 @@ export default function Body({
                 </div>
             )}
             {!isMobile && (
-                <div className='grid grid-cols-transactions-table grid-rows-transactions-table items-center'>
+                <div className='grid grid-cols-(--transactions-table-columns) grid-rows-(--transactions-table-rows) items-center'>
                     <Text>Recipient / Sender</Text>
                     <Text>Category</Text>
                     <Text>Transaction Date</Text>

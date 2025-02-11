@@ -25,7 +25,7 @@ export default function Budget({
     return (
         <div
             className={clsx(
-                'px-5 tablet:px-8 py-6 tablet:py-8',
+                'px-5 tablet:max-desktop:px-8 py-6 tablet:max-desktop:py-8',
                 'bg-pfa-white rounded-xl',
                 'flex flex-col gap-5'
             )}

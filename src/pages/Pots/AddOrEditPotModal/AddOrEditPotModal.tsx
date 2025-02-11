@@ -168,7 +168,7 @@ export default function AddOrEditPotModal({
                         error={errors.target?.[0]}
                     />
                     <DropDown
-                        className='w-full !-translate-x-0 shadow-lg'
+                        className='w-full -translate-x-0! shadow-lg'
                         ButtonComponent={
                             <Input
                                 id='colorTag'

@@ -43,13 +43,13 @@ export default function SideBar() {
     return (
         <div
             className={clsx(
-                'px-4 pt-2 tablet:px-10 desktop:px-0 desktop:pt-0 desktop:pb-6',
+                'px-4 pt-2 tablet:max-desktop:px-10 desktop:px-0 desktop:pt-0 desktop:pb-6',
                 'rounded-t-lg desktop:rounded-tl-none desktop:rounded-r-lg',
                 'bg-pfa-grey-900',
                 'flex desktop:flex-col desktop:gap-6',
                 'transition-all duration-300',
                 {
-                    'w-w-full tablet:w-full': isMobile || isTablet,
+                    'w-w-full tablet:max-desktop:w-full': isMobile || isTablet,
                     'w-[88px]': isMenuCollapsed && !(isMobile || isTablet),
                     'w-[300px]': !isMenuCollapsed && !(isMobile || isTablet)
                 }
@@ -63,10 +63,10 @@ export default function SideBar() {
             )}
             <div
                 className={clsx(
-                    'tablet:w-full desktop:w-[unset]',
+                    'tablet:max-desktop:w-full desktop:w-[unset]',
                     'desktop:pr-6',
-                    'flex desktop:flex-col items-center desktop:items-start tablet:justify-between desktop:justify-start desktop:gap-1 desktop:grow',
-                    { '!pr-2': isMenuCollapsed }
+                    'flex desktop:flex-col items-center desktop:items-start tablet:max-desktop:justify-between desktop:justify-start desktop:gap-1 desktop:grow',
+                    { 'pr-2!': isMenuCollapsed }
                 )}
             >
                 {Object.keys(sideBarItemsToIconName).map((sideBarItem) => {
@@ -97,7 +97,7 @@ export default function SideBar() {
             {!(isTablet || isMobile) && (
                 <div
                     className={clsx('pr-6 flex flex-col', {
-                        '!pr-2': isMenuCollapsed
+                        'pr-2!': isMenuCollapsed
                     })}
                 >
                     <Item

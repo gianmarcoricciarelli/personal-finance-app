@@ -19,7 +19,7 @@ export default function Item({
     iconComponent,
     label,
     to,
-    onClick,
+    onClick
 }: Item) {
     const { isMobile } = useContext(ViewportObserver)
 
@@ -30,16 +30,16 @@ export default function Item({
             'w-6 min-w-6 h-6 min-h-6',
             'text-pfa-grey-300 group-hover:text-pfa-green',
             'transition-all duration-300'
-        ),
+        )
     })
 
     return (
         <Component
             className={clsx(
-                'w-[68.6px] tablet:w-[104px] desktop:w-full desktop:h-14',
+                'w-[68.6px] tablet:max-desktop:w-[104px] desktop:w-full desktop:h-14',
                 'pt-2 pb-3 desktop:px-8 desktop:py-4',
                 'rounded-t-md desktop:rounded-l-none desktop:rounded-r-xl',
-                'flex tablet:flex-col justify-center desktop:justify-start items-center tablet:gap-2 desktop:gap-4',
+                'flex tablet:max-desktop:flex-col justify-center desktop:justify-start items-center tablet:max-desktop:gap-2 desktop:gap-4',
                 'group hover:bg-pfa-beige-100 hover:cursor-pointer transition-colors duration-300'
             )}
             to={to as To}
@@ -51,12 +51,12 @@ export default function Item({
                     fontStyle='bold'
                     color='pfa-grey-300'
                     className={clsx(
-                        'tablet:text-xs desktop:text-base whitespace-nowrap',
+                        'tablet:max-desktop:text-xs desktop:text-base whitespace-nowrap',
                         'group-hover:text-pfa-grey-900',
                         'transition-all duration-300',
                         {
                             'opacity-100': showText,
-                            'opacity-0': !showText,
+                            'opacity-0': !showText
                         }
                     )}
                 >
