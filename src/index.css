@@ -19,19 +19,19 @@
 }
 
 @theme {
-    --color-pfa-beige-100: '#F8F4F0';
-    --color-pfa-beige-500: '#98908B';
-    --color-pfa-cyan: '#82C9D7';
-    --color-pfa-green: '#277C78';
-    --color-pfa-grey-100: '#F2F2F2';
-    --color-pfa-grey-300: '#B3B3B3';
-    --color-pfa-grey-500: '#696868';
-    --color-pfa-grey-900: '#201F24';
-    --color-pfa-navy: '#626070';
-    --color-pfa-purple: '#826CB0';
-    --color-pfa-red: '#C94736';
-    --color-pfa-white: '#FFFFFF';
-    --color-pfa-yellow: '#F2CDAC';
+    --color-pfa-beige-100: #f8f4f0;
+    --color-pfa-beige-500: #98908b;
+    --color-pfa-cyan: #82c9d7;
+    --color-pfa-green: #277c78;
+    --color-pfa-grey-100: #f2f2f2;
+    --color-pfa-grey-300: #b3b3b3;
+    --color-pfa-grey-500: #696868;
+    --color-pfa-grey-900: #201f24;
+    --color-pfa-navy: #626070;
+    --color-pfa-purple: #826cb0;
+    --color-pfa-red: #c94736;
+    --color-pfa-white: #ffffff;
+    --color-pfa-yellow: #f2cdac;
 
     --breakpoint-mobile: 375px;
     --breakpoint-tablet: 768px;

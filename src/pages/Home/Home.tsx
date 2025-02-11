@@ -40,7 +40,7 @@ export default function Home() {
                             data.balance[
                                 balanceKey as keyof Balance
                             ].toLocaleString(undefined, {
-                                minimumFractionDigits: 2,
+                                minimumFractionDigits: 2
                             })
                         }
                         isPrimary={index === 0}
