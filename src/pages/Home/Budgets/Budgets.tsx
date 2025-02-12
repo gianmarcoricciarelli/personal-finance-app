@@ -73,9 +73,7 @@ export default function Budgets() {
                     'flex flex-col gap-4 sm:flex-row sm:items-center'
                 )}
             >
-                <div
-                    className={clsx('h-240[px]', 'flex justify-center sm:grow')}
-                >
+                <div className={clsx('h-60', 'flex justify-center sm:grow')}>
                     <PieChart height={240} width={240}>
                         <Pie
                             data={budgets}

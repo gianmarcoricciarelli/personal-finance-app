@@ -584,9 +584,6 @@
   .grid {
     display: grid;
   }
-  .table {
-    display: table;
-  }
   .h-2 {
     height: calc(var(--spacing) * 2);
   }
@@ -608,8 +605,8 @@
   .h-10 {
     height: calc(var(--spacing) * 10);
   }
-  .h-240 {
-    height: calc(var(--spacing) * 240);
+  .h-60 {
+    height: calc(var(--spacing) * 60);
   }
   .h-\[110px\] {
     height: 110px;
@@ -679,9 +676,6 @@
   }
   .flex-1 {
     flex: 1;
-  }
-  .shrink {
-    flex-shrink: 1;
   }
   .grow {
     flex-grow: 1;
