@@ -65,19 +65,19 @@ export default function Bills() {
     return (
         <div
             className={clsx(
-                'px-5 py-6 tablet:max-desktop:p-8 desktop:p-8',
+                'px-5 py-6 mobile:max-tablet:p-8 tablet:p-8',
                 'bg-pfa-white rounded-xl',
-                'flex flex-col gap-6 desktop:grow-[0.75]'
+                'flex flex-col gap-6 tablet:grow-[0.75]'
             )}
         >
             <div className='flex items-center gap-6'>
                 <Input
-                    containerClassName='grow tablet:max-desktop:grow-0 tablet:max-desktop:w-1/2 desktop:grow-0 desktop:w-1/2'
+                    containerClassName='grow mobile:max-tablet:grow-0 mobile:max-tablet:w-1/2 tablet:grow-0 tablet:w-1/2'
                     placeholder='Search bills'
                     icon={<SearchIcon />}
                     onChange={onSearchBill}
                 />
-                <div className='tablet:max-desktop:w-1/2 desktop:w-1/2 flex tablet:max-desktop:justify-end desktop:justify-end'>
+                <div className='mobile:max-tablet:w-1/2 tablet:w-1/2 flex mobile:max-tablet:justify-end tablet:justify-end'>
                     {isMobile && (
                         <SortIcon
                             className={clsx({
@@ -99,7 +99,7 @@ export default function Bills() {
                 <div
                     className={clsx(
                         'flex flex-col gap-5',
-                        'tablet:max-desktop:grid tablet:max-desktop:grid-cols-(--bills-table-columns) desktop:grid desktop:grid-cols-(--bills-table-columns)'
+                        'mobile:max-tablet:grid mobile:max-tablet:grid-cols-bills-table tablet:grid tablet:grid-cols-bills-table'
                     )}
                 >
                     {!isMobile && (

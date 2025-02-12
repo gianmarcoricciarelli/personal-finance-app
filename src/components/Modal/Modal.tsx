@@ -36,7 +36,7 @@ function Container({
                 ref={containerRef}
                 className={clsx(
                     className,
-                    'w-[335px] tablet:max-desktop:w-[560px] desktop:w-[560px] px-5 py-6 bg-pfa-white rounded-xl',
+                    'w-[335px] mobile:max-tablet:w-[560px] tablet:w-[560px] px-5 py-6 bg-pfa-white rounded-xl',
                     'flex flex-col gap-5'
                 )}
             >

@@ -33,14 +33,13 @@
     --color-pfa-white: #ffffff;
     --color-pfa-yellow: #f2cdac;
 
-    --breakpoint-mobile: 375px;
-    --breakpoint-tablet: 768px;
-    --breakpoint-desktop: 1024px;
+    --breakpoint-mobile: 376px;
+    --breakpoint-tablet: 769px;
 
-    --bills-table-columns: 2fr 1fr 1fr 1fr;
+    --grid-template-columns-bills-table: 2fr 1fr 1fr;
 
-    --transactions-table-columns: 2fr 1fr 1fr;
-    --transactions-table-rows: repeat(21, 40px);
+    --grid-template-columns-transactions-table: 2fr 1fr 1fr 1fr;
+    --grid-template-rows-transactions-table: repeat(21, 40px);
 
     --solid-beige-shadow: 0 0 0 2px var(--pfa-beige-500);
     --solid-grey-shadow: 0 0 0 2px var(--pfa-grey-300);

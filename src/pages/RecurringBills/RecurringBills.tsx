@@ -23,10 +23,10 @@ export default function RecurringBills() {
             <Text fontSize='xl' fontStyle='bold' color='pfa-grey-900'>
                 Recurring Bills
             </Text>
-            <div className='flex flex-col desktop:flex-row gap-6'>
-                <div className='flex flex-col tablet:max-desktop:flex-row desktop:flex-col gap-3 tablet:max-desktop:gap-6 desktop:gap-6 desktop:grow-[0.25]'>
+            <div className='flex flex-col tablet:flex-row gap-6'>
+                <div className='flex flex-col mobile:max-tablet:flex-row tablet:flex-col gap-3 mobile:max-tablet:gap-6 tablet:gap-6 tablet:grow-[0.25]'>
                     <Card
-                        className='tablet:max-desktop:grow-[0.5]'
+                        className='mobile:max-tablet:grow-[0.5]'
                         title='Total Bills'
                         subTitle={`$${(
                             upcomingBillsTotal + dueSoonBillsTotal

@@ -22,9 +22,9 @@ export default function Card({
         <div
             className={clsx(
                 className,
-                'p-5 tablet:max-desktop:p-6 desktop:p-6',
+                'p-5 mobile:max-tablet:p-6 tablet:p-6',
                 'rounded-xl',
-                'flex gap-5 tablet:max-desktop:gap-8 desktop:gap-8',
+                'flex gap-5 mobile:max-tablet:gap-8 tablet:gap-8',
                 {
                     'flex-row items-center': layout === 'horizontal',
                     'flex-col': layout === 'vertical',

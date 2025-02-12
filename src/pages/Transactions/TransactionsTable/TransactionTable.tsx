@@ -32,7 +32,7 @@ export default function TransactionTable() {
     return (
         <div
             className={clsx(
-                'px-5 py-6 tablet:max-desktop:p-8 desktop:p-8',
+                'px-5 py-6 mobile:max-tablet:p-8 tablet:p-8',
                 'flex flex-col gap-6',
                 'bg-pfa-white',
                 'rounded-xl'

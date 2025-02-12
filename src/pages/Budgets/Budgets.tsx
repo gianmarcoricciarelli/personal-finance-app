@@ -52,7 +52,7 @@ export default function Budgets() {
     return (
         <div
             className={clsx(
-                'px-4 tablet:max-desktop:px-10 py-6 tablet:max-desktop:py-8',
+                'px-4 mobile:max-tablet:px-10 py-6 mobile:max-tablet:py-8',
                 'bg-pfa-beige-100',
                 'flex flex-col gap-8 grow'
             )}
@@ -65,16 +65,16 @@ export default function Budgets() {
                     + Add New Budget
                 </Button.Primary>
             </div>
-            <div className='flex flex-col desktop:flex-row gap-6'>
+            <div className='flex flex-col tablet:flex-row gap-6'>
                 <div
                     className={clsx(
-                        'px-5 py-6 tablet:max-desktop:px-8 tablet:max-desktop:py-8 desktop:px-8 desktop:py-8',
+                        'px-5 py-6 mobile:max-tablet:px-8 mobile:max-tablet:py-8 tablet:px-8 tablet:py-8',
                         'bg-pfa-white rounded-xl',
-                        'flex flex-col tablet:max-desktop:flex-row gap-8'
+                        'flex flex-col mobile:max-tablet:flex-row gap-8'
                     )}
                 >
                     <div className='flex justify-center items-center'>
-                        <PieChart height={240} width={240}>
+                        <PieChart height={280} width={280}>
                             <Pie
                                 data={spentByCategory}
                                 dataKey='spent'
@@ -99,7 +99,7 @@ export default function Budgets() {
                     </div>
                     <SpendingSummary spentByCategory={spentByCategory} />
                 </div>
-                <div className='flex flex-col gap-6'>
+                <div className='flex flex-col gap-6 tablet:grow'>
                     {budgets.map((budget, index) => {
                         return (
                             <Budget

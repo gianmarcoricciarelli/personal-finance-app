@@ -6,7 +6,7 @@ export default function Transactions() {
     return (
         <div
             className={clsx(
-                'px-4 tablet:max-desktop:px-10 desktop:px-10 py-6 tablet:max-desktop:py-8 desktop:py-8',
+                'px-4 mobile:max-tablet:px-10 tablet:px-10 py-6 mobile:max-tablet:py-8 tablet:py-8',
                 'flex flex-col gap-8 grow',
                 'bg-pfa-beige-100'
             )}

@@ -7,7 +7,7 @@ export default function Root() {
     const { isMobile, isTablet } = useContext(ViewportObserver)
 
     return (
-        <div className='h-full flex flex-col tablet:max-desktop:flex-col desktop:flex-row'>
+        <div className='h-full flex flex-col mobile:max-tablet:flex-col tablet:flex-row'>
             {!(isMobile || isTablet) && <SideBar />}
             <Outlet />
             {(isMobile || isTablet) && <SideBar />}

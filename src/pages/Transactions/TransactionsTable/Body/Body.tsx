@@ -1,6 +1,6 @@
 import Text from '@components/Text/Text'
 import { ViewportObserver } from '@contexts/ViewportObserver/ViewportObserver.context'
-import { useContext } from 'react'
+import { Fragment, useContext } from 'react'
 import { Transaction as TransactionType } from '../../../../types'
 import Transaction from '../Transaction/Transaction'
 
@@ -16,7 +16,7 @@ export default function Body({
             {isMobile && (
                 <div className='h-[697px] flex flex-col gap-4'>
                     {transactions.map((t, index) => (
-                        <>
+                        <Fragment key={index}>
                             <Transaction.Composite {...t} />
                             {index !== transactions.length - 1 && (
                                 <div
@@ -24,12 +24,12 @@ export default function Body({
                                     className='h-[1px] bg-pfa-beige-100'
                                 />
                             )}
-                        </>
+                        </Fragment>
                     ))}
                 </div>
             )}
             {!isMobile && (
-                <div className='grid grid-cols-(--transactions-table-columns) grid-rows-(--transactions-table-rows) items-center'>
+                <div className='grid grid-cols-transactions-table grid-rows-transactions-table items-center'>
                     <Text>Recipient / Sender</Text>
                     <Text>Category</Text>
                     <Text>Transaction Date</Text>
@@ -41,7 +41,7 @@ export default function Body({
                         const formattedDate = `${_date.getDate()} ${month} ${_date.getFullYear()}, ${_date.getHours()}:${_date.getSeconds()}`
 
                         return (
-                            <>
+                            <Fragment key={index}>
                                 <Transaction.RecipientOrSender
                                     name={t.name}
                                     avatar={t.avatar}
@@ -61,7 +61,7 @@ export default function Body({
                                 {index !== transactions.length - 1 && (
                                     <div className='h-[1px] bg-pfa-beige-100 col-span-full' />
                                 )}
-                            </>
+                            </Fragment>
                         )
                     })}
                 </div>

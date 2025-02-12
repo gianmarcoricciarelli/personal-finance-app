@@ -36,10 +36,10 @@ export default function Item({
     return (
         <Component
             className={clsx(
-                'w-[68.6px] tablet:max-desktop:w-[104px] desktop:w-full desktop:h-14',
-                'pt-2 pb-3 desktop:px-8 desktop:py-4',
-                'rounded-t-md desktop:rounded-l-none desktop:rounded-r-xl',
-                'flex tablet:max-desktop:flex-col justify-center desktop:justify-start items-center tablet:max-desktop:gap-2 desktop:gap-4',
+                'w-[68.6px] mobile:max-tablet:w-[104px] tablet:w-full tablet:h-14',
+                'pt-2 pb-3 tablet:px-8 tablet:py-4',
+                'rounded-t-md tablet:rounded-l-none tablet:rounded-r-xl',
+                'flex mobile:max-tablet:flex-col justify-center tablet:justify-start items-center mobile:max-tablet:gap-2 tablet:gap-4',
                 'group hover:bg-pfa-beige-100 hover:cursor-pointer transition-colors duration-300'
             )}
             to={to as To}
@@ -51,7 +51,7 @@ export default function Item({
                     fontStyle='bold'
                     color='pfa-grey-300'
                     className={clsx(
-                        'tablet:max-desktop:text-xs desktop:text-base whitespace-nowrap',
+                        'mobile:max-tablet:text-xs tablet:text-base whitespace-nowrap',
                         'group-hover:text-pfa-grey-900',
                         'transition-all duration-300',
                         {

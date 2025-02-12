@@ -13,7 +13,7 @@ export default function SpendingSummary({
     } = useContext(DataContext)
 
     return (
-        <div className='flex flex-col gap-6'>
+        <div className='flex flex-col gap-6 mobile:max-tablet:grow'>
             <Text fontSize='xl' fontStyle='bold' color='pfa-grey-900'>
                 Spending Summary
             </Text>
